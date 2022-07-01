@@ -17,11 +17,17 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [ ] 4. 算子优化(Pool)
 - [ ] 5. 算子优化(Dense)
 - [ ] 6. 算子优化(Activation)
-- [ ] 7. PC Demo(手写数字｜KWS｜Yolo v1 目标检测)
-- [ ] 8. Stm32 Demo(手写数字｜KWS｜Yolo v1 目标检测)
+- [ ] 7. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)
+- [ ] 8. PC Demo(手写数字｜KWS｜Yolo v1 目标检测)
+- [ ] 9. Stm32 Demo(手写数字｜KWS｜Yolo v1 目标检测)
 
-#### 8.1-8月底:
-- [ ] FPGA 能跑。探究NNA的架构设计，以及和PS之间的通信设计。针对FPGA提出多NNA调度算法，充分利用FPGA的资源。
+#### 8.1-8.20:
+- [ ] 1. 探究NNA架构设计
+- [ ] 2. PS - PL 通信设计
+- [ ] 3. 多NNA调度算法(参考linux进程(=OpenNNA的一个网络)，linux线程(=OpenNNA的一个网络中的一个层/算子))
+- [ ] 4. 正点原子ZYNQ-7020 DEMO
+- [ ] 5. PYNQ-Z2 DEMO
+- [ ] 6. ZCU102 Ultrascale+ MPSOC DEMO
 
 #### 9.1-9.10:
 - [ ] 收集实验数据，整理技术文档。准备论文发表
