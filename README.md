@@ -26,7 +26,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 #### 8.1-8.20:
 - [ ] 1. 探究NNA架构设计
 - [ ] 2. PS - PL 通信设计
-- [ ] 3. 多NNA调度算法(参考linux进程(=OpenNNA的一个网络)，linux线程(=OpenNNA的一个网络中的一个层/算子))「内核态」
+- [ ] 3. 多NNA调度算法(参考linux进程(=OpenNNA的一个网络)，linux线程(=OpenNNA的一个网络中的一个层/算子))「部署在用户态」
 - [ ] 4. 正点原子ZYNQ-7020 DEMO
 - [ ] 5. PYNQ-Z2 DEMO
 - [ ] 6. ZCU102 Ultrascale+ MPSOC DEMO
@@ -44,10 +44,12 @@ OpenNNA2.0-更易用，更通用，更多算子......
 >-
 网络层（双向循环链表）「用户态」
 >-
-NNA调度层（对于FPGA）（模仿Linux对多核CPU的进程调度）1ms为调度最小时间。「内核态」
+算子层（对于PC和MCU）
 
 ||
 
-算子层（对于PC和MCU）
+NNA调度层（对于FPGA）（模仿Linux对多核CPU的进程调度）1ms为调度最小时间。「部署在用户态」
+>-
+NNA的Linux驱动(对于FPGA)
 >-
 硬件(CPU/NNA)
