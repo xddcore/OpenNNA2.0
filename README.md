@@ -20,7 +20,9 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [ ] 7. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)
 - [ ] 8. PC Demo(手写数字｜KWS｜Yolo v1 目标检测)
 - [ ] 9. Stm32 Demo(手写数字｜KWS｜Yolo v1 目标检测)
+
 **Extra**
+
 - [ ] 10. 探究更轻量和简单的堆内存管理方式
 
 #### 8.1-8.20:
