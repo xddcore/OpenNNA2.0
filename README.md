@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-03 09:08:39
+ * @LastEditTime: 2022-07-03 09:16:34
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -75,6 +75,7 @@ NNA的Linux驱动(对于FPGA)
 - [x] 网络信息打印
 - [ ] 网络层基参数类型
 - [ ] 输入输出特征图地址自动按需分配
+- [ ] 权重和偏置的类型(精度)指定
 - [ ] 网络释放方式1-释放网络对象的堆内存+输入输出特征图的堆内存
 - [ ] 网络释放方式2-仅释放输入输出特征图的堆内存
 2. opennna_operator_example.c:
