@@ -1,3 +1,11 @@
+<!--
+ * @Author: Chengsen Dong 1034029664@qq.com
+ * @Date: 2022-07-01 19:07:43
+ * @LastEditors: Chengsen Dong 1034029664@qq.com
+ * @LastEditTime: 2022-07-03 09:08:39
+ * @FilePath: /OpenNNA2.0/README.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # OpenNNA2.0
 OpenNNA2.0-更易用，更通用，更多算子......
 
@@ -56,3 +64,40 @@ NNA调度层（对于FPGA）（模仿Linux对多核CPU的进程调度）1ms为�
 NNA的Linux驱动(对于FPGA)
 >-
 硬件(CPU/NNA)
+
+### 框架功能指南
+1. opennna_core.c:
+
+- [x] 堆内存管理接口(申请/释放)
+- [x] 库信息打印接口
+- [x] 网络对象创建
+- [x] 网络层添加
+- [x] 网络信息打印
+- [ ] 网络层基参数类型
+- [ ] 输入输出特征图地址自动按需分配
+- [ ] 网络释放方式1-释放网络对象的堆内存+输入输出特征图的堆内存
+- [ ] 网络释放方式2-仅释放输入输出特征图的堆内存
+2. opennna_operator_example.c:
+OpenNNA算子开发框架
+3. opennna_operator_conv2d.c:
+卷积算子
+4. opennna_operator_dwconv2d.c:
+深度可分离卷积算子
+5. opennna_operator_padding.c:
+填充算子
+6. opennna_operator_maxpool.c:
+最大池化算子
+7. opennna_operator_avgpool.c:
+平均池化算子
+8. opennna_operator_dense.c:
+全连接算子
+9. opennna_operator_relu.c:
+relu算子
+10. opennna_operator_relu6.c:
+relu6算子
+11. opennna_operator_leakyrelu.c:
+leakyrelu算子
+12. opennna_operator_tanh.c:
+tanh算子
+13. opennna_operator_softmax.c:
+softmax算子
