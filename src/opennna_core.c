@@ -57,8 +57,7 @@ static struct layer * OpenNNA_Malloc(unsigned long size)
 }
 
 /* Function: OpenNNA_Free
- * size: 要申请的内存长度
- * return: 内存地址
+ * size: 要释放的内存首地址address
  */
 void OpenNNA_Free(void * address)
 {
@@ -116,21 +115,21 @@ int OpenNNA_Add_Layer(struct layer * Network, \
         Network->Layer_Name = Layer_Name;
         Network->Layer_Name_Alias = Layer_Name_Alias;
         Network->Layer_Para = Layer_Para;
-        Network->pfunc_Operation = NULL;
-        //Network->Input_Feature_Map = Input_Feature_Map;
-        //Network->Output_Feature_Map = Output_Feature_Map;
+        Network->pfunc_Operator = NULL;
+        Network->Input_Feature_Map = NULL;
+        Network->Output_Feature_Map = NULL;
         //在算子支持列表中寻找算子
         for (int i = 0; i < sizeof(operators); ++i) {
             if (!strcmp(Layer_Name, operators[i].Operator_Name))//0找到
             {
-                Network->pfunc_Operation = operators[i].pfunc_Operation;//算子函数指针填入
+                Network->pfunc_Operator = operators[i].pfunc_Operator;//算子函数指针填入
                 break;
             }
         }
-        if(NULL == Network->pfunc_Operation && 0 != Network->Layer_index)//未找到算子报错，index=0时忽略
+        if(NULL == Network->pfunc_Operator && 0 != Network->Layer_index)//未找到算子报错，index=0时忽略
         {
             char * strings= OpenNNA_Malloc(100);//为这次打印申请一块堆内存
-            sprintf(strings,"Operator:%s NOT FOUND IN LIB!!!\n",Layer_Name);
+            sprintf(strings,"Layer %d Operator:%s NOT FOUND IN LIB!!!\n",Network->Layer_index,Layer_Name);
             OpenNNA_Printf(strings);
             OpenNNA_Free(strings);//打印结束，释放这块堆内存
             return -1;
