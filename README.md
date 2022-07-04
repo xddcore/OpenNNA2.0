@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-04 13:20:03
+ * @LastEditTime: 2022-07-04 13:22:22
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -65,9 +65,9 @@ OpenNNA2.0-更易用，更通用，更多算子......
 |:----:|:----:|:----:|:----:|
 |0|应用层|用户态|NULL|
 |1|网络层|用户态|双向循环链表|
-|2|算子层(!FPGA)|用户态|纯C算子|
-|2|算子层(FPGA)|用户态|多个NNA的资源调度|
-|3|驱动层(FPGA)|内核态|驱动NNA|
+|2|算子层(!FPGA)|用户态|纯C算子，若有二次开发需求，套层转换皮可以支持一些厂商级的算子（比如ST的CMSIS-NN等)|
+|2|算子层(FPGA)|用户态|多NNA的资源调度|
+|3|驱动层(FPGA)|内核态|Linux驱动|
 |3|硬件层(CPU/NNA)|硬件|NULL|
 
 ### 框架功能指南
