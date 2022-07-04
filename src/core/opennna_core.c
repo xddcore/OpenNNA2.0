@@ -3,6 +3,8 @@
 #include <string.h>
 #include "opennna_core.h"
 
+/************************OpenNNA堆内存申请总量****************************/
+int OpenNNA_Heap_Sum = 0;
 /************************OpenNNA输入/输出特征图堆内存****************************/
 data_t *Input_Fmap_Heap = NULL;
 data_t *Output_Fmap_Heap = NULL;
@@ -67,6 +69,7 @@ static void OpenNNA_Printf(char * strings)
  */
 static struct layer * OpenNNA_Malloc(unsigned long size)
 {
+    OpenNNA_Heap_Sum +=size;
     return (struct layer *)malloc(size);
 }
 
@@ -234,6 +237,9 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
 }
 /* Function :OpenNNA_Init :初始化神经网络
  * struct layer * Network: 网络对象
+ * 这个函数主要做以下几件事情:
+ * 1.以网络为粒度，为每一层分配输入/输出堆内存
+ * 2.将最后一层和第0层(Host节点)连接，构成循环链表。方便推理函数遍历干活
 */
 void OpenNNA_Init(struct layer * Network)
 {
@@ -275,6 +281,7 @@ void OpenNNA_Init(struct layer * Network)
         Network->Output_Feature_Map = Input_Fmap_Heap;
         fmap_heap_flip=1;
     }
+    //将最后一层和第0层(Host节点)连接，构成循环链表。方便推理函数遍历干活
     Network->layer_next = Host;
     OpenNNA_Printf("Init OK!\n");
 }
@@ -316,8 +323,8 @@ void OpenNNA_Print_Network(struct layer * Network)
             "======================================================================\n"
             "Total Params:\n"
             "Flash:\n"
-            "Heap:\n"
-            "\n\n"
+            "Heap:%d bytes\n"
+            "\n\n",OpenNNA_Heap_Sum
     );
 }
 
