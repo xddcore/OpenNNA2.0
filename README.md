@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-05 10:47:19
+ * @LastEditTime: 2022-07-05 13:10:13
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -84,8 +84,10 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [x] 网络推理实现
 - [ ] 网络释放方式1-释放网络对象的堆内存+输入输出特征图的堆内存
 - [ ] 网络释放方式2-仅释放输入输出特征图的堆内存
-- [ ] 网络模型直接加载(提取脚本自动生成模型的.c文件(含网络结构+权重)，将.c文件添加至工程中，直接运行加载.c文件中的加载函数)
 - [ ] 以网络层(算子)为粒度的堆内存管理方式
+- [ ] 整理代码+宏定义+条件编译等
+- [ ] 网络模型直接加载(提取脚本自动生成模型的.c文件(含网络结构+权重)，将.c文件添加至工程中，直接运行加载.c文件中的加载函数)
+
 2. opennna_operator_example.c:
 - [x] OpenNNA算子开发框架
 3. opennna_operator_conv2d.c:
