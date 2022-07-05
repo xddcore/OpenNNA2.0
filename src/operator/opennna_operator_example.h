@@ -11,7 +11,7 @@
 
 //层参数
 struct Layer_Para_Example{
-    //在这里可以添加其他的层属性
+    //在这里可以添加其他的层属性(每个算子独有)
     //例如卷积核的大小，stride等
 };
 typedef struct Layer_Para_Example Layer_Para_Example;

@@ -12,7 +12,7 @@
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
 #define Author "xddcore 1034029664@qq.com"
 
-typedef float data_t;//特征图，权重，偏置等数据的类型
+typedef int data_t;//特征图，权重，偏置等数据的类型
 
 typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
 
@@ -36,7 +36,7 @@ struct operator{
 struct layer{
     struct layer *layer_prev;
     /*****************神经网络相关**********************/
-    unsigned int Layer_index;//层序号
+    unsigned int Layer_Index;//层序号
     char *Layer_Name; //网络层名
     char *Layer_Name_Alias; //网络层别名
     void *Layer_Para_Base; //基本层参数地址
@@ -65,6 +65,6 @@ int OpenNNA_Add_Layer(struct layer * Network, \
                             );
 void OpenNNA_Init(struct layer * Network);
 void OpenNNA_Print_Network(struct layer * Network);
-void OpenNNA_Predict(struct layer * Host_Layer,const void *Network_Input, void *Network_Output);
+void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Network_Output);
 
 #endif //CORE_OPENNNA_CORE_H
