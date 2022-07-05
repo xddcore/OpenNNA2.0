@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-05 13:10:13
+ * @LastEditTime: 2022-07-05 13:19:46
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -34,12 +34,12 @@ OpenNNA2.0-更易用，更通用，更多算子......
 
 #### 7.4-7月底:
 - [ ] 1. OpenNNA框架搭建(C)
-- [ ] 2. 算子优化(Conv2D)
-- [ ] 3. 算子优化(Depthwise Conv2D)
-- [ ] 4. 算子优化(Pool)
-- [ ] 5. 算子优化(Dense)
-- [ ] 6. 算子优化(Activation)
-- [ ] 7. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)
+- [ ] 2. 算子移植与优化(Conv2D)
+- [ ] 3. 算子移植与优化(Depthwise Conv2D)
+- [ ] 4. 算子移植与优化(Pool)
+- [ ] 5. 算子移植与优化(Dense)
+- [ ] 6. 算子移植与优化(Activation)
+- [ ] 7. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)(生成带有网络配置结构配置的.c文件)
 - [ ] 8. PC Demo(手写数字｜KWS｜Yolo v1 目标检测)
 - [ ] 9. Stm32 Demo(手写数字｜KWS｜Yolo v1 目标检测)
 
