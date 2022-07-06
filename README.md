@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-05 13:19:46
+ * @LastEditTime: 2022-07-06 08:51:11
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -46,6 +46,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 **Extra**
 
 - [ ] 10. 探究更轻量和简单的堆内存管理方式
+- [ ] 11.C语言手写K-means聚类，实现无训练自学习分类算法
 
 #### 8.1-8.20:
 - [ ] 0. 研究哪些算子值得被FPGA加速(根据上一篇论文的结果，卷积层和全连接层以及简单激活函数的加速收益非常高)
@@ -92,6 +93,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [x] OpenNNA算子开发框架
 3. opennna_operator_conv2d.c:
 - [ ] 卷积算子
+- [ ] 探究三种不同卷积实现思路之间的差异
 4. opennna_operator_dwconv2d.c:
 - [ ] 深度可分离卷积算子
 5. opennna_operator_padding.c:
