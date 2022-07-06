@@ -6,6 +6,7 @@
 //这里提供一个算子,命名规则:OpenNNA_Operator_算子名
 void OpenNNA_Operator_Example(struct layer *Layers)
 {
+    //通过Layer对象便可访问当前层的所有计算有关的信息
     reg_t Input_Fmap_Channel = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Input_Fmap_Channel;
     reg_t Input_Fmap_Row = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Input_Fmap_Row;
     reg_t Input_Fmap_Col = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Input_Fmap_Col;
@@ -26,5 +27,4 @@ void OpenNNA_Operator_Example(struct layer *Layers)
         }
 
     }
-    //通过Layer对象便可访问当前层的所有计算有关的信息
 }

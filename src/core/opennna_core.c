@@ -367,7 +367,38 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
     );
 }
-
+/* Function :OpenNNA_Free_Static_FmapHeap :释放输入输出特征图的堆内存
+ * struct layer * Network: 网络对象
+ * (无论是静态申请堆内存还是动态申请堆内存，
+ * 第一层网络对象的属性里的Input_Feature_Map&Output_Feature_Map一定会被分配值)
+*/
+void OpenNNA_Free_FmapHeap(struct layer *Network)
+{
+    Network= Network->layer_next;
+    if(0!=Network->Layer_Index) {
+        OpenNNA_Free(Network->Input_Feature_Map);
+        OpenNNA_Free(Network->Output_Feature_Map);
+    }
+}
+/* Function :OpenNNA_Free_Network :释放网络对象的堆内存+释放输入输出特征图的堆内存(若有)
+ * struct layer * Network: 网络对象
+*/
+void OpenNNA_Free_Network(struct layer *Network)
+{
+    //先释放静态申请的堆内存
+    //(无论是静态申请堆内存还是动态申请堆内存，
+    //第一层网络对象的属性里的Input_Feature_Map&Output_Feature_Map一定会被分配值)
+    OpenNNA_Free_FmapHeap(Network);
+    //跳转到第一层
+    Network= Network->layer_next;
+    while (0!=Network->Layer_Index) {
+        if(1!=Network->Layer_Index)OpenNNA_Free(Network->layer_prev);//释放上一层，从1开始，0先留着(0作为遍历终止条件比较方便)
+        Network->layer_prev=NULL;//为了保险把访问上一层对象的指针置NULL
+        Network = Network->layer_next;//跳转到下一层
+    }
+    //最后释放第0层
+    OpenNNA_Free(Network);
+}
 int main() {
     /*****************第1步:创建神经网络对象**********************/
     struct layer * Network = OpenNNA_CreateNetwork();
@@ -399,9 +430,9 @@ int main() {
     Layer_Para_Base3->Output_Fmap_Row=1;
     Layer_Para_Base3->Output_Fmap_Col=5;
     /*****************第3步:添加网络层**********************/
-    OpenNNA_Add_Layer(Network, "Example", "xdd1", Layer_Para_Base1,Layer_Para_Example1, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Example", "xdd2", Layer_Para_Base2, Layer_Para_Example2,NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Example", "xdd3", Layer_Para_Base3, Layer_Para_Example3,NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Example", "xdd1", Layer_Para_Base1,NULL, NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Example", "xdd2", Layer_Para_Base2, NULL,NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Example", "xdd3", Layer_Para_Base3, NULL,NULL, NULL);
     //OpenNNA_Add_Layer(Network, "ReLU", "xdd4", NULL, NULL,NULL, NULL);
     //OpenNNA_Add_Layer(Network, "Dense", "xdd5", NULL, NULL,NULL, NULL);
     //OpenNNA_Add_Layer(Network, "Softmax", "xdd6", NULL, NULL,NULL, NULL);
@@ -420,6 +451,7 @@ int main() {
     NN_Input_Fmap[0], NN_Input_Fmap[1], NN_Input_Fmap[2], NN_Input_Fmap[3], NN_Input_Fmap[4]);
     printf("Output fmap[0] = %d, fmap[1] = %d, fmap[2] = %d, fmap[3] = %d,fmap[4] = %d\n",\
     NN_Output_Fmap[0], NN_Output_Fmap[1], NN_Output_Fmap[2], NN_Output_Fmap[3], NN_Output_Fmap[4]);
-
+    /*****************第8步:推理结束释放网络结构+静态申请的特征图堆内存(若有)**********************/
+    OpenNNA_Free_Network(Network);
     return 0;
 }
