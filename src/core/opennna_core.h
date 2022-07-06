@@ -5,10 +5,17 @@
 #ifndef CORE_OPENNNA_CORE_H
 #define CORE_OPENNNA_CORE_H
 
+/************************OpenNNA配置项****************************/
+//1. 特征图静态分配 / 特征图动态分配
+
+//2.CHW / HWC模式
+
+//3......
+
 /************************OpenNNA算子引入****************************/
 //CHW
 #include "opennna_operator_example.h"
-
+/************************OpenNNA库的相关类型&函数声明****************************/
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
 #define Author "xddcore 1034029664@qq.com"
 

@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-06 12:00:07
+ * @LastEditTime: 2022-07-06 12:35:09
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -96,6 +96,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 3. opennna_operator_conv2d.c:
 - [ ] 卷积算子
 - [ ] 探究三种不同卷积实现思路之间的差异(以输入特征图为导向，以卷积核为导向，以输出特征图为导向)
+- [ ] 对于stm32使用一种比较优的实现思路，完成汇编卷积的实现
 4. opennna_operator_dwconv2d.c:
 - [ ] 深度可分离卷积算子
 5. opennna_operator_padding.c:

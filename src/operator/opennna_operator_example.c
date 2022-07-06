@@ -18,11 +18,10 @@ void OpenNNA_Operator_Example(struct layer *Layers)
     for (int i = 0; i < Output_Fmap_Channel; ++i) {
         for (int j = 0; j < Output_Fmap_Row; ++j) {
             for (int k = 0; k < Output_Fmap_Col; ++k) {
-                ((data_t *)Layers->Output_Feature_Map)\
-                [k+k*j+k*j*i]\
+                ((data_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
                 =\
-                ((data_t *)Layers->Input_Feature_Map)\
-                [k+k*j+k*j*i]+1;
+                ((data_t *)Layers->Input_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
+                +1;
             }
         }
 
