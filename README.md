@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-06 11:57:17
+ * @LastEditTime: 2022-07-06 12:00:07
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -86,6 +86,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [x] 网络推理实现
 - [x] 网络释放方式1-释放网络对象的堆内存+释放输入输出特征图的堆内存(若有)
 - [x] 网络释放方式2-释放输入输出特征图的堆内存(仅静态方式申请的特征图堆内存支持这一操作)
+- [ ] 整理代码+宏定义+条件编译等
 - [ ] 以网络层(算子)为粒度的堆内存管理方式
 - [ ] 整理代码+宏定义+条件编译等
 - [ ] 网络模型直接加载(提取脚本自动生成模型的.c文件(含网络结构+权重)，将.c文件添加至工程中，直接运行加载.c文件中的加载函数)
@@ -94,7 +95,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [x] OpenNNA算子开发框架
 3. opennna_operator_conv2d.c:
 - [ ] 卷积算子
-- [ ] 探究三种不同卷积实现思路之间的差异
+- [ ] 探究三种不同卷积实现思路之间的差异(以输入特征图为导向，以卷积核为导向，以输出特征图为导向)
 4. opennna_operator_dwconv2d.c:
 - [ ] 深度可分离卷积算子
 5. opennna_operator_padding.c:
