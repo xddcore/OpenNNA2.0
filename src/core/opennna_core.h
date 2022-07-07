@@ -6,9 +6,9 @@
 #define CORE_OPENNNA_CORE_H
 
 /************************OpenNNA配置项****************************/
-//1. 特征图静态分配 / 特征图动态分配
+//1. 特征图静态分配 / 特征图动态分配(默认)
 
-//2.CHW / HWC模式
+//2.CHW(默认) / HWC模式
 
 //3......
 
@@ -61,6 +61,9 @@ struct layer{
 typedef struct layer layers;//神经网络层类型
 
 //函数声明
+struct layer * OpenNNA_Malloc(unsigned long size);
+void OpenNNA_Free(void * address);
+void OpenNNA_Printf(char * strings);
 struct layer * OpenNNA_CreateNetwork(void);
 int OpenNNA_Add_Layer(struct layer * Network, \
                             char *Layer_Name, \
@@ -73,5 +76,6 @@ int OpenNNA_Add_Layer(struct layer * Network, \
 void OpenNNA_Init(struct layer * Network);
 void OpenNNA_Print_Network(struct layer * Network);
 void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Network_Output);
+void OpenNNA_Free_Network(struct layer *Network);
 
 #endif //CORE_OPENNNA_CORE_H

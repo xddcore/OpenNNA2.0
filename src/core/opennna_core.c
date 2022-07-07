@@ -57,7 +57,7 @@ static void OpenNNA_Logo(void)
  * strings: OpenNNA输出的信息
  * PS：影响库运行的关键信息会通过这个函数往外打印，其他不重要的信息直接采用printf打印
  */
-static void OpenNNA_Printf(char * strings)
+void OpenNNA_Printf(char * strings)
 {
     char mesg[100] = {"OpenNNA: "};
     strcat(mesg, strings);
@@ -67,7 +67,7 @@ static void OpenNNA_Printf(char * strings)
  * size: 要申请的内存长度
  * return: 内存地址
  */
-static struct layer * OpenNNA_Malloc(unsigned long size)
+struct layer * OpenNNA_Malloc(unsigned long size)
 {
     OpenNNA_Heap_Sum +=size;
     return (struct layer *)malloc(size);
@@ -400,82 +400,4 @@ void OpenNNA_Free_Network(struct layer *Network)
     //最后释放第0层
     OpenNNA_Free(Network);
     OpenNNA_Printf("Network Free Success!\n");
-}
-int main() {
-    /*****************第1步:创建神经网络对象**********************/
-    struct layer * Network = OpenNNA_CreateNetwork();
-    /*****************第2步:配置网络层参数**********************/
-    Layer_Para_Base *Layer_Para_Base1 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
-    Layer_Para_Example *Layer_Para_Example1 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
-    Layer_Para_Base1->Input_Fmap_Channel=2;
-    Layer_Para_Base1->Input_Fmap_Row=2;
-    Layer_Para_Base1->Input_Fmap_Col=5;
-    Layer_Para_Base1->Output_Fmap_Channel=2;
-    Layer_Para_Base1->Output_Fmap_Row=2;
-    Layer_Para_Base1->Output_Fmap_Col=5;
-
-    Layer_Para_Base *Layer_Para_Base2 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
-    Layer_Para_Example *Layer_Para_Example2 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
-    Layer_Para_Base2->Input_Fmap_Channel=2;
-    Layer_Para_Base2->Input_Fmap_Row=2;
-    Layer_Para_Base2->Input_Fmap_Col=5;
-    Layer_Para_Base2->Output_Fmap_Channel=2;
-    Layer_Para_Base2->Output_Fmap_Row=2;
-    Layer_Para_Base2->Output_Fmap_Col=5;
-
-    Layer_Para_Base *Layer_Para_Base3 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
-    Layer_Para_Example *Layer_Para_Example3 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
-    Layer_Para_Base3->Input_Fmap_Channel=2;
-    Layer_Para_Base3->Input_Fmap_Row=2;
-    Layer_Para_Base3->Input_Fmap_Col=5;
-    Layer_Para_Base3->Output_Fmap_Channel=2;
-    Layer_Para_Base3->Output_Fmap_Row=2;
-    Layer_Para_Base3->Output_Fmap_Col=5;
-    /*****************第3步:添加网络层**********************/
-    OpenNNA_Add_Layer(Network, "Example", "xdd1", Layer_Para_Base1,Layer_Para_Example1, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Example", "xdd2", Layer_Para_Base2, Layer_Para_Example2,NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Example", "xdd3", Layer_Para_Base3, Layer_Para_Example3,NULL, NULL);
-    //OpenNNA_Add_Layer(Network, "ReLU", "xdd4", NULL, NULL,NULL, NULL);
-    //OpenNNA_Add_Layer(Network, "Dense", "xdd5", NULL, NULL,NULL, NULL);
-    //OpenNNA_Add_Layer(Network, "Softmax", "xdd6", NULL, NULL,NULL, NULL);
-    /*****************第4步:初始化神经网络**********************/
-    OpenNNA_Init(Network);
-    /*****************第5步:打印神经网络信息**********************/
-    OpenNNA_Print_Network(Network);
-    /*****************第6步:设置神经网络输入数据和输出数据**********************/
-    data_t NN_Input_Fmap[2][2][5]={\
-    {
-            {0, 1, 2, 3, 4},
-        {10, 11, 12, 13, 14},
-        },
-    {
-            {100, 101, 102, 103, 104},
-            {110, 111, 112, 113, 114},
-        },
-    };
-    data_t NN_Output_Fmap[2][2][5]={0};
-    /*****************第6步:神经网络推理**********************/
-    OpenNNA_Printf("Begin Predict!\n");
-    OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
-    /*****************第7步:根据推理结果进行动作**********************/
-    printf("Input fmap[0][0][0] = %d, fmap[0][0][1] = %d, fmap[0][0][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
-    NN_Input_Fmap[0][0][0], NN_Input_Fmap[0][0][1], NN_Input_Fmap[0][0][2], NN_Input_Fmap[0][0][3], NN_Input_Fmap[0][0][4]);
-    printf("Input fmap[0][1][0] = %d, fmap[0][1][1] = %d, fmap[0][1][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
-    NN_Input_Fmap[0][1][0], NN_Input_Fmap[0][1][1], NN_Input_Fmap[0][1][2], NN_Input_Fmap[0][1][3], NN_Input_Fmap[0][1][4]);
-    printf("Input fmap[1][0][0] = %d, fmap[1][0][1] = %d, fmap[1][0][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
-    NN_Input_Fmap[1][0][0], NN_Input_Fmap[1][0][1], NN_Input_Fmap[1][0][2], NN_Input_Fmap[1][0][3], NN_Input_Fmap[1][0][4]);
-    printf("Input fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
-    NN_Input_Fmap[1][1][0], NN_Input_Fmap[1][1][1], NN_Input_Fmap[1][1][2], NN_Input_Fmap[1][1][3], NN_Input_Fmap[1][1][4]);
-    printf("\n\n");
-    printf("Output fmap[0][0][0] = %d, fmap[0][0][1] = %d, fmap[0][0][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
-    NN_Output_Fmap[0][0][0], NN_Output_Fmap[0][0][1], NN_Output_Fmap[0][0][2], NN_Output_Fmap[0][0][3], NN_Output_Fmap[0][0][4]);
-    printf("Output fmap[0][1][0] = %d, fmap[0][1][1] = %d, fmap[0][1][2] = %d, fmap[0][1][3] = %d,fmap[0][1][4] = %d\n",\
-    NN_Output_Fmap[0][1][0], NN_Output_Fmap[0][1][1], NN_Output_Fmap[0][1][2], NN_Output_Fmap[0][1][3], NN_Output_Fmap[0][1][4]);
-    printf("Output fmap[1][0][0] = %d, fmap[1][0][1] = %d, fmap[1][0][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
-    NN_Output_Fmap[1][0][0], NN_Output_Fmap[1][0][1], NN_Output_Fmap[1][0][2], NN_Output_Fmap[1][0][3], NN_Output_Fmap[1][0][4]);
-    printf("Output fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
-    NN_Output_Fmap[1][1][0], NN_Output_Fmap[1][1][1], NN_Output_Fmap[1][1][2], NN_Output_Fmap[1][1][3], NN_Output_Fmap[1][1][4]);
-    /*****************第8步:推理结束释放网络结构+申请的特征图堆内存**********************/
-    OpenNNA_Free_Network(Network);
-    return 0;
 }
