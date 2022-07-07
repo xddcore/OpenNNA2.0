@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-07 08:36:08
+ * @LastEditTime: 2022-07-07 09:24:12
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -29,6 +29,23 @@ OpenNNA2.0-更易用，更通用，更多算子......
 **Xilinx ZYNQ 系列FPGA神经网络加速器**做特别优化(多NNA调度，负载均衡等)
 
 **PC，MCU**等提供纯C算子，不针对某个特定平台做算子优化。
+
+### OpenNNA算子支持
+>xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
+
+|算子|可被FPGA加速|HWC/CHW|Convert From Tensorflow|注释|
+|:----:|:----:|:----:|:----:|:----:|
+|Conv2d|Y|Y|Y|面向图像数据/频谱数据分别提供最优实现策略|
+|Depthwise Conv2d|Y|Y|Y||
+|Padding|Y|Y|Y|对称/非对称填充|
+|Max Pool||Y|Y||
+|Avg Pool||Y|Y||
+|Dense|Y|Y|Y||
+|ReLU|Y|Y|Y||
+|ReLU6|Y|Y|Y||
+|LeakyReLU|Y|Y|Y||
+|tanh||Y|Y||
+|Softmax||Y|Y||
 
 ### 开发规划
 
@@ -65,12 +82,12 @@ OpenNNA2.0-更易用，更通用，更多算子......
 
 |Index| 层| 空间|注释|
 |:----:|:----:|:----:|:----:|
-|0|应用层|用户态|NULL|
+|0|应用层|用户态||
 |1|网络层|用户态|双向循环链表|
 |2|算子层(!FPGA)|用户态|纯C算子，若有二次开发需求，套层转换皮可以支持一些厂商级的算子（比如ST的CMSIS-NN等)|
 |2|算子层(FPGA)|用户态|多NNA的资源调度|
 |3|驱动层(FPGA)|内核态|Linux驱动|
-|4|硬件层(CPU/NNA)|硬件|NULL|
+|4|硬件层(CPU/NNA)|硬件||
 
 ### 框架功能指南
 1. opennna_core.c:
@@ -86,7 +103,7 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [x] 网络推理实现
 - [x] 网络释放方式1-释放网络对象的堆内存+释放输入输出特征图的堆内存(若有)
 - [x] 网络释放方式2-释放输入输出特征图的堆内存(仅静态方式申请的特征图堆内存支持这一操作)
-- [ ] 整理代码+Readme
+- [x] 整理代码+Readme
 - [ ] 以网络层(算子)为粒度的堆内存管理方式
 - [ ] CHW / HWC的计算模式转换
 - [ ] 整理代码+宏定义+条件编译等
