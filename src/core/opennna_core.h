@@ -13,7 +13,7 @@
 //3......
 
 /************************OpenNNA算子引入****************************/
-//CHW
+//算子支持CHW/HWC这两种内存操作方式
 #include "opennna_operator_example.h"
 /************************OpenNNA库的相关类型&函数声明****************************/
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
