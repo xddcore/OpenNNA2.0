@@ -1,0 +1,10 @@
+00:28:38 **** Incremental Build of configuration Debug for project OpenNNA_STM32H7A3_Demo_Mnist ****
+make -j24 all 
+arm-none-eabi-size   OpenNNA_STM32H7A3_Demo_Mnist.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30812	     28	1029124	1059964	 102c7c	OpenNNA_STM32H7A3_Demo_Mnist.elf
+Finished building: default.size.stdout
+ 
+
+00:28:38 Build Finished. 0 errors, 0 warnings. (took 148ms)
+
