@@ -103,7 +103,6 @@ int main() {
     printf("Output fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][1][3] = %d,fmap[1][1][4] = %d\n",\
     NN_Output_Fmap[1][1][0], NN_Output_Fmap[1][1][1], NN_Output_Fmap[1][1][2], NN_Output_Fmap[1][1][3], NN_Output_Fmap[1][1][4]);
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
-    OpenNNA_Free_Network(Network);
-    Network = NULL;//防止野指针
+    OpenNNA_Free_Network(&Network);
     return 0;
 }

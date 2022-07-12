@@ -87,6 +87,6 @@ int OpenNNA_Add_Layer(struct layer * Network, \
 void OpenNNA_Init(struct layer * Network);
 void OpenNNA_Print_Network(struct layer * Network);
 void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Network_Output);
-void OpenNNA_Free_Network(struct layer *Network);
+void OpenNNA_Free_Network(struct layer **pNetwork);
 
 #endif //CORE_OPENNNA_CORE_H
