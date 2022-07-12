@@ -15,6 +15,8 @@ void OpenNNA_Operator_Example(struct layer *Layers)
     reg_t Output_Fmap_Col = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Col;
     //printf("Example算子已被调用\n");
     //下方示例会实现 输出特征图 = 输入特征图 * Weights + Bias
+#if (CHW==1)
+    //在此实现CHW的内存访问逻辑
     for (int i = 0; i < Output_Fmap_Channel; ++i) {
         for (int j = 0; j < Output_Fmap_Row; ++j) {
             for (int k = 0; k < Output_Fmap_Col; ++k) {
@@ -25,6 +27,8 @@ void OpenNNA_Operator_Example(struct layer *Layers)
                 +((data_t *)Layers->Bias)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i];
             }
         }
-
     }
+#elif (CHW==0)//HWC模式
+    //在此实现HWC的内存访问逻辑
+#endif
 }

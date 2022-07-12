@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-12 14:46:32
+ * @LastEditTime: 2022-07-12 19:15:53
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -90,6 +90,9 @@ OpenNNA2.0-更易用，更通用，更多算子......
 |4|硬件层(CPU/NNA)|硬件||
 
 ### 框架功能指南
+0. OpenNNA_Converter.py
+- [ ] 网络模型直接加载(提取脚本自动生成模型的.c文件(含网络结构+权重)，将.c文件添加至工程中，直接运行加载.c文件中的加载函数)
+
 1. opennna_core.c:
 
 - [x] 堆内存管理接口(申请/释放)
@@ -105,9 +108,8 @@ OpenNNA2.0-更易用，更通用，更多算子......
 - [x] 网络释放方式2-释放输入输出特征图的堆内存(仅静态方式申请的特征图堆内存支持这一操作)
 - [x] 整理代码+Readme
 - [x] 以网络层(算子)为粒度的堆内存管理方式
-- [ ] CHW / HWC的计算模式转换
-- [ ] 整理代码+宏定义+条件编译等
-- [ ] 网络模型直接加载(提取脚本自动生成模型的.c文件(含网络结构+权重)，将.c文件添加至工程中，直接运行加载.c文件中的加载函数)
+- [x] CHW / HWC的计算模式转换(算子级实现)
+- [x] 整理代码+宏定义+条件编译等
 
 2. opennna_operator_example.c:
 - [x] OpenNNA算子开发框架
