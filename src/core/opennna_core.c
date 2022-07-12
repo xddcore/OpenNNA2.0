@@ -67,10 +67,10 @@ void OpenNNA_Printf(char * strings)
  * size: 要申请的内存长度
  * return: 内存地址
  */
-struct layer * OpenNNA_Malloc(unsigned long size)
+void * OpenNNA_Malloc(unsigned long size)
 {
     OpenNNA_Heap_Sum +=size;
-    return (struct layer *)malloc(size);
+    return (void *)malloc(size);
 }
 
 /* Function: OpenNNA_Free

@@ -11,8 +11,8 @@ int main() {
     /*****************第1步:创建神经网络对象**********************/
     struct layer * Network = OpenNNA_CreateNetwork();
     /*****************第2步:配置网络层参数**********************/
-    Layer_Para_Base *Layer_Para_Base1 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
-    Layer_Para_Example *Layer_Para_Example1 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
+    struct Layer_Para_base *Layer_Para_Base1 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
+    struct Layer_Para_example *Layer_Para_Example1 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
     Layer_Para_Base1->Input_Fmap_Channel=2;
     Layer_Para_Base1->Input_Fmap_Row=2;
     Layer_Para_Base1->Input_Fmap_Col=5;
@@ -20,8 +20,8 @@ int main() {
     Layer_Para_Base1->Output_Fmap_Row=2;
     Layer_Para_Base1->Output_Fmap_Col=5;
 
-    Layer_Para_Base *Layer_Para_Base2 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
-    Layer_Para_Example *Layer_Para_Example2 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
+    struct Layer_Para_base *Layer_Para_Base2 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
+    struct Layer_Para_example *Layer_Para_Example2 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
     Layer_Para_Base2->Input_Fmap_Channel=2;
     Layer_Para_Base2->Input_Fmap_Row=2;
     Layer_Para_Base2->Input_Fmap_Col=5;
@@ -29,8 +29,8 @@ int main() {
     Layer_Para_Base2->Output_Fmap_Row=2;
     Layer_Para_Base2->Output_Fmap_Col=5;
 
-    Layer_Para_Base *Layer_Para_Base3 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
-    Layer_Para_Example *Layer_Para_Example3 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
+    struct Layer_Para_base *Layer_Para_Base3 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
+    struct Layer_Para_example *Layer_Para_Example3 = OpenNNA_Malloc(sizeof(Layer_Para_Example));
     Layer_Para_Base3->Input_Fmap_Channel=2;
     Layer_Para_Base3->Input_Fmap_Row=2;
     Layer_Para_Base3->Input_Fmap_Col=5;
@@ -87,11 +87,11 @@ int main() {
     /*****************第9步:根据推理结果进行动作**********************/
     printf("Input fmap[0][0][0] = %d, fmap[0][0][1] = %d, fmap[0][0][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
     NN_Input_Fmap[0][0][0], NN_Input_Fmap[0][0][1], NN_Input_Fmap[0][0][2], NN_Input_Fmap[0][0][3], NN_Input_Fmap[0][0][4]);
-    printf("Input fmap[0][1][0] = %d, fmap[0][1][1] = %d, fmap[0][1][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
+    printf("Input fmap[0][1][0] = %d, fmap[0][1][1] = %d, fmap[0][1][2] = %d, fmap[0][1][3] = %d,fmap[0][1][4] = %d\n",\
     NN_Input_Fmap[0][1][0], NN_Input_Fmap[0][1][1], NN_Input_Fmap[0][1][2], NN_Input_Fmap[0][1][3], NN_Input_Fmap[0][1][4]);
     printf("Input fmap[1][0][0] = %d, fmap[1][0][1] = %d, fmap[1][0][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
     NN_Input_Fmap[1][0][0], NN_Input_Fmap[1][0][1], NN_Input_Fmap[1][0][2], NN_Input_Fmap[1][0][3], NN_Input_Fmap[1][0][4]);
-    printf("Input fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
+    printf("Input fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][1][3] = %d,fmap[1][1][4] = %d\n",\
     NN_Input_Fmap[1][1][0], NN_Input_Fmap[1][1][1], NN_Input_Fmap[1][1][2], NN_Input_Fmap[1][1][3], NN_Input_Fmap[1][1][4]);
     printf("\n\n");
     printf("Output fmap[0][0][0] = %d, fmap[0][0][1] = %d, fmap[0][0][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
@@ -100,7 +100,7 @@ int main() {
     NN_Output_Fmap[0][1][0], NN_Output_Fmap[0][1][1], NN_Output_Fmap[0][1][2], NN_Output_Fmap[0][1][3], NN_Output_Fmap[0][1][4]);
     printf("Output fmap[1][0][0] = %d, fmap[1][0][1] = %d, fmap[1][0][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
     NN_Output_Fmap[1][0][0], NN_Output_Fmap[1][0][1], NN_Output_Fmap[1][0][2], NN_Output_Fmap[1][0][3], NN_Output_Fmap[1][0][4]);
-    printf("Output fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
+    printf("Output fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][1][3] = %d,fmap[1][1][4] = %d\n",\
     NN_Output_Fmap[1][1][0], NN_Output_Fmap[1][1][1], NN_Output_Fmap[1][1][2], NN_Output_Fmap[1][1][3], NN_Output_Fmap[1][1][4]);
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
     OpenNNA_Free_Network(Network);

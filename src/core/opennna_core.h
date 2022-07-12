@@ -61,7 +61,7 @@ struct layer{
 typedef struct layer layers;//神经网络层类型
 
 //函数声明
-struct layer * OpenNNA_Malloc(unsigned long size);
+void * OpenNNA_Malloc(unsigned long size);
 void OpenNNA_Free(void * address);
 void OpenNNA_Printf(char * strings);
 struct layer * OpenNNA_CreateNetwork(void);
