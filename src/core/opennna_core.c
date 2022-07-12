@@ -243,6 +243,35 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
 */
 void OpenNNA_Init(struct layer * Network)
 {
+#if(Dynamic_Fmap_heap == 1)//动态特征图堆内存(管理粒度:层)
+    struct layer * Host = Network;//第0层
+    struct layer * Last_Layer = NULL;//最后一层
+    Network = Network->layer_next;//跳转到第一层
+    //提示动态堆内存分配已开启
+    OpenNNA_Printf("Dynamic Fmap Heap Enable!\n");
+    Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
+    );
+    //分配输出特征图的堆内存
+    Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
+    );
+    while(NULL != Network->layer_next)//遍历到最后一层
+    {
+        Network = Network->layer_next;
+    }
+    //将最后一层和第0层(Host节点)连接，构成循环链表。方便推理函数遍历干活
+    Network->layer_next = Host;
+    //将第0层的prev和最后一层连接，构成双向循环链表
+    Last_Layer = Network;
+    Network = Network->layer_next;//跳转到第0层
+    Network->layer_prev= Last_Layer;//第0层prev连接最后一层
+    OpenNNA_Printf("Init OK!\n");
+#elif(Dynamic_Fmap_heap == 0)//静态特征图堆内存(管理粒度:网络)
     struct layer * Host = Network;//第0层
     struct layer * Last_Layer = NULL;//最后一层
     int Input_Fmap_HeapSize = 0;//获取最大的输入特征图堆内存
@@ -251,7 +280,7 @@ void OpenNNA_Init(struct layer * Network)
     char mesg[100] = {0};
     //获取输入/输出特征图堆内存
     OpenNNA_GetFmapHeap(Network,&Input_Fmap_HeapSize,&Output_Fmap_HeapSize);
-    sprintf(mesg,"Max Input Fmap Heap = %d bytes, Max Output Fmap Heap = %d bytes\n",Input_Fmap_HeapSize,Output_Fmap_HeapSize);
+    sprintf(mesg,"Static Fmap Heap Enable!\nMax Input Fmap Heap = %d bytes, Max Output Fmap Heap = %d bytes\n",Input_Fmap_HeapSize,Output_Fmap_HeapSize);
     OpenNNA_Printf(mesg);
     //最大堆内存，由于堆内存翻转设计，也就是OpenNNA将会以最大特征图占用为标准，申请两块对称的堆内存空间
     Max_Fmap_Heap=(Input_Fmap_HeapSize > Output_Fmap_HeapSize ? Input_Fmap_HeapSize : Output_Fmap_HeapSize);
@@ -289,6 +318,7 @@ void OpenNNA_Init(struct layer * Network)
     Network = Network->layer_next;//跳转到第0层
     Network->layer_prev= Last_Layer;//第0层prev连接最后一层
     OpenNNA_Printf("Init OK!\n");
+#endif
 }
 
 /* Function :OpenNNA_Print_Network :打印网络信息
@@ -338,6 +368,68 @@ void OpenNNA_Print_Network(struct layer * Network)
 */
 void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Network_Output)
 {
+#if (Dynamic_Fmap_heap==1)
+    //跳转到第一层
+    Network = Network->layer_next;
+    //将用户传入的神经网络输入copy到第一层的堆内存上
+    memcpy(Network->Input_Feature_Map,Network_Input,\
+    sizeof(data_t)*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
+    *\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
+    *\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel\
+    );
+    //手动计算第一层结果
+    Network->pfunc_Operator(Network);//将本层参数传入算子进行计算
+    //第一层计算完成，跳转到第二层
+    Network = Network->layer_next;
+    //遍历每一层计算一次(从第二层开始)
+    while(0!=Network->Layer_Index)
+    {
+        //Free上一层的输入
+        OpenNNA_Free(Network->layer_prev->Input_Feature_Map);
+        //将上一层的输出绑定到本层的输入
+        Network->Input_Feature_Map=Network->layer_prev->Output_Feature_Map;
+        //为本层输出特征图Malloc堆内存
+        Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+        ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel*\
+        ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
+        ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
+        );
+        Network->pfunc_Operator(Network);//将本层参数传入算子进行计算
+        Network = Network->layer_next;//计算完成跳转到下一层
+    }
+    //跳回最后一层取结果
+    Network = Network->layer_prev;
+    //把最后一层的结果取出
+    memcpy(Network_Output,Network->Output_Feature_Map,\
+    sizeof(data_t)*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
+    *\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
+    *\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
+    );
+    //把最后一层的输输出free
+    OpenNNA_Free(Network->Output_Feature_Map);
+    //跳转到第一层
+    Network = Network->layer_next;
+    Network = Network->layer_next;
+    //为第一层输入输出特征图申请堆内存
+    //分配输入特征图的堆内存
+    Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
+    );
+    //分配输出特征图的堆内存
+    Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
+    ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
+    );
+#elif(Dynamic_Fmap_heap==0)
     //跳转到第一层
     Network = Network->layer_next;
     //将用户传入的神经网络输入copy到第一层的堆内存上
@@ -366,6 +458,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
     );
+#endif
 }
 /* Function :OpenNNA_Free_Static_FmapHeap :释放输入输出特征图的堆内存
  * struct layer * Network: 网络对象
