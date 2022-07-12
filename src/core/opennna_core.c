@@ -389,6 +389,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     {
         //Free上一层的输入
         OpenNNA_Free(Network->layer_prev->Input_Feature_Map);
+        Network->layer_prev->Input_Feature_Map = NULL;
         //将上一层的输出绑定到本层的输入
         Network->Input_Feature_Map=Network->layer_prev->Output_Feature_Map;
         //为本层输出特征图Malloc堆内存
@@ -413,6 +414,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     );
     //把最后一层的输输出free
     OpenNNA_Free(Network->Output_Feature_Map);
+    Network->Output_Feature_Map = NULL;
     //跳转到第一层
     Network = Network->layer_next;
     Network = Network->layer_next;
@@ -470,7 +472,9 @@ void OpenNNA_Free_FmapHeap(struct layer *Network)
     Network= Network->layer_next;
     if(0!=Network->Layer_Index) {
         OpenNNA_Free(Network->Input_Feature_Map);
+        Network->Input_Feature_Map = NULL;
         OpenNNA_Free(Network->Output_Feature_Map);
+        Network->Output_Feature_Map = NULL;
     }
     OpenNNA_Printf("Fmap Heap Free Success!\n");
 }
@@ -486,8 +490,9 @@ void OpenNNA_Free_Network(struct layer *Network)
     //跳转到第一层
     Network= Network->layer_next;
     while (0!=Network->Layer_Index) {
-        if(1!=Network->Layer_Index)OpenNNA_Free(Network->layer_prev);//释放上一层，从1开始，0先留着(0作为遍历终止条件比较方便)
+        if(1!=Network->Layer_Index){OpenNNA_Free(Network->layer_prev);//释放上一层，从1开始，0先留着(0作为遍历终止条件比较方便)
         Network->layer_prev=NULL;//为了保险把访问上一层对象的指针置NULL
+        }
         Network = Network->layer_next;//跳转到下一层
     }
     //最后释放第0层
