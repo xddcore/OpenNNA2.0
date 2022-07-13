@@ -491,12 +491,19 @@ void OpenNNA_Free_Network(struct layer **pNetwork)
     //跳转到第一层
     Network= Network->layer_next;
     while (0 != Network->Layer_Index) {
-        if(1 != Network->Layer_Index){OpenNNA_Free(Network->layer_prev);//释放上一层，从1开始，0先留着(0作为遍历终止条件比较方便)
+        if(1 != Network->Layer_Index){
+            OpenNNA_Free(Network->layer_prev);//释放上一层，从1开始，0先留着(0作为遍历终止条件比较方便)
             Network->layer_prev=NULL;//为了保险把访问上一层对象的指针置NULL
+            //释放本层的堆内存
+            OpenNNA_Free(Network->Layer_Para_Base);
+            Network->Layer_Para_Base = NULL;
+            OpenNNA_Free(Network->Layer_Para_Extra);
+            Network->Layer_Para_Extra = NULL;
         }
         Network = Network->layer_next;//跳转到下一层
     }
-    //最后释放第0层
+    //最后释放第0层和最后一层
+    OpenNNA_Free(Network->layer_prev);
     OpenNNA_Free(Network);
     OpenNNA_Printf("Network Free Success!\n");
     *pNetwork=NULL;//外部Network=NULL防止野指针
