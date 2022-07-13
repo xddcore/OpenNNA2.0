@@ -30,9 +30,9 @@ struct operator operators[]={
         {"Maxpool",NULL},
         {"Avgpool",NULL},
         //全连接类
-        {"Dense",NULL},
+        {"Dense",OpenNNA_Operator_Dense},
         //激活函数类
-        {"ReLU",NULL},
+        {"ReLU",OpenNNA_Operator_ReLU},
         {"ReLU6",NULL},
         {"LeakyRelu",NULL},
         {"tanh",NULL},
@@ -502,7 +502,7 @@ void OpenNNA_Free_Network(struct layer **pNetwork)
         }
         Network = Network->layer_next;//跳转到下一层
     }
-    //最后释放第0层和最后一层
+    //最后释放最后一层和第0层
     OpenNNA_Free(Network->layer_prev);
     OpenNNA_Free(Network);
     OpenNNA_Printf("Network Free Success!\n");
