@@ -49,12 +49,12 @@ int main() {
     //第四层Softmax激活函数
     struct Layer_Para_base *Layer_Para_Base4 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
     struct Layer_Para_Softmax *Layer_Para_Softmax4 = OpenNNA_Malloc(sizeof(Layer_Para_Softmax));
-    Layer_Para_Base2->Input_Fmap_Channel=1;
-    Layer_Para_Base2->Input_Fmap_Row=1;
-    Layer_Para_Base2->Input_Fmap_Col=10;
-    Layer_Para_Base2->Output_Fmap_Channel=1;
-    Layer_Para_Base2->Output_Fmap_Row=1;
-    Layer_Para_Base2->Output_Fmap_Col=10;
+    Layer_Para_Base4->Input_Fmap_Channel=1;
+    Layer_Para_Base4->Input_Fmap_Row=1;
+    Layer_Para_Base4->Input_Fmap_Col=10;
+    Layer_Para_Base4->Output_Fmap_Channel=1;
+    Layer_Para_Base4->Output_Fmap_Row=1;
+    Layer_Para_Base4->Output_Fmap_Col=10;
     /*****************第3步:设置神经网络输入数据和输出数据**********************/
     //第一层Dense的weights和bias
     data_t Dense1_Weights[1][128][784]={
@@ -354,7 +354,7 @@ int main() {
     };
     /*****************第4步:添加网络层**********************/
     OpenNNA_Add_Layer(Network, "Dense", "xdd1", Layer_Para_Base1,Layer_Para_Dense1, Dense1_Weights, Dense1_Bias);
-    OpenNNA_Add_Layer(Network, "Relu", "xdd2", Layer_Para_Base2, Layer_Para_ReLU2,NULL, NULL);
+    OpenNNA_Add_Layer(Network, "ReLU", "xdd2", Layer_Para_Base2, Layer_Para_ReLU2,NULL, NULL);
     OpenNNA_Add_Layer(Network, "Dense", "xdd3", Layer_Para_Base3, Layer_Para_Dense3,Dense2_Weights, Dense2_Bias);
     OpenNNA_Add_Layer(Network, "Softmax", "xdd3", Layer_Para_Base4, Layer_Para_Softmax4,NULL, NULL);
     /*****************第5步:初始化神经网络**********************/
@@ -363,12 +363,19 @@ int main() {
     OpenNNA_Print_Network(Network);
     /*****************第7步:设置神经网络输入数据和输出数据**********************/
     data_t NN_Input_Fmap[1][28][28]={0};
+    NN_Input_Fmap[0][0][0]=0.5;
+    NN_Input_Fmap[0][1][2]=0.8;
     data_t NN_Output_Fmap[1][1][10]={0};
     /*****************第8步:神经网络推理**********************/
     OpenNNA_Printf("Begin Predict!\n");
     OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
     /*****************第9步:根据推理结果进行动作**********************/
-
+    printf("\n推理结果:");
+    for(int i = 0;i<10;++i)
+    {
+        printf("%f,",NN_Output_Fmap[i]);
+    }
+    printf("\n");
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
     OpenNNA_Free_Network(&Network);
     return 0;
