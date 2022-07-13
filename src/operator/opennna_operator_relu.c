@@ -2,7 +2,6 @@
 // Created by 董程森 on 2022/7/13.
 //
 #include "opennna_operator_relu.h"
-#include "stdio.h"
 //这里提供一个算子,命名规则:OpenNNA_Operator_算子名
 void OpenNNA_Operator_ReLU(struct layer *Layers)
 {

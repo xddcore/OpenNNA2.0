@@ -36,7 +36,7 @@ struct operator operators[]={
         {"ReLU6",NULL},
         {"LeakyRelu",NULL},
         {"tanh",NULL},
-        {"Softmax",NULL},
+        {"Softmax",OpenNNA_Operator_Softmax},
 };
 
 /* Function: OpenNNA_Printf OpenNNA打印信息
