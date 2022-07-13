@@ -85,22 +85,22 @@ int main() {
     OpenNNA_Printf("Begin Predict!\n");
     OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
     /*****************第9步:根据推理结果进行动作**********************/
-    printf("Input fmap[0][0][0] = %d, fmap[0][0][1] = %d, fmap[0][0][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
+    printf("Input fmap[0][0][0] = %f, fmap[0][0][1] = %f, fmap[0][0][2] = %f, fmap[0][0][3] = %f,fmap[0][0][4] = %f\n",\
     NN_Input_Fmap[0][0][0], NN_Input_Fmap[0][0][1], NN_Input_Fmap[0][0][2], NN_Input_Fmap[0][0][3], NN_Input_Fmap[0][0][4]);
-    printf("Input fmap[0][1][0] = %d, fmap[0][1][1] = %d, fmap[0][1][2] = %d, fmap[0][1][3] = %d,fmap[0][1][4] = %d\n",\
+    printf("Input fmap[0][1][0] = %f, fmap[0][1][1] = %f, fmap[0][1][2] = %f, fmap[0][1][3] = %f,fmap[0][1][4] = %f\n",\
     NN_Input_Fmap[0][1][0], NN_Input_Fmap[0][1][1], NN_Input_Fmap[0][1][2], NN_Input_Fmap[0][1][3], NN_Input_Fmap[0][1][4]);
-    printf("Input fmap[1][0][0] = %d, fmap[1][0][1] = %d, fmap[1][0][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
+    printf("Input fmap[1][0][0] = %f, fmap[1][0][1] = %f, fmap[1][0][2] = %f, fmap[1][0][3] = %f,fmap[1][0][4] = %f\n",\
     NN_Input_Fmap[1][0][0], NN_Input_Fmap[1][0][1], NN_Input_Fmap[1][0][2], NN_Input_Fmap[1][0][3], NN_Input_Fmap[1][0][4]);
-    printf("Input fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][1][3] = %d,fmap[1][1][4] = %d\n",\
+    printf("Input fmap[1][1][0] = %f, fmap[1][1][1] = %f, fmap[1][1][2] = %f, fmap[1][1][3] = %f,fmap[1][1][4] = %f\n",\
     NN_Input_Fmap[1][1][0], NN_Input_Fmap[1][1][1], NN_Input_Fmap[1][1][2], NN_Input_Fmap[1][1][3], NN_Input_Fmap[1][1][4]);
     printf("\n\n");
-    printf("Output fmap[0][0][0] = %d, fmap[0][0][1] = %d, fmap[0][0][2] = %d, fmap[0][0][3] = %d,fmap[0][0][4] = %d\n",\
+    printf("Output fmap[0][0][0] = %f, fmap[0][0][1] = %f, fmap[0][0][2] = %f, fmap[0][0][3] = %f,fmap[0][0][4] = %f\n",\
     NN_Output_Fmap[0][0][0], NN_Output_Fmap[0][0][1], NN_Output_Fmap[0][0][2], NN_Output_Fmap[0][0][3], NN_Output_Fmap[0][0][4]);
-    printf("Output fmap[0][1][0] = %d, fmap[0][1][1] = %d, fmap[0][1][2] = %d, fmap[0][1][3] = %d,fmap[0][1][4] = %d\n",\
+    printf("Output fmap[0][1][0] = %f, fmap[0][1][1] = %f, fmap[0][1][2] = %f, fmap[0][1][3] = %f,fmap[0][1][4] = %f\n",\
     NN_Output_Fmap[0][1][0], NN_Output_Fmap[0][1][1], NN_Output_Fmap[0][1][2], NN_Output_Fmap[0][1][3], NN_Output_Fmap[0][1][4]);
-    printf("Output fmap[1][0][0] = %d, fmap[1][0][1] = %d, fmap[1][0][2] = %d, fmap[1][0][3] = %d,fmap[1][0][4] = %d\n",\
+    printf("Output fmap[1][0][0] = %f, fmap[1][0][1] = %f, fmap[1][0][2] = %f, fmap[1][0][3] = %f,fmap[1][0][4] = %f\n",\
     NN_Output_Fmap[1][0][0], NN_Output_Fmap[1][0][1], NN_Output_Fmap[1][0][2], NN_Output_Fmap[1][0][3], NN_Output_Fmap[1][0][4]);
-    printf("Output fmap[1][1][0] = %d, fmap[1][1][1] = %d, fmap[1][1][2] = %d, fmap[1][1][3] = %d,fmap[1][1][4] = %d\n",\
+    printf("Output fmap[1][1][0] = %f, fmap[1][1][1] = %f, fmap[1][1][2] = %f, fmap[1][1][3] = %f,fmap[1][1][4] = %f\n",\
     NN_Output_Fmap[1][1][0], NN_Output_Fmap[1][1][1], NN_Output_Fmap[1][1][2], NN_Output_Fmap[1][1][3], NN_Output_Fmap[1][1][4]);
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
     OpenNNA_Free_Network(&Network);
