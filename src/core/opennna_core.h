@@ -34,7 +34,7 @@
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
 #define Author "xddcore 1034029664@qq.com"
 
-typedef int data_t;//特征图，权重，偏置等数据的类型
+typedef float data_t;//特征图，权重，偏置等数据的类型
 
 typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
 

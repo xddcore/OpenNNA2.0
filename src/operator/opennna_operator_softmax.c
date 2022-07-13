@@ -3,6 +3,7 @@
 //
 #include "opennna_operator_softmax.h"
 #include "math.h"
+#include "stdio.h"
 //这里提供一个算子,命名规则:OpenNNA_Operator_算子名
 void OpenNNA_Operator_Softmax(struct layer *Layers)
 {

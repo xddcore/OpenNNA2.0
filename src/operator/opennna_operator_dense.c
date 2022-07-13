@@ -20,7 +20,7 @@ void OpenNNA_Operator_Dense(struct layer *Layers)
         for (reg_t j= 0; j < (Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col); ++j)
         {
             /*weights*/
-            ((data_t *)Layers->Output_Feature_Map)[i] += ((data_t *)Layers->Input_Feature_Map)[i] * ((data_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j];
+            ((data_t *)Layers->Output_Feature_Map)[i] += ((data_t *)Layers->Input_Feature_Map)[j] * ((data_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j];
         }
     }
 #elif (CHW==0)//HWC模式

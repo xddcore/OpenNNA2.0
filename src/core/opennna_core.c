@@ -59,7 +59,7 @@ static void OpenNNA_Logo(void)
  */
 void OpenNNA_Printf(char * strings)
 {
-    char mesg[100] = {"OpenNNA: "};
+    char mesg[250] = {"OpenNNA: "};
     strcat(mesg, strings);
     printf("%s", mesg);
 }
