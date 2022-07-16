@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-16 14:45:23
+ * @LastEditTime: 2022-07-16 14:58:19
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -30,6 +30,20 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 **Xilinx ZYNQ 系列FPGA神经网络加速器**做特别优化(多NNA调度，负载均衡等)
 
 **PC，MCU**等提供纯C算子，不针对某个特定平台做算子优化。
+
+### 快速验证
+>为了方便大家快速验证框架的功能，我们针对主流平台提供快速验证DEMO。同时也希望大家在使用的过程中，踊跃提出建议与意见。以及欢迎大家进行二次开发。
+
+|DEMO|网络类型|PC|STM32|STC8051|FPGA|Heap|Flash|注释|
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+|示例算子推理|NULL| | | | | |
+|Mnist手写数字识别|全连接神经网络| | | | | | |
+|Mnist手写数字识别|卷积神经网络| | | | | | |
+|热成像传感器的手势识别|全连接神经网络| | | | | | |
+|热成像传感器的手势识别|卷积神经网络| | | | | | |
+|语音关键词识别|卷积神经网络| | | | | | |
+|目标分类|MobileNet V1| | | | | | |
+|目标检测|YOLO V1| | | | | | |
 
 ### OpenNNA算子支持
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
