@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-16 15:04:51
+ * @LastEditTime: 2022-07-16 15:07:39
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -21,9 +21,9 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 8. 提供两种网络释放方式:1.仅释放特征图堆内存(在这种释放方式下，重新调用Init函数可以恢复神神经网络计算)。2.释放整个网络的所有有关数据(例如网络结构，特征图堆内存等|网络权重由于是编译器分配的地址，无法通过OpenNNA来free。不过如果想要把这段内存用起来，可以直接对这些变量取址，然后用指针直接往里面去写入其他东西就行)(在这种释放方式下，网络所有信息将会永久从堆内存中被移除。恢复网络计算只能重启)
 
 ### 移植要点
-1. 堆内存申请/释放函数
-2. printf函数
-3. 确保SRAM，Flash能够满足网络结构的要求(这一点将会在H5/tflite转C Model工具中被检出)
+1. (**必要**)堆内存申请/释放函数
+2. (**可选**)printf函数
+3. (**必要**)确保SRAM，Flash能够满足网络结构的要求(这一点将会在H5/tflite转C Model工具中被检出)
 
 ### OpenNNA的发展方向
 
