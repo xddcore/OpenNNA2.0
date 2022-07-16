@@ -2,12 +2,12 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-13 14:36:37
+ * @LastEditTime: 2022-07-16 14:45:23
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # OpenNNA2.0
-OpenNNA2.0-更易用，更通用，更多算子......
+OpenNNA2.0-Tinier, Faster, Easier To Use
 
 ### OpenNNA核心特性
 
