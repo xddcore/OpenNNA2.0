@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-16 14:58:19
+ * @LastEditTime: 2022-07-16 15:04:51
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -34,15 +34,17 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 ### 快速验证
 >为了方便大家快速验证框架的功能，我们针对主流平台提供快速验证DEMO。同时也希望大家在使用的过程中，踊跃提出建议与意见。以及欢迎大家进行二次开发。
 
+>若自信移植本框架到其他硬件平台，请先尝试运行示例算子推理DEMO。若此DEMO可以正常运行，则证明框架移植成功。
+
 |DEMO|网络类型|PC|STM32|STC8051|FPGA|Heap|Flash|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-|示例算子推理|NULL| | | | | |
+|示例算子推理|NULL| | | | | | |若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络| | | | | | |
 |Mnist手写数字识别|卷积神经网络| | | | | | |
 |热成像传感器的手势识别|全连接神经网络| | | | | | |
 |热成像传感器的手势识别|卷积神经网络| | | | | | |
 |语音关键词识别|卷积神经网络| | | | | | |
-|目标分类|MobileNet V1| | | | | | |
+|目标分类|MobileNet V1(α=0.25)| | | | | | |
 |目标检测|YOLO V1| | | | | | |
 
 ### OpenNNA算子支持
