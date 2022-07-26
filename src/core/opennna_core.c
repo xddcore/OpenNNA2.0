@@ -25,7 +25,7 @@ struct operator operators[]={
         //示例算子框架
         {"Example",OpenNNA_Operator_Example},
         //卷积类
-        {"Conv2d",NULL},
+        {"Conv2d",OpenNNA_Operator_Conv2d},
         {"Depthwise Conv2d",NULL},
         //Padding类
         {"Padding",NULL},
