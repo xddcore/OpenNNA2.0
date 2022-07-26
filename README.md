@@ -58,7 +58,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 |Max Pool||✅|✅||
 |Avg Pool||✅|✅||
 |Dense|✅|✅|✅||
-|ReLU|Y|✅|✅||
+|ReLU|✅|✅|✅||
 |ReLU6|✅|✅|✅||
 |LeakyReLU|✅|✅|✅||
 |tanh||✅|✅||
