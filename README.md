@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 11:19:27
+ * @LastEditTime: 2022-07-26 11:20:46
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -22,7 +22,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 
 ### 移植要点
 1. (**必要**)堆内存申请/释放函数
-2. (**可选**)printf函数
+2. (**可选**)printf函数｜用户通过DEBUG宏进行使能/屏蔽
 3. (**必要**)确保SRAM，Flash能够满足网络结构的要求(这一点将会在H5/tflite转C Model工具中被检出)
 
 ### OpenNNA的发展方向
