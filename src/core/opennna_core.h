@@ -22,7 +22,11 @@
 //2.CHW(默认,CHW==1) / HWC模式(CHW == 0)
 #define CHW 1
 
-//3......
+//3.DEBUG模式 (当DEBUG=1时，OpenNNA会打印所有输出信息，方便调试;反之，则不进行输出，同时屏蔽printf相关的所有代码(正式部署为了提高初始化速度，建议将DEBUG设置为0)
+//如果不想移植printf函数，则直接DEBUG=0
+#define DEBUG 1
+
+//4......
 
 /************************OpenNNA算子引入****************************/
 //算子支持CHW/HWC这两种内存操作方式
@@ -78,7 +82,9 @@ typedef struct layer layers;//神经网络层类型
 //函数声明
 void * OpenNNA_Malloc(unsigned long size);
 void OpenNNA_Free(void * address);
+#if(DEBUG==1)
 void OpenNNA_Printf(char * strings);
+#endif
 struct layer * OpenNNA_CreateNetwork(void);
 int OpenNNA_Add_Layer(struct layer * Network, \
                             char *Layer_Name, \
@@ -89,7 +95,9 @@ int OpenNNA_Add_Layer(struct layer * Network, \
                             const void *Bias \
                             );
 void OpenNNA_Init(struct layer * Network);
+#if(DEBUG==1)
 void OpenNNA_Print_Network(struct layer * Network);
+#endif
 void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Network_Output);
 void OpenNNA_Free_Network(struct layer **pNetwork);
 

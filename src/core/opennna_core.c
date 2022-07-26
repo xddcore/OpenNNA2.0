@@ -4,7 +4,10 @@
 #include "opennna_core.h"
 
 /************************OpenNNA堆内存申请总量****************************/
-int OpenNNA_Heap_Sum = 0;
+unsigned int OpenNNA_Heap_Sum = 0;
+/************************OpenNNA网络权重和偏置占用的Flash****************************/
+// OpenNNA_Flash_Sum = 参数数量*sizeof(data_t)
+unsigned int OpenNNA_Flash_Sum = 0;//这个变量中存储的还是参数数量，仅在OpenNNA_Print_Network打印时会*sizeof(data_t)
 /************************OpenNNA输入/输出特征图堆内存****************************/
 data_t *Input_Fmap_Heap = NULL;
 data_t *Output_Fmap_Heap = NULL;
@@ -57,12 +60,14 @@ static void OpenNNA_Logo(void)
  * strings: OpenNNA输出的信息
  * PS：影响库运行的关键信息会通过这个函数往外打印，其他不重要的信息直接采用printf打印
  */
+#if(DEBUG==1)
 void OpenNNA_Printf(char * strings)
 {
     char mesg[250] = {"OpenNNA: "};
     strcat(mesg, strings);
     printf("%s", mesg);
 }
+#endif
 /* Function: OpenNNA_Malloc
  * size: 要申请的内存长度
  * return: 内存地址
@@ -97,7 +102,9 @@ struct layer * OpenNNA_CreateNetwork(void)
     Network->Layer_Para_Extra = NULL;
     Network->Input_Feature_Map=NULL;
     Network->Output_Feature_Map=NULL;
+#if(DEBUG==1)
     OpenNNA_Logo();
+#endif
     return Network;
 }
 /* Function :OpenNNA_Add_Layer :在网络尾部添加一个网络层
@@ -150,9 +157,11 @@ int OpenNNA_Add_Layer(struct layer * Network, \
         }
         if(NULL == Network->pfunc_Operator && 0 != Network->Layer_Index)//未找到算子报错，index=0时忽略
         {
+#if(DEBUG==1)
             char mesg[100] = {0};
             sprintf(mesg, "Layer %d Operator:%s NOT FOUND IN LIB!!!\n", Network->Layer_Index, Layer_Name);
             OpenNNA_Printf(mesg);
+#endif
             return -1;
         }
         Network->Weights = Weights;
@@ -248,7 +257,9 @@ void OpenNNA_Init(struct layer * Network)
     struct layer * Last_Layer = NULL;//最后一层
     Network = Network->layer_next;//跳转到第一层
     //提示动态堆内存分配已开启
+#if(DEBUG==1)
     OpenNNA_Printf("Dynamic Fmap Heap Enable!\n");
+#endif
     Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row*\
@@ -270,7 +281,9 @@ void OpenNNA_Init(struct layer * Network)
     Last_Layer = Network;
     Network = Network->layer_next;//跳转到第0层
     Network->layer_prev= Last_Layer;//第0层prev连接最后一层
+#if(DEBUG==1)
     OpenNNA_Printf("Init OK!\n");
+#endif
 #elif(Dynamic_Fmap_heap == 0)//静态特征图堆内存(管理粒度:网络)
     struct layer * Host = Network;//第0层
     struct layer * Last_Layer = NULL;//最后一层
@@ -280,8 +293,10 @@ void OpenNNA_Init(struct layer * Network)
     char mesg[100] = {0};
     //获取输入/输出特征图堆内存
     OpenNNA_GetFmapHeap(Network,&Input_Fmap_HeapSize,&Output_Fmap_HeapSize);
+#if(DEBUG==1)
     sprintf(mesg,"Static Fmap Heap Enable!\nMax Input Fmap Heap = %d bytes, Max Output Fmap Heap = %d bytes\n",Input_Fmap_HeapSize,Output_Fmap_HeapSize);
     OpenNNA_Printf(mesg);
+#endif
     //最大堆内存，由于堆内存翻转设计，也就是OpenNNA将会以最大特征图占用为标准，申请两块对称的堆内存空间
     Max_Fmap_Heap=(Input_Fmap_HeapSize > Output_Fmap_HeapSize ? Input_Fmap_HeapSize : Output_Fmap_HeapSize);
     Input_Fmap_Heap = OpenNNA_Malloc(Max_Fmap_Heap);//为输入特征图申请堆内存空间
@@ -317,13 +332,36 @@ void OpenNNA_Init(struct layer * Network)
     Last_Layer = Network;
     Network = Network->layer_next;//跳转到第0层
     Network->layer_prev= Last_Layer;//第0层prev连接最后一层
+#if(DEBUG==1)
     OpenNNA_Printf("Init OK!\n");
 #endif
+#endif
 }
-
+/* Function :OpenNNA_Get_LayerParam :获取网络某一层的参数数量(Weights+Bias)
+ * struct layer * Network: 网络对象
+*/
+static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int layer_index)
+{
+    unsigned int param = 0;
+    Network = Network->layer_next;//跳转到第一层
+    //遍历寻找layer index
+    while(Network->Layer_Index !=layer_index) {
+        Network = Network->layer_next;
+    }
+    if(!strcmp("Dense",Network->Layer_Name)){
+        param = ((Layer_Para_Dense *)Network->Layer_Para_Extra)->units * \
+        ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Row *\
+        ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Col *\
+        ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Channel +\
+        ((Layer_Para_Dense *)Network->Layer_Para_Extra)->units;
+    }
+    OpenNNA_Flash_Sum+=param;
+    return param;
+}
 /* Function :OpenNNA_Print_Network :打印网络信息
  * struct layer * Network: 网络对象
 */
+#if(DEBUG==1)
 void OpenNNA_Print_Network(struct layer * Network)
 {
     printf(
@@ -342,7 +380,7 @@ void OpenNNA_Print_Network(struct layer * Network)
         if(0 !=Network->Layer_Index && NULL != Network->Layer_Para_Base)
         printf(
                 "----------------------------------------------------------------------\n"
-                "%s(%s)    (%d,%d,%d)    (%d,%d,%d)            NULL      NULL     %d   \n",
+                "%s(%s)    (%d,%d,%d)    (%d,%d,%d)            NULL      %d     %d   \n",
                 Network->Layer_Name_Alias, Network->Layer_Name,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row,\
@@ -350,19 +388,20 @@ void OpenNNA_Print_Network(struct layer * Network)
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col,\
+                OpenNNA_Get_LayerParam(Network,Network->Layer_Index),
                 Network->Layer_Index
         );
         if(0 == Network->Layer_Index)break;
     }
     printf(
             "======================================================================\n"
-            "Total Params:\n"
-            "Flash:\n"
+            "Total Params:%d\n"
+            "Flash:%d bytes\n"
             "Heap:%d bytes\n"
-            "\n\n",OpenNNA_Heap_Sum
+            "\n\n",OpenNNA_Flash_Sum,OpenNNA_Flash_Sum*sizeof(data_t),OpenNNA_Heap_Sum
     );
 }
-
+#endif
 /* Function :OpenNNA_Init :神经网络推理
  * struct layer * Network: 网络对象
 */
@@ -476,7 +515,9 @@ void OpenNNA_Free_FmapHeap(struct layer *Network)
         OpenNNA_Free(Network->Output_Feature_Map);
         Network->Output_Feature_Map = NULL;
     }
+#if(DEBUG==1)
     OpenNNA_Printf("Fmap Heap Free Success!\n");
+#endif
 }
 /* Function :OpenNNA_Free_Network :释放网络对象的堆内存+释放输入输出特征图的堆内存(若有)
  * struct layer * pNetwork: 网络对象
@@ -505,6 +546,8 @@ void OpenNNA_Free_Network(struct layer **pNetwork)
     //最后释放最后一层和第0层
     OpenNNA_Free(Network->layer_prev);
     OpenNNA_Free(Network);
+#if(DEBUG==1)
     OpenNNA_Printf("Network Free Success!\n");
+#endif
     *pNetwork=NULL;//外部Network=NULL防止野指针
 }

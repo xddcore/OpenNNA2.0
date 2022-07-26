@@ -360,7 +360,9 @@ int main() {
     /*****************第5步:初始化神经网络**********************/
     OpenNNA_Init(Network);
     /*****************第6步:打印神经网络信息**********************/
-    OpenNNA_Print_Network(Network);
+    #if(DEBUG==1)
+        OpenNNA_Print_Network(Network);
+    #endif
     /*****************第7步:设置神经网络输入数据和输出数据**********************/
     data_t NN_Input_Fmap[1][28][28]={
             {
@@ -396,7 +398,9 @@ int main() {
     };
     data_t NN_Output_Fmap[1][1][10]={0};
     /*****************第8步:神经网络推理**********************/
+#if(DEBUG==1)
     OpenNNA_Printf("Begin Predict!\n");
+#endif
     OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
     /*****************第9步:根据推理结果进行动作**********************/
     printf("\n推理结果:   ");
