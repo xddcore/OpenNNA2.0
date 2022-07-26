@@ -30,13 +30,13 @@ struct operator operators[]={
         //Padding类
         {"Padding",OpenNNA_Operator_Padding},
         //Pool类
-        {"Maxpool",NULL},
-        {"Avgpool",NULL},
+        {"Maxpool",OpenNNA_Operator_MaxPool},
+        {"Avgpool",OpenNNA_Operator_AvgPool},
         //全连接类
         {"Dense",OpenNNA_Operator_Dense},
         //激活函数类
         {"ReLU",OpenNNA_Operator_ReLU},
-        {"ReLU6",NULL},
+        {"ReLU6",OpenNNA_Operator_ReLU6},
         {"LeakyRelu",NULL},
         {"tanh",NULL},
         {"Softmax",OpenNNA_Operator_Softmax},
