@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 11:10:15
+ * @LastEditTime: 2022-07-26 11:13:05
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -52,17 +52,17 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 
 |算子|可被FPGA加速|HWC/CHW|Convert From Tensorflow|注释|
 |:----:|:----:|:----:|:----:|:----:|
-|Conv2d|Y|Y|Y|面向图像数据/频谱数据分别提供最优实现策略|
-|Depthwise Conv2d|Y|Y|Y||
-|Padding|Y|Y|Y|对称/非对称填充|
-|Max Pool||Y|Y||
-|Avg Pool||Y|Y||
-|Dense|Y|Y|Y||
-|ReLU|Y|Y|Y||
-|ReLU6|Y|Y|Y||
-|LeakyReLU|Y|Y|Y||
-|tanh||Y|Y||
-|Softmax||Y|Y||
+|Conv2d|✅|✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
+|Depthwise Conv2d|✅|✅|✅||
+|Padding|✅|✅|✅|对称/非对称填充|
+|Max Pool||✅|✅||
+|Avg Pool||✅|✅||
+|Dense|✅|✅|✅||
+|ReLU|Y|✅|✅||
+|ReLU6|✅|✅|✅||
+|LeakyReLU|✅|✅|✅||
+|tanh||✅|✅||
+|Softmax||✅|✅||
 
 ### 开发规划
 
