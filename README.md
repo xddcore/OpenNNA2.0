@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 11:25:15
+ * @LastEditTime: 2022-07-26 13:12:09
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -109,7 +109,10 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 |3|驱动层(FPGA)|内核态|Linux驱动|
 |4|硬件层(CPU/NNA)|硬件||
 
-### 框架功能指南
+
+---
+
+### 框架功能开发CheckPoint
 0. OpenNNA_Converter.py
 - [ ] 网络模型直接加载(提取脚本自动生成模型的.c文件(含网络结构+权重)，将.c文件添加至工程中，直接运行加载.c文件中的加载函数)
 
@@ -134,7 +137,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 2. opennna_operator_example.c:
 - [x] OpenNNA算子开发框架
 3. opennna_operator_conv2d.c:
-- [ ] 卷积算子
+- [x] 卷积算子
 - [ ] 探究三种不同卷积实现思路之间的差异(以输入特征图为导向，以卷积核为导向，以输出特征图为导向)
 - [ ] 对于stm32使用一种比较优的实现思路，完成汇编卷积的实现
 4. opennna_operator_dwconv2d.c:
