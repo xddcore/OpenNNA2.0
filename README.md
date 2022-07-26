@@ -34,8 +34,8 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 ### 快速验证
 >为了方便大家快速验证框架的功能，我们针对主流平台提供快速验证DEMO。同时也希望大家在使用的过程中，踊跃提出建议与意见。以及欢迎大家进行二次开发。
 
->DEMO位于./platform目录下。框架的运行需要包含两个必需条件:
->1.src目录下的OpenNNA源码
+>DEMO位于./platform目录下。框架的运行需要包含两个必需条件:<br>
+>1.src目录下的OpenNNA源码<br>
 >2.神经网络模型的C Model File(其实就是利用OpenNNA框架提供的API构造网络结构)
 
 >若自行移植本框架到其他硬件平台，请先尝试运行示例算子推理DEMO。若此DEMO可以正常运行，则证明框架移植成功。
