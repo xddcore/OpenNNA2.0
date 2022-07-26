@@ -28,7 +28,7 @@ struct operator operators[]={
         {"Conv2d",OpenNNA_Operator_Conv2d},
         {"Depthwise Conv2d",NULL},
         //Padding类
-        {"Padding",NULL},
+        {"Padding",OpenNNA_Operator_Padding},
         //Pool类
         {"Maxpool",NULL},
         {"Avgpool",NULL},

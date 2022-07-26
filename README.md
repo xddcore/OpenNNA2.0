@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 13:12:09
+ * @LastEditTime: 2022-07-26 13:55:49
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -143,7 +143,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 4. opennna_operator_dwconv2d.c:
 - [ ] 深度可分离卷积算子
 5. opennna_operator_padding.c:
-- [ ] 填充算子
+- [x] 填充算子
 6. opennna_operator_maxpool.c:
 - [ ] 最大池化算子
 7. opennna_operator_avgpool.c:

@@ -35,6 +35,7 @@
 #include "opennna_operator_relu.h"
 #include "opennna_operator_softmax.h"
 #include "opennna_operator_conv2d.h"
+#include "opennna_operator_padding.h"
 /************************OpenNNA库的相关类型&函数声明****************************/
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
 #define Author "xddcore 1034029664@qq.com"
