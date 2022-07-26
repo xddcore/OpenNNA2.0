@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 11:20:46
+ * @LastEditTime: 2022-07-26 11:25:15
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -40,7 +40,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 
 |DEMO|网络类型|PC|STM32|STC(MCS-251)|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-|示例算子推理|NULL|✅| | | | | |若此demo可以运行，则证明框架核心功能正常|
+|示例算子推理|NULL|✅| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络|✅| | ||4232~6856|407080||
 |Mnist手写数字识别|卷积神经网络| | | | | | |
 |热成像传感器的手势识别|全连接神经网络| | | | | | |
