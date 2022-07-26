@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 15:00:34
+ * @LastEditTime: 2022-07-26 15:02:27
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -34,9 +34,10 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 ### 快速验证
 >为了方便大家快速验证框架的功能，我们针对主流平台提供快速验证DEMO。同时也希望大家在使用的过程中，踊跃提出建议与意见。以及欢迎大家进行二次开发。
 
->DEMO位于./platform目录下。框架的运行需要包含两个必需条件:<br>
+>DEMO位于./platform目录下。<br>
+>DEMO的运行需要包含两个必需条件:<br>
 >1.src目录下的OpenNNA源码<br>
->2.神经网络模型的C Model File(其实就是利用OpenNNA框架提供的API构造网络结构)
+>2.神经网络模型的C Model File(其实就是利用OpenNNA框架提供的API构造网络结构),C Model File一般以 opennna_demo_xxxxxxx.c命名。
 
 >若自行移植本框架到其他硬件平台，请先尝试运行示例算子推理DEMO。若此DEMO可以正常运行，则证明框架移植成功。
 
