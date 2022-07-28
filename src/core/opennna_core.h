@@ -36,6 +36,7 @@
 #include "opennna_operator_relu6.h"
 #include "opennna_operator_softmax.h"
 #include "opennna_operator_conv2d.h"
+#include "opennna_operator_dwconv2d.h"
 #include "opennna_operator_padding.h"
 #include "opennna_operator_maxpool.h"
 #include "opennna_operator_avgpool.h"
