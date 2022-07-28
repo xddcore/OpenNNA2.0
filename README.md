@@ -2,12 +2,19 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-28 11:27:39
+ * @LastEditTime: 2022-07-28 11:49:39
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # OpenNNA2.0
+>OpenNNA2.0，一个基于C语言(C99)的开源神经网络推理框架
+
 OpenNNA2.0-Tinier, Faster, Easier To Use
+
+### 致谢
+对于这一系列的工作，王哥([RoboBachelor](https://github.com/RoboBachelor))与我进行了多次深度的技术交流。本项目的很多灵感和方向来源于技术交流。在此，预祝王哥的paper早日accept，预祝王哥和嫂子的爱情地久天长，预祝董哥和王哥的友谊万古长青，预祝王哥大四GPA90+，硕士一路起飞🛫️！王哥 YYDS！
+
+-xdd 2022.07.28 于Durham, UK
 
 ### OpenNNA核心特性
 
@@ -75,12 +82,12 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 
 #### 7.4-7月底:
 - [x] 1. OpenNNA框架搭建(C)
-- [ ] 2. 算子移植与优化(Conv2D)
-- [ ] 3. 算子移植与优化(Depthwise Conv2D)
-- [ ] 4. 算子移植与优化(Padding)
-- [ ] 5. 算子移植与优化(Pool)
-- [ ] 6. 算子移植与优化(Dense)
-- [ ] 7. 算子移植与优化(Activation)
+- [x] 2. 算子移植与优化(Conv2D)
+- [x] 3. 算子移植与优化(Depthwise Conv2D)
+- [x] 4. 算子移植与优化(Padding)
+- [x] 5. 算子移植与优化(Pool)
+- [x] 6. 算子移植与优化(Dense)
+- [x] 7. 算子移植与优化(Activation)
 - [ ] 8. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)(生成带有网络配置结构配置的.c文件)
 - [ ] 9. PC Demo(手写数字｜KWS｜Yolo v1 目标检测)
 - [ ] 10. Stm32 Demo(手写数字｜KWS｜Yolo v1 目标检测)
