@@ -37,7 +37,7 @@ struct operator operators[]={
         //激活函数类
         {"ReLU",OpenNNA_Operator_ReLU},
         {"ReLU6",OpenNNA_Operator_ReLU6},
-        {"LeakyRelu",NULL},
+        {"LeakyRelu",OpenNNA_Operator_LeakyReLU},
         {"tanh",NULL},
         {"Softmax",OpenNNA_Operator_Softmax},
 };

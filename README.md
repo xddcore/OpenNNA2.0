@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-26 15:02:27
+ * @LastEditTime: 2022-07-28 11:16:35
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -146,7 +146,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 - [ ] 探究三种不同卷积实现思路之间的差异(以输入特征图为导向，以卷积核为导向，以输出特征图为导向)
 - [ ] 对于stm32使用一种比较优的实现思路，完成汇编卷积的实现
 4. opennna_operator_dwconv2d.c:
-- [ ] 深度可分离卷积算子
+- [x] 深度可分离卷积算子
 5. opennna_operator_padding.c:
 - [x] 填充算子
 6. opennna_operator_maxpool.c:
@@ -160,7 +160,7 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 10. opennna_operator_relu6.c:
 - [x] relu6算子
 11. opennna_operator_leakyrelu.c:
-- [ ] leakyrelu算子
+- [x] leakyrelu算子
 12. opennna_operator_tanh.c:
 - [ ] tanh算子
 13. opennna_operator_softmax.c:
