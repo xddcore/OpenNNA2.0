@@ -38,7 +38,7 @@ struct operator operators[]={
         {"ReLU",OpenNNA_Operator_ReLU},
         {"ReLU6",OpenNNA_Operator_ReLU6},
         {"LeakyRelu",OpenNNA_Operator_LeakyReLU},
-        {"tanh",NULL},
+        {"tanh",OpenNNA_Operator_tanh},
         {"Softmax",OpenNNA_Operator_Softmax},
 };
 

@@ -13,7 +13,7 @@
 struct Layer_Para_Dense{
     //在这里可以添加其他的层属性(每个算子独有)
     //例如卷积核的大小，stride等
-    int units;//神经元数量
+    unsigned int units;//神经元数量
 };
 typedef struct Layer_Para_Dense Layer_Para_Dense;
 

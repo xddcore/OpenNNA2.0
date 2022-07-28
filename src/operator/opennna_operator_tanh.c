@@ -1,9 +1,10 @@
 //
 // Created by 董程森 on 2022/7/28.
 //
-#include "opennna_operator_leakyrelu.h"
+#include "opennna_operator_tanh.h"
+#include "math.h"
 //这里提供一个算子,命名规则:OpenNNA_Operator_算子名
-void OpenNNA_Operator_LeakyReLU(struct layer *Layers)
+void OpenNNA_Operator_tanh(struct layer *Layers)
 {
     //通过Layer对象便可访问当前层的所有计算有关的信息
     reg_t Output_Fmap_Channel = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Channel;
@@ -17,11 +18,12 @@ void OpenNNA_Operator_LeakyReLU(struct layer *Layers)
         {
             for (int k = 0; k < Output_Fmap_Col; k++)
             {
+                //output = (np.exp(z)-np.exp(-z))/(np.exp(z)+np.exp(-z))
                 ((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
-                ((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] > 0 ? \
-                ((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] \
-                : \
-                0.01*((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k];
+                (exp(((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]) -\
+                exp(-((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k])) / \
+                (exp(((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]) +\
+                exp(-((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]));
             }
         }
     }

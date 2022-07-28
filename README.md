@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-28 11:16:35
+ * @LastEditTime: 2022-07-28 11:27:39
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -162,6 +162,6 @@ OpenNNA2.0-Tinier, Faster, Easier To Use
 11. opennna_operator_leakyrelu.c:
 - [x] leakyrelu算子
 12. opennna_operator_tanh.c:
-- [ ] tanh算子
+- [x] tanh算子
 13. opennna_operator_softmax.c:
 - [x] softmax算子

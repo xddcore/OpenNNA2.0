@@ -41,6 +41,7 @@
 #include "opennna_operator_maxpool.h"
 #include "opennna_operator_avgpool.h"
 #include "opennna_operator_leakyrelu.h"
+#include "opennna_operator_tanh.h"
 /************************OpenNNA库的相关类型&函数声明****************************/
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
 #define Author "xddcore 1034029664@qq.com"
