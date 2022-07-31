@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-07-31 11:23:06
+ * @LastEditTime: 2022-07-31 14:44:08
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,6 +10,12 @@
 >OpenNNA2.0，一个基于C语言(C99)的开源神经网络推理框架
 
 OpenNNA2.0-Tinier, Faster, Easier To Use
+
+### 为什么会有OpenNNA2.0？｜OpenNNA2.0的故事
+2022年暑假(6-9月份)，xdd同学刚刚大学毕业(英本大三)。OpenNNA是我的本科毕业设计，当时做得飞快，对于易用性和通用性的考量不是很充分。大三后期充分欣赏了Linux的设计理念，同时接收到了来自英国政府的4000磅科研经费。于是乎，打算多往前走几步，把OpenNNA这个毕设做得完整一些，最终，就形成了大家所看到的OpenNNA2.0。
+
+### 一些感悟和期望
+OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想和理念进行融合。同时，因为2023年末我将正式成为一只工程师。我也需要这样一个项目来在再次训练工程思维以及熟悉框架的思想。所以，在写OpenNNA2.0的过程中，四舍五入，xdd同学也是摸着石头过河的。希望这个项目可以给大家未来的工作带来一些启发。
 
 ### 致谢
 对于这一系列的工作，王哥([RoboBachelor](https://github.com/RoboBachelor))与我进行了多次深度的技术交流。本项目的很多灵感和方向来源于技术交流。在此，预祝王哥的paper早日accept，预祝王哥和嫂子的爱情地久天长，预祝董哥和王哥的友谊万古长青，预祝王哥大四GPA90+，硕士一路起飞🛫️！王哥 YYDS！
