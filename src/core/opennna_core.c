@@ -389,7 +389,7 @@ void OpenNNA_Print_Network(struct layer * Network)
         if(0 !=Network->Layer_Index && NULL != Network->Layer_Para_Base)
         printf(
                 "----------------------------------------------------------------------\n"
-                "%s(%s)    (%d,%d,%d)    (%d,%d,%d)    (%d,%d)      %d     %d          \n",
+                "%s(%s)    (%d,%d,%d)    (%d,%d,%d)    (%d,%d,%d)      %d     %d          \n",
                 Network->Layer_Name_Alias, Network->Layer_Name,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row,\
@@ -397,6 +397,7 @@ void OpenNNA_Print_Network(struct layer * Network)
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col,\
+                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_channel):((Network->Layer_Name=="AvgPool")?0:((Network->Layer_Name=="MaxPool")?0:0))),
                 ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
                 ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
                 OpenNNA_Get_LayerParam(Network,Network->Layer_Index),
