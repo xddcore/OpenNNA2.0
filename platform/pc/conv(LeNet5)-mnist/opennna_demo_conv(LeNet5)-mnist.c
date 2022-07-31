@@ -1425,15 +1425,15 @@ int main() {
     OpenNNA_Add_Layer(Network, "Conv2d", "Chengsen", Layer_Para_Base2,Layer_Para_Conv2d2, Conv2d_2_Weights, Conv2d_2_Bias);
     OpenNNA_Add_Layer(Network, "tanh", "xddcore", Layer_Para_Base3,Layer_Para_tanh3, NULL, NULL);
     OpenNNA_Add_Layer(Network, "AvgPool", "lululu~", Layer_Para_Base4,Layer_Para_AvgPool4, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Conv2d", "lalala", Layer_Para_Base5,Layer_Para_Conv2d5, Conv2d_5_Weights, Conv2d_5_Bias);
+    OpenNNA_Add_Layer(Network, "Conv2d", "lalala~", Layer_Para_Base5,Layer_Para_Conv2d5, Conv2d_5_Weights, Conv2d_5_Bias);
     OpenNNA_Add_Layer(Network, "tanh", "The", Layer_Para_Base6,Layer_Para_tanh6, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "AvgPool", "The", Layer_Para_Base7,Layer_Para_AvgPool7, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Dense", "The", Layer_Para_Base8,Layer_Para_Dense8, Dense_8_Weights, Dense_8_Bias);
-    OpenNNA_Add_Layer(Network, "tanh", "The", Layer_Para_Base9,Layer_Para_tanh9, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Dense", "The", Layer_Para_Base10,Layer_Para_Dense10, Dense_10_Weights, Dense_10_Bias);
-    OpenNNA_Add_Layer(Network, "tanh", "dd", Layer_Para_Base11,Layer_Para_tanh11, NULL, NULL);
-    OpenNNA_Add_Layer(Network, "Dense", "dd", Layer_Para_Base12,Layer_Para_Dense12, Dense_12_Weights, Dense_12_Bias);
-    OpenNNA_Add_Layer(Network, "Softmax", "qq", Layer_Para_Base13, Layer_Para_Softmax13,NULL, NULL);
+    OpenNNA_Add_Layer(Network, "AvgPool", "Future", Layer_Para_Base7,Layer_Para_AvgPool7, NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Dense", "Of", Layer_Para_Base8,Layer_Para_Dense8, Dense_8_Weights, Dense_8_Bias);
+    OpenNNA_Add_Layer(Network, "tanh", "Possible", Layer_Para_Base9,Layer_Para_tanh9, NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Dense", "Think", Layer_Para_Base10,Layer_Para_Dense10, Dense_10_Weights, Dense_10_Bias);
+    OpenNNA_Add_Layer(Network, "tanh", "Different", Layer_Para_Base11,Layer_Para_tanh11, NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Dense", "Good Good Study,", Layer_Para_Base12,Layer_Para_Dense12, Dense_12_Weights, Dense_12_Bias);
+    OpenNNA_Add_Layer(Network, "Softmax", "Day Day Up!", Layer_Para_Base13, Layer_Para_Softmax13,NULL, NULL);
     /*****************第5步:初始化神经网络**********************/
     OpenNNA_Init(Network);
     /*****************第6步:打印神经网络信息**********************/
