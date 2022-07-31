@@ -7,7 +7,10 @@
 #include "opennna_core.h"
 #include "stdio.h"
 /*****************OpenNNA 卷积神经网络(LeNet-5)实现Mnist手写数字分类示例**********************/
-
+//Bug Note:
+//(待解决)1.2022.7.31: 推理结果出错， 经过查询后发现是因为Dense的weights排布为HWC，而本框架算子都为CHW。所以导致计算结果出错
+//解决思路:1.在框架中加一个Flatten层，把Conv输出的CHW转为HWC给Dense。 这个方法不太好，属于画蛇添足了
+//2.改一下生成权重的python代码，直接输出CHW的Dense权重。 这个方法从根源解决了问题。
 int main() {
     /*****************第1步:创建神经网络对象**********************/
     struct layer * Network = OpenNNA_CreateNetwork();
