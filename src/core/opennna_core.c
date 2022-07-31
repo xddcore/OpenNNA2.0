@@ -30,8 +30,8 @@ struct operator operators[]={
         //Padding类
         {"Padding",OpenNNA_Operator_Padding},
         //Pool类
-        {"Maxpool",OpenNNA_Operator_MaxPool},
-        {"Avgpool",OpenNNA_Operator_AvgPool},
+        {"MaxPool",OpenNNA_Operator_MaxPool},
+        {"AvgPool",OpenNNA_Operator_AvgPool},
         //全连接类
         {"Dense",OpenNNA_Operator_Dense},
         //激活函数类
@@ -348,12 +348,21 @@ static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int l
     while(Network->Layer_Index !=layer_index) {
         Network = Network->layer_next;
     }
+    //计算Dense的para
     if(!strcmp("Dense",Network->Layer_Name)){
         param = ((Layer_Para_Dense *)Network->Layer_Para_Extra)->units * \
         ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Row *\
         ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Col *\
         ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Channel +\
         ((Layer_Para_Dense *)Network->Layer_Para_Extra)->units;
+    }
+    //计算Conv2d的para
+    else if(!strcmp("Conv2d",Network->Layer_Name)) {
+        param = ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col * \
+        ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row *\
+        ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_channel *\
+        ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->filters +\
+        ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->filters;
     }
     OpenNNA_Flash_Sum+=param;
     return param;
