@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Sat Jul 30 10:19:26 2022
+
+# Make data base, printed on Sat Jul 30 20:06:45 2022
 
 # Variables
 
@@ -40,13 +43,13 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-LaunchInstanceID = F75C8ED2-B347-4BA9-971E-408CAD55F26C
+LaunchInstanceID = 892A7AA8-E86B-429C-97F2-953177E99729
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GKsBtfgKCb/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.s3CPrwRPbU/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -99,6 +102,7 @@ USER = xdd
 CONDA_SHLVL = 1
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+ 
 # default
 .VARIABLES := 
 # environment
@@ -138,7 +142,7 @@ LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/xdd/opt/anaconda3/bin/python
 # environment
-SECURITYSESSIONID = 186b3
+SECURITYSESSIONID = 186b5
 # automatic
 ^F = $(notdir $^)
 # default
@@ -152,7 +156,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 592
+VSCODE_PID = 595
 # environment
 _CE_CONDA = 
 # environment
@@ -240,8 +244,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Jul 30 10:19:26 2022
+# Finished Make data base on Sat Jul 30 20:06:45 2022
 
  
-make: *** No rule to make target `all'.  Stop.
-
