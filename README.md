@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 15:15:32
+ * @LastEditTime: 2022-08-01 15:17:03
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -47,16 +47,17 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 ### 快速验证
 >为了方便大家快速验证框架的功能，我们针对主流平台提供快速验证DEMO。同时也希望大家在使用的过程中，踊跃提出建议与意见。以及欢迎大家进行二次开发。
 
+>同时提供DEMO的jupyter Notebook，可以在网络结构不变的情况下，更换自己的数据集，得到自己的训练权重来替换demo的C Model File中的权重。快速部署自己的任务。
+
+>若自行移植本框架到其他硬件平台，请先尝试运行示例算子推理DEMO。若此DEMO可以正常运行，则证明框架移植成功。
+
 >DEMO位于./platform目录下。<br>
 >DEMO的运行需要包含两个必需条件:<br>
 >1.src目录下的OpenNNA源码<br>
 >2.神经网络模型的C Model File(其实就是利用OpenNNA框架提供的API构造网络结构),C Model File一般以 opennna_demo_xxxxxxx.c命名。
 
->若自行移植本框架到其他硬件平台，请先尝试运行示例算子推理DEMO。若此DEMO可以正常运行，则证明框架移植成功。
 
 >Heap和Flash统计的单位均为Bytes;Heap统计为范围值，最小值为动态分配的输出值，最大值为静态分配的最大值，实际推理过程中，Heap占用在Heap范围内浮动。
-
->同时提供DEMO的jupyter Notebook，可以在网络结构不变的情况下，更换自己的数据集，得到自己的训练权重来替换demo的C Model File中的权重。快速部署自己的任务。
 
 >✅(xxxx;xxxx)括号内的数字为FPS；<br>
 FPS将会测试两个指标:<br>
