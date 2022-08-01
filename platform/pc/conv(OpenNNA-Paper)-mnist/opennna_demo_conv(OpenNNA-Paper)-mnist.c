@@ -3112,7 +3112,7 @@ int main() {
                 };
 
     /*****************第4步:添加网络层**********************/
-    OpenNNA_Add_Layer(Network, "Padding", "LeNet-5", Layer_Para_Base1,Layer_Para_Padding1, NULL, NULL);
+    OpenNNA_Add_Layer(Network, "Padding", "OpenNNA-Paper", Layer_Para_Base1,Layer_Para_Padding1, NULL, NULL);
     OpenNNA_Add_Layer(Network, "Conv2d", "Chengsen", Layer_Para_Base2,Layer_Para_Conv2d2, Conv2d_2_Weights, Conv2d_2_Bias);
     OpenNNA_Add_Layer(Network, "ReLU", "xddcore", Layer_Para_Base3,Layer_Para_ReLU3, NULL, NULL);
     OpenNNA_Add_Layer(Network, "MaxPool", "lululu~", Layer_Para_Base4,Layer_Para_MaxPool4, NULL, NULL);
