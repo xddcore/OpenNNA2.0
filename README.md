@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 12:42:45
+ * @LastEditTime: 2022-08-01 12:47:16
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -55,6 +55,9 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 >若自行移植本框架到其他硬件平台，请先尝试运行示例算子推理DEMO。若此DEMO可以正常运行，则证明框架移植成功。
 
 >Heap和Flash统计的单位均为Bytes;Heap统计为范围值，最小值为动态分配的输出值，最大值为静态分配的最大值，实际推理过程中，Heap占用在Heap范围内浮动。
+
+>同时提供DEMO的jupyter Notebook，可以在网络结构不变的情况下，更换自己的数据集，得到自己的训练权重来替换demo的C Model File中的权重。快速部署自己的任务。
+
 
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
