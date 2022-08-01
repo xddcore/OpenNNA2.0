@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 13:14:37
+ * @LastEditTime: 2022-08-01 14:40:13
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -58,11 +58,12 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 >同时提供DEMO的jupyter Notebook，可以在网络结构不变的情况下，更换自己的数据集，得到自己的训练权重来替换demo的C Model File中的权重。快速部署自己的任务。
 
->FPS将会测试两个指标，第一个FPS指标为网络一个生命周期(构造，推理，释放)的耗时；第二个FPS指标为网络推理的耗时。
+>FPS将会测试两个指标，第一个FPS指标为网络一个生命周期(构造，推理，释放)的耗时；第二个FPS指标为网络推理的耗时。<br>
+PC为Apple M1 Pro(10核CPU+16GPU，16GB内存，Clion 2022.1.3)
 
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-|示例算子推理|NULL|✅(Xms;Xms)| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
+|示例算子推理|NULL|✅(3ms;3ms)| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络|✅(Xms;Xms)| | ||4232~6856|407080||
 |Mnist手写数字识别|卷积神经网络(LeNet5)|✅(Xms;Xms)| | | |8744~39396|246824||
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(Xms;Xms)| | | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|

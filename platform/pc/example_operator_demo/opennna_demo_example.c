@@ -68,7 +68,9 @@ int main() {
     /*****************第5步:初始化神经网络**********************/
     OpenNNA_Init(Network);
     /*****************第6步:打印神经网络信息**********************/
+#if(DEBUG==1)
     OpenNNA_Print_Network(Network);
+#endif
     /*****************第7步:设置神经网络输入数据和输出数据**********************/
     data_t NN_Input_Fmap[2][2][5]={
     {
@@ -82,9 +84,12 @@ int main() {
     };
     data_t NN_Output_Fmap[2][2][5]={0};
     /*****************第8步:神经网络推理**********************/
+#if(DEBUG==1)
     OpenNNA_Printf("Begin Predict!\n");
+#endif
     OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
     /*****************第9步:根据推理结果进行动作**********************/
+#if(DEBUG==1)
     printf("Input fmap[0][0][0] = %f, fmap[0][0][1] = %f, fmap[0][0][2] = %f, fmap[0][0][3] = %f,fmap[0][0][4] = %f\n",\
     NN_Input_Fmap[0][0][0], NN_Input_Fmap[0][0][1], NN_Input_Fmap[0][0][2], NN_Input_Fmap[0][0][3], NN_Input_Fmap[0][0][4]);
     printf("Input fmap[0][1][0] = %f, fmap[0][1][1] = %f, fmap[0][1][2] = %f, fmap[0][1][3] = %f,fmap[0][1][4] = %f\n",\
@@ -102,6 +107,7 @@ int main() {
     NN_Output_Fmap[1][0][0], NN_Output_Fmap[1][0][1], NN_Output_Fmap[1][0][2], NN_Output_Fmap[1][0][3], NN_Output_Fmap[1][0][4]);
     printf("Output fmap[1][1][0] = %f, fmap[1][1][1] = %f, fmap[1][1][2] = %f, fmap[1][1][3] = %f,fmap[1][1][4] = %f\n",\
     NN_Output_Fmap[1][1][0], NN_Output_Fmap[1][1][1], NN_Output_Fmap[1][1][2], NN_Output_Fmap[1][1][3], NN_Output_Fmap[1][1][4]);
+#endif
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
     OpenNNA_Free_Network(&Network);
     return 0;
