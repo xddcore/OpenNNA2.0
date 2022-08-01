@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 15:17:03
+ * @LastEditTime: 2022-08-01 15:21:50
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -73,6 +73,21 @@ STM32H7A3ZIT6Q(280Mhz,Cortex M7,1.4MB SRAM,2MB Flash)
 |Mnist手写数字识别|全连接神经网络|✅(2398;2755)| | ||4232~6856|407080||
 |Mnist手写数字识别|卷积神经网络(LeNet5)|✅(506;544)| | | |8744~39396|246824||
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)| | | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
+|Mnist手写数字识别|卷积神经网络(AlexNet)|| | | ||||
+|热成像传感器的手势识别|全连接神经网络| | | | | | |
+|热成像传感器的手势识别|卷积神经网络| | | | | | |
+|语音关键词识别|卷积神经网络| | | | | | |
+|目标分类|MobileNet V1(α=0.25)| | | | | | |
+|目标检测|YOLO V1| | | | | | |
+
+#### PC平台性能表现
+
+|DEMO|网络类型|M1 Pro|I5-9400F|I9-12900K|注释|
+|:----:|:----:|:----:|:----:|:----:|:----:|
+|示例算子推理|NULL|✅(333333)| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
+|Mnist手写数字识别|全连接神经网络|✅(2398;2755)| | ||
+|Mnist手写数字识别|卷积神经网络(LeNet5)|✅(506;544)| | | |
+|Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)| | | |
 |Mnist手写数字识别|卷积神经网络(AlexNet)|| | | ||||
 |热成像传感器的手势识别|全连接神经网络| | | | | | |
 |热成像传感器的手势识别|卷积神经网络| | | | | | |
