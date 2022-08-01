@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 15:04:03
+ * @LastEditTime: 2022-08-01 15:14:17
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -58,10 +58,15 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 >同时提供DEMO的jupyter Notebook，可以在网络结构不变的情况下，更换自己的数据集，得到自己的训练权重来替换demo的C Model File中的权重。快速部署自己的任务。
 
->FPS将会测试两个指标，第一个FPS指标为网络一个生命周期(构造，推理，释放)的耗时；第二个FPS指标为网络推理的耗时。<br>
-PC为Apple M1 Pro(10核CPU+16GPU，16GB内存，Clion 2022.1.3)
+>✅(xxxx;xxxx)括号内的数字为FPS；<br>
+FPS将会测试两个指标:<br>
+1.FPS指标为网络一个生命周期(构造，推理，释放)的耗时；<br>
+2.FPS指标为网络推理的耗时。<br><br>
+PC为Apple M1 Pro(10核CPU+16GPU，16GB内存，Clion 2022.1.3)<br>
+Note:后期可能会测试I9-12900K和I5-9400F<br><br>
+STM32H7A3ZIT6Q(280Mhz,Cortex M7,1.4MB SRAM,2MB Flash)为Apple M1 Pro(10核CPU+16GPU，16GB内存，Clion 2022.1.3)
 
-|DEMO|网络类型|PC(FPS)|STM32|STC|FPGA|Heap|Flash(float32)|注释|
+|DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |示例算子推理|NULL|✅(333333)| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络|✅(2398;2755)| | ||4232~6856|407080||
