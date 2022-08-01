@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 15:35:52
+ * @LastEditTime: 2022-08-01 15:56:14
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -87,7 +87,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, 1.4MB SRAM, 2MB Flash, STM32CubeIDE)
 |:----:|:----:|:----:|:----:|:----:|
 |Conv2d|✅|✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
 |Depthwise Conv2d|✅|✅|✅||
-|Padding|✅|✅|✅|对称/非对称填充|
+|Padding|✅|✅|✅|仅对称填充|
 |Max Pool||✅|✅||
 |Avg Pool||✅|✅||
 |Dense|✅|✅|✅||
