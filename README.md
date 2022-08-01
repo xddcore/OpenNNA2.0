@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 12:37:28
+ * @LastEditTime: 2022-08-01 12:38:59
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -56,7 +56,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 >Heap和Flash统计的单位均为Bytes;Heap统计为范围值，最小值为动态分配的输出值，最大值为静态分配的最大值，实际推理过程中，Heap占用在Heap范围内浮动。
 
-|DEMO|网络类型|PC|STM32|STC(MCS-251)|FPGA|Heap|Flash(float32)|注释|
+|DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |示例算子推理|NULL|✅| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络|✅| | ||4232~6856|407080||
