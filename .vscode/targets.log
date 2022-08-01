@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sun Jul 31 13:14:26 2022
+# Make data base, printed on Mon Aug  1 11:13:52 2022
 
 # Variables
 
@@ -43,13 +43,13 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-LaunchInstanceID = 63D1B715-E4CB-44FD-9C59-47351D1DFD15
+LaunchInstanceID = A8A220E1-C241-4A8D-B02D-E12E0EE598FE
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.yFOAobdpk8/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.3JpCDT2J5i/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -141,7 +141,7 @@ LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/xdd/opt/anaconda3/bin/python
 # environment
-SECURITYSESSIONID = 186b4
+SECURITYSESSIONID = 186b2
 # automatic
 ^F = $(notdir $^)
 # default
@@ -155,7 +155,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 600
+VSCODE_PID = 568
 # environment
 _CE_CONDA = 
 # environment
@@ -169,7 +169,7 @@ LANG = C
 
 # Directories
 
-# . (device 16777231, inode 15228447): 10 files, no impossibilities.
+# . (device 16777234, inode 15228447): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -243,6 +243,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Jul 31 13:14:26 2022
+# Finished Make data base on Mon Aug  1 11:13:52 2022
 
  
