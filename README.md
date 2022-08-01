@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 12:38:59
+ * @LastEditTime: 2022-08-01 12:42:45
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -61,7 +61,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 |示例算子推理|NULL|✅| | | |616|160|若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络|✅| | ||4232~6856|407080||
 |Mnist手写数字识别|卷积神经网络(LeNet5)|✅| | | |8744~39396|246824||
-|Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅| | | |8740~116708|316968|OpenNNA Paper中提到的Network模型，可以对比验证|
+|Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅| | | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |Mnist手写数字识别|卷积神经网络(AlexNet)|| | | ||||
 |热成像传感器的手势识别|全连接神经网络| | | | | | |
 |热成像传感器的手势识别|卷积神经网络| | | | | | |
