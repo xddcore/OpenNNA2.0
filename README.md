@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-01 15:56:14
+ * @LastEditTime: 2022-08-02 00:25:33
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -33,6 +33,13 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 7. 除了避免野指针等引发段错误，其他地方一律不设错误检测，按照demo的方式来调用/直接使用工具将H5/tflite模型文件转为C Model，理论上不会出错。
 8. 提供两种网络释放方式:1.仅释放特征图堆内存(在这种释放方式下，重新调用Init函数可以恢复神神经网络计算)。2.释放整个网络的所有有关数据(例如网络结构，特征图堆内存等|网络权重由于是编译器分配的地址，无法通过OpenNNA来free。不过如果想要把这段内存用起来，可以直接对这些变量取址，然后用指针直接往里面去写入其他东西就行)(在这种释放方式下，网络所有信息将会永久从堆内存中被移除。恢复网络计算只能重启)
 
+### Flash占用
+> demo example将所有权重和偏置放在栈中，忽略了权重和偏置对Flash占用的影响。更能体现OpenNNA的Flash实际占用大小。
+
+|Flash|代码优化等级|环境|注释|
+|:----:|:----:|:----:|:----:|
+|26.38KB|无优化|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.12KB，导入后Flash占用为56.5KB。故得到OpenNNA Flash占用为26.38KB|
+|10.76KB|Optimize for size(-Os)|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.12KB，导入后Flash占用为40.88KB。故得到OpenNNA Flash占用为10.76KB|
 ### 移植要点
 1. (**必要**)堆内存申请/释放函数
 2. (**可选**)printf函数｜用户通过DEBUG宏进行使能/屏蔽
