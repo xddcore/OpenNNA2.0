@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-02 00:25:33
+ * @LastEditTime: 2022-08-02 11:47:17
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -35,15 +35,34 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 ### Flash占用
 > demo example将所有权重和偏置放在栈中，忽略了权重和偏置对Flash占用的影响。更能体现OpenNNA的Flash实际占用大小。
+>DEBUG = 0 时，Flash占用还能在以下基础上减少4-5KB
+
 
 |Flash|代码优化等级|环境|注释|
 |:----:|:----:|:----:|:----:|
 |26.38KB|无优化|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.12KB，导入后Flash占用为56.5KB。故得到OpenNNA Flash占用为26.38KB|
 |10.76KB|Optimize for size(-Os)|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.12KB，导入后Flash占用为40.88KB。故得到OpenNNA Flash占用为10.76KB|
+
 ### 移植要点
 1. (**必要**)堆内存申请/释放函数
 2. (**可选**)printf函数｜用户通过DEBUG宏进行使能/屏蔽
 3. (**必要**)确保SRAM，Flash能够满足网络结构的要求(这一点将会在H5/tflite转C Model工具中被检出)
+
+### 针对于MCU平台使用FreeRTOS(heap_4)的pvPortMalloc&OpenNNA_Free
+>引用:https://www.freertos.org/a00111.html
+
+如果 RTOS 对象是动态创建的，那么标准 C 库 malloc() 和 free() 函数有时可以用于此目的，但是......
+
+它们并不总是在嵌入式系统上可用，
+它们占用了宝贵的代码空间，
+它们不是线程安全的，并且
+它们不是确定性的（执行函数所花费的时间会因调用而异）
+...因此，通常需要替代的内存分配实现。
+一个嵌入式/实时系统可能具有与另一个非常不同的 RAM 和时序要求 - 因此单个 RAM 分配算法将只适用于应用程序的子集。
+
+为了解决这个问题，FreeRTOS 将内存分配 API 保留在其可移植层中。可移植层位于实现核心 RTOS 功能的源文件之外，允许提供适用于正在开发的实时系统的特定应用实现。当 RTOS 内核需要 RAM 时，它不会调用 malloc()，而是调用 pvPortMalloc()。当 RAM 被释放时，RTOS 内核不调用 free()，而是调用 vPortFree()。
+
+FreeRTOS 提供了多种复杂性和功能不同的堆管理方案。也可以提供自己的堆实现，甚至同时使用两个堆实现。同时使用两个堆实现允许将任务堆栈和其他 RTOS 对象放置在快速的内部 RAM 中，并将应用程序数据放置在较慢的外部 RAM 中。
 
 ### OpenNNA的发展方向
 
@@ -72,7 +91,7 @@ FPS将会测试两个指标:<br>
 2.FPS指标为网络推理的耗时。<br><br>
 PC为Apple M1 Pro(10核CPU+16GPU, 16GB内存, Clion 2022.1.3)<br>
 Note:后期可能会测试I9-12900K和I5-9400F<br><br>
-STM32H7A3ZIT6Q(280Mhz, Cortex M7, 1.4MB SRAM, 2MB Flash, STM32CubeIDE)
+STM32H7A3ZIT6Q(280Mhz, Cortex M7, 1.4MB SRAM, 2MB Flash, Free RTOS|STM32CubeIDE)
 
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
