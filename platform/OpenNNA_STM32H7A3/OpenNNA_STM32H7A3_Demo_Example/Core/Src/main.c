@@ -19,11 +19,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "opennna_demo_example.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "opennna_demo_example.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +47,7 @@ UART_HandleTypeDef huart3;
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1280 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
@@ -68,7 +67,19 @@ void StartDefaultTask(void *argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+/* Function: OpenNNA_Printf 重定向
+ * Note:stm32cubeIDE+HAL库
+ */
+#include "stdio.h"
+//_write函數在syscalls.c中， 使用__weak定义， 所以可以直接在其他文件中定义_write函數
+//Printf输出重定向
+__attribute__((weak)) int _write(int file, char *ptr, int len)
+{
+	 if(HAL_UART_Transmit(&huart3,ptr,len,0xffff) != HAL_OK)
+	 {
+		 Error_Handler();
+	 }
+}
 /* USER CODE END 0 */
 
 /**
@@ -383,9 +394,10 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    //osDelay(1);
+      printf("Free RTOS Test Task Begin!\r\n");
 	  OpenNNA_Demo_Example();
-	  while(1);
+	  printf("Free RTOS Test Task end!\r\n");
+	  osDelay(2000);
   }
   /* USER CODE END 5 */
 }

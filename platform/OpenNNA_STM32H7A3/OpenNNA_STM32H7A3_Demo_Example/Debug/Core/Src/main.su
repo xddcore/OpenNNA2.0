@@ -1,4 +1,5 @@
-../Core/Src/main.c:380:6:StartDefaultTask	8	static
-../Core/Src/main.c:158:6:SystemClock_Config	120	static,ignoring_inline_asm
-../Core/Src/main.c:78:5:main	64	static,ignoring_inline_asm
-../Core/Src/main.c:397:6:Error_Handler	0	static,ignoring_inline_asm
+../Core/Src/main.c:391:6:StartDefaultTask	8	static
+../Core/Src/main.c:76:27:_write	8	static,ignoring_inline_asm
+../Core/Src/main.c:169:6:SystemClock_Config	120	static,ignoring_inline_asm
+../Core/Src/main.c:89:5:main	64	static,ignoring_inline_asm
+../Core/Src/main.c:409:6:Error_Handler	0	static,ignoring_inline_asm
