@@ -44,9 +44,9 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1644657604" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Core/Inc"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Users\xddcore\Desktop\Work\OpenNNA_STM32H7A3\OpenNNA_STM32H7A3_Demo_Example\Middlewares\OpenNNA2.0\core&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Users\xddcore\Desktop\Work\OpenNNA_STM32H7A3\OpenNNA_STM32H7A3_Demo_Example\Middlewares\OpenNNA2.0\model&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Users\xddcore\Desktop\Work\OpenNNA_STM32H7A3\OpenNNA_STM32H7A3_Demo_Example\Middlewares\OpenNNA2.0\operator&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/OpenNNA2.0/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/OpenNNA2.0/model}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/OpenNNA2.0/operator}&quot;"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32H7xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32H7xx/Include"/>
