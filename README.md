@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-02 13:15:14
+ * @LastEditTime: 2022-08-02 13:34:44
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -35,7 +35,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 ### Flash占用
 > demo example将所有权重和偏置放在栈中，忽略了权重和偏置对Flash占用的影响。更能体现OpenNNA的Flash实际占用大小。
->DEBUG = 0 时，Flash占用还能在以下基础上减少4-5KB
+>DEBUG = 0 时，Flash占用(无代码优化)还能在以下基础上减少4-5KB
 
 
 |Flash|代码优化等级|环境|注释|
