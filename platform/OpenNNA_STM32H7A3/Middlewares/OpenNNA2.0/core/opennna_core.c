@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <string.h>
 #include "opennna_core.h"
 
@@ -41,10 +41,24 @@ struct operator operators[]={
         {"tanh",OpenNNA_Operator_tanh},
         {"Softmax",OpenNNA_Operator_Softmax},
 };
+/* Function: OpenNNA_Printf 重定向
+ * Note:stm32cubeIDE+HAL库
+ */
+#include "stdio.h"
+//_write函數在syscalls.c中， 使用__weak定义， 所以可以直接在其他文件中定义_write函數
+//Printf输出重定向
+__attribute__((weak)) int _write(int file, char *ptr, int len)
+{
+	 if(HAL_UART_Transmit(&huart3,ptr,len,0xffff) != HAL_OK)
+	 {
+		 Error_Handler();
+	 }
+}
 
 /* Function: OpenNNA_Printf OpenNNA打印信息
  * strings: OpenNNA输出的信息
  */
+#if(DEBUG==1)
 static void OpenNNA_Logo(void)
 {
     printf(
@@ -56,6 +70,7 @@ static void OpenNNA_Logo(void)
             "##     ## ##        ##       ##   ### ##   ### ##   ### ##     ##\n"
             "#######   ##        ######## ##    ## ##    ## ##    ## ##     ##\n");
 }
+#endif
 /* Function: OpenNNA_Printf OpenNNA打印信息
  * strings: OpenNNA输出的信息
  * PS：影响库运行的关键信息会通过这个函数往外打印，其他不重要的信息直接采用printf打印
@@ -75,7 +90,8 @@ void OpenNNA_Printf(char * strings)
 void * OpenNNA_Malloc(unsigned long size)
 {
     OpenNNA_Heap_Sum +=size;
-    return (void *)malloc(size);
+    //return (void *)malloc(size);
+    return (void *)pvPortMalloc(size);
 }
 
 /* Function: OpenNNA_Free
@@ -83,7 +99,8 @@ void * OpenNNA_Malloc(unsigned long size)
  */
 void OpenNNA_Free(void * address)
 {
-    free(address);
+    //free(address);
+	vPortFree(address);
 }
 
 /* Function :OpenNNA_CreateNetwork :创建一个神经网络对象
