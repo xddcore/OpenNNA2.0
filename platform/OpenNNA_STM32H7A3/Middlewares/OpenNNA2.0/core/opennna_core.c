@@ -41,19 +41,6 @@ struct operator operators[]={
         {"tanh",OpenNNA_Operator_tanh},
         {"Softmax",OpenNNA_Operator_Softmax},
 };
-/* Function: OpenNNA_Printf 重定向
- * Note:stm32cubeIDE+HAL库
- */
-#include "stdio.h"
-//_write函數在syscalls.c中， 使用__weak定义， 所以可以直接在其他文件中定义_write函數
-//Printf输出重定向
-__attribute__((weak)) int _write(int file, char *ptr, int len)
-{
-	 if(HAL_UART_Transmit(&huart3,ptr,len,0xffff) != HAL_OK)
-	 {
-		 Error_Handler();
-	 }
-}
 
 /* Function: OpenNNA_Printf OpenNNA打印信息
  * strings: OpenNNA输出的信息
@@ -357,6 +344,7 @@ void OpenNNA_Init(struct layer * Network)
 /* Function :OpenNNA_Get_LayerParam :获取网络某一层的参数数量(Weights+Bias)
  * struct layer * Network: 网络对象
 */
+#if(DEBUG==1)
 static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int layer_index)
 {
     unsigned int param = 0;
@@ -384,6 +372,7 @@ static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int l
     OpenNNA_Flash_Sum+=param;
     return param;
 }
+#endif
 /* Function :OpenNNA_Print_Network :打印网络信息
  * struct layer * Network: 网络对象
 */
