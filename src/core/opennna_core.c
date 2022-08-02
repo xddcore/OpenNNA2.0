@@ -45,6 +45,7 @@ struct operator operators[]={
 /* Function: OpenNNA_Printf OpenNNA打印信息
  * strings: OpenNNA输出的信息
  */
+#if(DEBUG==1)
 static void OpenNNA_Logo(void)
 {
     printf(
@@ -56,6 +57,7 @@ static void OpenNNA_Logo(void)
             "##     ## ##        ##       ##   ### ##   ### ##   ### ##     ##\n"
             "#######   ##        ######## ##    ## ##    ## ##    ## ##     ##\n");
 }
+#endif
 /* Function: OpenNNA_Printf OpenNNA打印信息
  * strings: OpenNNA输出的信息
  * PS：影响库运行的关键信息会通过这个函数往外打印，其他不重要的信息直接采用printf打印
@@ -340,6 +342,7 @@ void OpenNNA_Init(struct layer * Network)
 /* Function :OpenNNA_Get_LayerParam :获取网络某一层的参数数量(Weights+Bias)
  * struct layer * Network: 网络对象
 */
+#if(DEBUG==1)
 static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int layer_index)
 {
     unsigned int param = 0;
@@ -367,6 +370,7 @@ static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int l
     OpenNNA_Flash_Sum+=param;
     return param;
 }
+#endif
 /* Function :OpenNNA_Print_Network :打印网络信息
  * struct layer * Network: 网络对象
 */
