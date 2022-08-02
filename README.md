@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-02 13:34:44
+ * @LastEditTime: 2022-08-02 13:54:15
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -40,8 +40,8 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 |Flash|代码优化等级|环境|注释|
 |:----:|:----:|:----:|:----:|
-|26.38KB|无优化|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.12KB，导入后Flash占用为56.5KB。故得到OpenNNA Flash占用为26.38KB|
-|10.76KB|Optimize for size(-Os)|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.12KB，导入后Flash占用为40.88KB。故得到OpenNNA Flash占用为10.76KB|
+|14.13KB|无优化|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为42.89KB，导入后Flash占用为57.02KB。故得到OpenNNA Flash占用为26.38KB|
+|10.76KB|Optimize for size(-Os)|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.46KB，导入后Flash占用为41.22KB。故得到OpenNNA Flash占用为10.76KB|
 
 ### 移植要点
 1. (**必要**)堆内存申请/释放函数
