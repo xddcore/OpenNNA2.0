@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Tue Aug  2 13:49:25 2022
+# Make data base, printed on Wed Aug  3 07:28:50 2022
 
 # Variables
 
@@ -40,13 +40,13 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-LaunchInstanceID = 65AB263C-1EAE-4AF1-A3D4-080D1295D976
+LaunchInstanceID = B8B5E436-60AE-4C8D-9C85-0FB23FB3B04F
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.RsmdbN4sHk/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.k3n8JHpBwd/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -152,7 +152,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 589
+VSCODE_PID = 590
 # environment
 _CE_CONDA = 
 # environment
@@ -166,7 +166,7 @@ LANG = C
 
 # Directories
 
-# . (device 16777232, inode 15228447): 10 files, no impossibilities.
+# . (device 16777230, inode 15228447): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -240,7 +240,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Aug  2 13:49:25 2022
+# Finished Make data base on Wed Aug  3 07:28:50 2022
 
  
 make: *** No rule to make target `all'.  Stop.
