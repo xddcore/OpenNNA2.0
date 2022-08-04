@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-04 14:48:31
+ * @LastEditTime: 2022-08-04 15:48:15
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -64,7 +64,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 FreeRTOS 提供了多种复杂性和功能不同的堆管理方案。也可以提供自己的堆实现，甚至同时使用两个堆实现。同时使用两个堆实现允许将任务堆栈和其他 RTOS 对象放置在快速的内部 RAM 中，并将应用程序数据放置在较慢的外部 RAM 中。
 
-### 针对于Arm Cortex架构使用优化后的指令
+### [定点/Int8/Int16优化]针对于Arm Cortex架构使用SIMD(单指令多数据)
 >引用:https://www.keil.com/pack/doc/CMSIS/Core/html/group__intrinsic__SIMD__gr.html
 
 ### OpenNNA的发展方向
