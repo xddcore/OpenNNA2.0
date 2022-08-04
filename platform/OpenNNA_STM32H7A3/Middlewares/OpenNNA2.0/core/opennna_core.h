@@ -24,7 +24,7 @@
 
 //3.DEBUG模式 (当DEBUG=1时，OpenNNA会打印所有输出信息，方便调试;反之，则不进行输出，同时屏蔽printf相关的所有代码(正式部署为了提高初始化速度，建议将DEBUG设置为0)
 //如果不想移植printf函数，则直接DEBUG=0
-#define DEBUG 1
+#define DEBUG 0
 
 //4......
 
