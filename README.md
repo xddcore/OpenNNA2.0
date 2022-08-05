@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-05 11:40:56
+ * @LastEditTime: 2022-08-05 11:45:25
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -86,7 +86,9 @@ FreeRTOS 提供了多种复杂性和功能不同的堆管理方案。也可以�
 >2.神经网络模型的C Model File(其实就是利用OpenNNA框架提供的API构造网络结构),C Model File一般以 opennna_demo_xxxxxxx.c命名。
 
 
->Heap和Flash统计的单位均为Bytes;Heap统计为范围值，最小值为动态分配的输出值，最大值为静态分配的最大值，实际推理过程中，Heap占用在Heap范围内浮动。
+>Heap和Flash统计的单位均为Bytes; <br>
+Weights&Bias精度为Float32。<br>
+Heap统计为范围值，最小值为动态分配的输出值，最大值为静态分配的最大值，实际推理过程中，Heap占用在Heap范围内浮动。
 
 >✅(xxxx;xxxx)括号内的数字为FPS；<br>
 FPS将会测试两个指标:<br>
