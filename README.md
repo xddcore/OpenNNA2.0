@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-05 11:45:25
+ * @LastEditTime: 2022-08-05 11:54:31
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -87,17 +87,20 @@ FreeRTOS 提供了多种复杂性和功能不同的堆管理方案。也可以�
 
 
 >Heap和Flash统计的单位均为Bytes; <br>
-Weights&Bias精度为Float32。<br>
 Heap统计为范围值，最小值为动态分配的输出值，最大值为静态分配的最大值，实际推理过程中，Heap占用在Heap范围内浮动。
 
 >✅(xxxx;xxxx)括号内的数字为FPS；<br>
 FPS将会测试两个指标:<br>
 1.FPS指标为网络一个生命周期(构造，推理，释放)的耗时；<br>
-2.FPS指标为网络推理的耗时。<br><br>
-PC为Apple M1 Pro(10核CPU+16GPU, 16GB内存, Clion 2022.1.3)<br>
+2.FPS指标为网络推理的耗时。<br>
+❌代表因为权重精度等问题，导致的Sram/Flash溢出。故不提供Demo。<br>
+
+>PC为Apple M1 Pro(10核CPU+16GPU, 16GB内存, Clion 2022.1.3)<br>
 Note:后期可能会测试I9-12900K和I5-9400F<br><br>
 STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable, 1.4MB SRAM, 2MB Flash, Free RTOS|STM32CubeIDE(-ofast))<br>
-Note:**以Mnist手写数字识别+OpenNNA-Paper为例**，在采用STM32进行构造OpenNNA Paper中的卷积网络时，构造+释放网络的时间约为0.015873s(63 fps)。
+
+>其他性能指标:<br>
+1.**以Mnist手写数字识别+OpenNNA-Paper为例**，在采用STM32进行构造OpenNNA Paper中的卷积网络时，构造+释放网络的时间约为0.015873s(63 fps)。
 
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
@@ -105,12 +108,13 @@ Note:**以Mnist手写数字识别+OpenNNA-Paper为例**，在采用STM32进行�
 |Mnist手写数字识别|全连接神经网络|✅(2398;2755)|✅(136;)| ||4232~6856|407080||
 |Mnist手写数字识别|卷积神经网络(LeNet5)|✅(506;544)|✅(14;)| | |8744~39396|246824||
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)|✅(5.8;6.4)| | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
-|花卉图像分类|MobileNet V1(α=0.25)|| | | ||||
+|花卉图像分类|MobileNet V1(α=0.25)||❌| | ||||
 |热成像传感器的手势分类|全连接神经网络| | | | | | |
 |热成像传感器的手势分类|卷积神经网络| | | | | | |
 |语音关键词分类|卷积神经网络| | | | | | |
-|目标分类|MobileNet V1(α=0.25)| | | | | | |
-|目标检测|YOLO V1| | | | | | |
+|目标分类|MobileNet V1(α=0.25)| |❌| | | | |
+|目标检测|YOLO V1| |❌| | | | |
+
 
 ### OpenNNA算子支持
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
