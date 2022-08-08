@@ -2,7 +2,6 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 3.81
 # Copyright (C) 2006  Free Software Foundation, Inc.
 # This is free software; see the source for copying conditions.
- 
 # There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
@@ -11,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Mon Aug  8 18:08:18 2022
+# Make data base, printed on Mon Aug  8 22:53:51 2022
 
 # Variables
 
@@ -44,13 +43,13 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-LaunchInstanceID = BF3F17F8-2CAE-4EB4-9F4F-56101A9B12A9
+LaunchInstanceID = 8865E48A-7356-4366-8B63-7BF7ECB0E166
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.T5RqSaWQ9k/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.mlTHjE9jtf/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -100,7 +99,6 @@ USER = xdd
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
- 
 CONDA_SHLVL = 1
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
@@ -157,7 +155,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 547
+VSCODE_PID = 588
 # environment
 _CE_CONDA = 
 # environment
@@ -171,7 +169,7 @@ LANG = C
 
 # Directories
 
-# . (device 16777230, inode 15228447): 10 files, no impossibilities.
+# . (device 16777234, inode 15228447): 10 files, no impossibilities.
 
 # 10 files, no impossibilities in 1 directories.
 
@@ -245,6 +243,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Aug  8 18:08:18 2022
+# Finished Make data base on Mon Aug  8 22:53:51 2022
 
  
