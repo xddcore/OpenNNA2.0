@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-09 23:36:46
+ * @LastEditTime: 2022-08-09 23:39:05
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -33,26 +33,6 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 7. 除了避免野指针等引发段错误，其他地方一律不设错误检测，按照demo的方式来调用/直接使用工具将H5/tflite模型文件转为C Model，理论上不会出错。
 8. 提供两种网络释放方式:1.仅释放特征图堆内存(在这种释放方式下，重新调用Init函数可以恢复神神经网络计算)。2.释放整个网络的所有有关数据(例如网络结构，特征图堆内存等|网络权重由于是编译器分配的地址，无法通过OpenNNA来free。不过如果想要把这段内存用起来，可以直接对这些变量取址，然后用指针直接往里面去写入其他东西就行)(在这种释放方式下，网络所有信息将会永久从堆内存中被移除。恢复网络计算只能重启)
 9. 提供不同硬件平台的算子硬件加速方案，如ARM的CMSIS-DSP，FPGA的神经网络加速器等
-### OpenNNA架构
-
-|Index| 层| 空间|注释|
-|:----:|:----:|:----:|:----:|
-|0|应用层|用户态||
-|1|网络层|用户态|双向循环链表|
-|2|算子层(!FPGA)|用户态|纯C算子，若有二次开发需求，套层转换皮可以支持一些厂商级的算子（比如ST的CMSIS-NN等)|
-|2|算子层(FPGA)|用户态|多NNA的资源调度|
-|3|驱动层(FPGA)|内核态|Linux驱动|
-|4|硬件层(CPU/NNA)|硬件||
-
-### Flash占用
-> demo example将所有权重和偏置放在栈中，忽略了权重和偏置对Flash占用的影响。更能体现OpenNNA的Flash实际占用大小。
->DEBUG = 0 时，Flash占用(无代码优化)还能在以下基础上减少4-5KB
-
-
-|Flash|代码优化等级|环境|注释|
-|:----:|:----:|:----:|:----:|
-|14.13KB|无优化|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为42.89KB，导入后Flash占用为57.02KB。故得到OpenNNA Flash占用为14.13KB|
-|10.76KB|Optimize for size(-Os)|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.46KB，导入后Flash占用为41.22KB。故得到OpenNNA Flash占用为10.76KB|
 
 ### 移植要点
 1. (**必要**)堆内存申请/释放函数
@@ -64,6 +44,44 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 **Xilinx ZYNQ 系列FPGA神经网络加速器**做特别优化(多NNA调度，负载均衡等)
 
 **PC，MCU**等提供纯C算子，不针对某个特定平台做算子优化。
+
+### OpenNNA架构
+
+|Index| 层| 空间|注释|
+|:----:|:----:|:----:|:----:|
+|0|应用层|用户态||
+|1|网络层|用户态|双向循环链表|
+|2|算子层(!FPGA)|用户态|纯C算子，若有二次开发需求，套层转换皮可以支持一些厂商级的算子（比如ST的CMSIS-NN等)|
+|2|算子层(FPGA)|用户态|多NNA的资源调度|
+|3|驱动层(FPGA)|内核态|Linux驱动|
+|4|硬件层(CPU/NNA)|硬件||
+
+### OpenNNA算子支持
+>xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
+
+|算子|可被FPGA加速|可被CMSIS-DSP加速|HWC/CHW|Convert From Tensorflow|注释|
+|:----:|:----:|:----:|:----:|:----:|:----:|
+|Conv2d|✅||✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
+|Depthwise Conv2d|✅||✅|✅||
+|Padding|✅||✅|✅|仅对称填充|
+|Max Pool|||✅|✅||
+|Avg Pool|||✅|✅||
+|Dense|✅||✅|✅||
+|ReLU|✅||✅|✅||
+|ReLU6|✅||✅|✅||
+|LeakyReLU|✅||✅|✅||
+|tanh|||✅|✅||
+|Softmax|||✅|✅||
+
+### Flash占用
+> demo example将所有权重和偏置放在栈中，忽略了权重和偏置对Flash占用的影响。更能体现OpenNNA的Flash实际占用大小。
+>DEBUG = 0 时，Flash占用(无代码优化)还能在以下基础上减少4-5KB
+
+
+|Flash|代码优化等级|环境|注释|
+|:----:|:----:|:----:|:----:|
+|14.13KB|无优化|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为42.89KB，导入后Flash占用为57.02KB。故得到OpenNNA Flash占用为14.13KB|
+|10.76KB|Optimize for size(-Os)|STM32CubeIDE(Version: 1.10.1Build: 12716_20220707_0928 (UTC))|在导入OpenNNA2.0 src+demo-example前 Flash占用为30.46KB，导入后Flash占用为41.22KB。故得到OpenNNA Flash占用为10.76KB|
 
 ### 快速验证
 >为了方便大家快速验证框架的功能，我们针对主流平台提供快速验证DEMO。同时也希望大家在使用的过程中，踊跃提出建议与意见。以及欢迎大家进行二次开发。
@@ -128,24 +146,6 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable, 1.4MB SRAM, 2MB Flash, Free RTOS|S
 |目标分类|MobileNet V1(α=0.25)| |❌| | | | |
 |目标检测|YOLO V1| |❌| | | | |
 |语音关键词分类|卷积神经网络| | | | | | |
-
-
-### OpenNNA算子支持
->xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
-
-|算子|可被FPGA加速|可被CMSIS-DSP加速|HWC/CHW|Convert From Tensorflow|注释|
-|:----:|:----:|:----:|:----:|:----:|:----:|
-|Conv2d|✅||✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
-|Depthwise Conv2d|✅||✅|✅||
-|Padding|✅||✅|✅|仅对称填充|
-|Max Pool|||✅|✅||
-|Avg Pool|||✅|✅||
-|Dense|✅||✅|✅||
-|ReLU|✅||✅|✅||
-|ReLU6|✅||✅|✅||
-|LeakyReLU|✅||✅|✅||
-|tanh|||✅|✅||
-|Softmax|||✅|✅||
 
 ---
 ---
