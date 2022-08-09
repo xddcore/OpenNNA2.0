@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-08 22:55:21
+ * @LastEditTime: 2022-08-09 11:36:05
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -102,13 +102,27 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable, 1.4MB SRAM, 2MB Flash, Free RTOS|S
 >其他性能指标:<br>
 1.**以Mnist手写数字识别+OpenNNA-Paper为例**，在采用STM32进行构造OpenNNA Paper中的卷积网络时，构造+释放网络的时间约为0.015873s(63 fps)。
 
-#### Float32
+#### Float32|STM32 FPU
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |示例算子推理|NULL|✅(333333)|✅(6666)| | |616|160|若此demo可以运行，则证明框架核心功能正常|
 |Mnist手写数字识别|全连接神经网络|✅(2398;2755)|✅(136;)| ||4232~6856|407080||
 |Mnist手写数字识别|卷积神经网络(LeNet5)|✅(506;544)|✅(14;)| | |8744~39396|246824||
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)|✅(5.8;6.4)| | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
+|花卉图像分类|MobileNet V1(α=0.25)||❌| | ||||
+|热成像传感器的手势分类|全连接神经网络| | | | | | |
+|热成像传感器的手势分类|卷积神经网络| | | | | | |
+|语音关键词分类|卷积神经网络| | | | | | |
+|目标分类|MobileNet V1(α=0.25)| |❌| | | | |
+|目标检测|YOLO V1| |❌| | | | |
+
+#### Float32|STM32 FPU&CMSIS-DSP
+|DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+|示例算子推理|NULL|✅(333333)|| | |616|160|若此demo可以运行，则证明框架核心功能正常|
+|Mnist手写数字识别|全连接神经网络|✅(2398;2755)|| ||4232~6856|407080||
+|Mnist手写数字识别|卷积神经网络(LeNet5)|✅(506;544)|| | |8744~39396|246824||
+|Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)|| | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |花卉图像分类|MobileNet V1(α=0.25)||❌| | ||||
 |热成像传感器的手势分类|全连接神经网络| | | | | | |
 |热成像传感器的手势分类|卷积神经网络| | | | | | |
@@ -133,19 +147,19 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable, 1.4MB SRAM, 2MB Flash, Free RTOS|S
 ### OpenNNA算子支持
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
 
-|算子|可被FPGA加速|HWC/CHW|Convert From Tensorflow|注释|
-|:----:|:----:|:----:|:----:|:----:|
-|Conv2d|✅|✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
-|Depthwise Conv2d|✅|✅|✅||
-|Padding|✅|✅|✅|仅对称填充|
-|Max Pool||✅|✅||
-|Avg Pool||✅|✅||
-|Dense|✅|✅|✅||
-|ReLU|✅|✅|✅||
-|ReLU6|✅|✅|✅||
-|LeakyReLU|✅|✅|✅||
-|tanh||✅|✅||
-|Softmax||✅|✅||
+|算子|可被FPGA加速|可被CMSIS-DSP加速|HWC/CHW|Convert From Tensorflow|注释|
+|:----:|:----:|:----:|:----:|:----:|:----:|
+|Conv2d|✅||✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
+|Depthwise Conv2d|✅||✅|✅||
+|Padding|✅||✅|✅|仅对称填充|
+|Max Pool|||✅|✅||
+|Avg Pool|||✅|✅||
+|Dense|✅||✅|✅||
+|ReLU|✅||✅|✅||
+|ReLU6|✅||✅|✅||
+|LeakyReLU|✅||✅|✅||
+|tanh|||✅|✅||
+|Softmax|||✅|✅||
 
 ### 开发规划
 
