@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-09 22:53:28
+ * @LastEditTime: 2022-08-09 23:19:13
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -48,7 +48,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 2. (**可选**)printf函数｜用户通过DEBUG宏进行使能/屏蔽
 3. (**必要**)确保SRAM，Flash能够满足网络结构的要求(这一点将会在H5/tflite转C Model工具中被检出)
 
-### 针对于MCU平台使用FreeRTOS(heap_4)的pvPortMalloc&OpenNNA_Free
+### 针对于MCU平台使用FreeRTOS(heap_4)的pvPortMalloc&vPortFree
 >引用:https://www.freertos.org/a00111.html
 
 如果 RTOS 对象是动态创建的，那么标准 C 库 malloc() 和 free() 函数有时可以用于此目的，但是......
