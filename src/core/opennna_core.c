@@ -77,7 +77,12 @@ void OpenNNA_Printf(char * strings)
 void * OpenNNA_Malloc(unsigned long size)
 {
     OpenNNA_Heap_Sum +=size;
+#if(Heap_Manager==0)
     return (void *)malloc(size);
+#elif(Heap_Manager==1)
+    return (void *)pvPortMalloc(size);
+#endif
+
 }
 
 /* Function: OpenNNA_Free
@@ -85,7 +90,11 @@ void * OpenNNA_Malloc(unsigned long size)
  */
 void OpenNNA_Free(void * address)
 {
+#if(Heap_Manager==0)
     free(address);
+#elif(Heap_Manager==1)
+    vPortFree(address);
+#endif
 }
 
 /* Function :OpenNNA_CreateNetwork :创建一个神经网络对象
