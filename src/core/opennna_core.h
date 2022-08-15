@@ -69,9 +69,13 @@
 #define LIB_NAME "OpenNNA2.0-Tinier, Faster, Easier To Use"
 #define Author "xddcore 1034029664@qq.com"
 
-typedef float data_t;//特征图，权重，偏置等数据的类型
-
-typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+#if(HARDWARE_ACCELERATION==0)//不使用硬件加速，纯c推理，用户可自定义数据类型
+    typedef float data_t;//特征图，权重，偏置等数据的类型
+    typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+#elif(HARDWARE_ACCELERATION==1)
+    typedef  float32_t data_t;//特征图，权重，偏置等数据的类型
+    typedef uint32_t reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+#endif
 
 //网络层算子基本参数
 struct Layer_Para_base{
