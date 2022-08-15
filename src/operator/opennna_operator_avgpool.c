@@ -31,14 +31,11 @@ void OpenNNA_Operator_AvgPool(struct layer *Layers)
         {
             for (int k = 0; k < Output_Fmap_Col; ++k)//(((input_fmap_size - pool_Kernel_size) / pool_Kernel_stride) + 1)
             {
+                max_value = ((data_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((j * strides_row) * Input_Fmap_Col) + (k * strides_col)];
                 for (int l = 0; l < kernel_row; ++l)//pool_Kernel_size_row
                 {
-                    for (int m = 0; m < kernel_col; ++m)//pool_Kernel_size_col
+                    for (int m = 1; m < kernel_col; ++m)//pool_Kernel_size_col
                     {
-                            //赋初值
-                            if ((l == 0 && m == 0))
-                                max_value = ((data_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((l + j * strides_row) * Input_Fmap_Col) + (m + k * strides_col)];
-                            else//求累加值
                                 max_value += ((data_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((l + j * strides_row) * Input_Fmap_Col) + (m + k * strides_col)];
                     }
                 }
