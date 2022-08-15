@@ -77,9 +77,9 @@ void OpenNNA_Printf(char * strings)
 void * OpenNNA_Malloc(unsigned long size)
 {
     OpenNNA_Heap_Sum +=size;
-#if(Heap_Manager==0)
+#if(HEAP_MANAGER==0)
     return (void *)malloc(size);
-#elif(Heap_Manager==1)
+#elif(HEAP_MANAGER==1)
     return (void *)pvPortMalloc(size);
 #endif
 
@@ -90,9 +90,9 @@ void * OpenNNA_Malloc(unsigned long size)
  */
 void OpenNNA_Free(void * address)
 {
-#if(Heap_Manager==0)
+#if(HEAP_MANAGER==0)
     free(address);
-#elif(Heap_Manager==1)
+#elif(HEAP_MANAGER==1)
     vPortFree(address);
 #endif
 }
@@ -263,7 +263,7 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
 */
 void OpenNNA_Init(struct layer * Network)
 {
-#if(Dynamic_Fmap_heap == 1)//动态特征图堆内存(管理粒度:层)
+#if(DYNAMIC_FMAP_HEAP == 1)//动态特征图堆内存(管理粒度:层)
     struct layer * Host = Network;//第0层
     struct layer * Last_Layer = NULL;//最后一层
     Network = Network->layer_next;//跳转到第一层
@@ -295,7 +295,7 @@ void OpenNNA_Init(struct layer * Network)
 #if(DEBUG==1)
     OpenNNA_Printf("Init OK!\n");
 #endif
-#elif(Dynamic_Fmap_heap == 0)//静态特征图堆内存(管理粒度:网络)
+#elif(DYNAMIC_FMAP_HEAP == 0)//静态特征图堆内存(管理粒度:网络)
     struct layer * Host = Network;//第0层
     struct layer * Last_Layer = NULL;//最后一层
     int Input_Fmap_HeapSize = 0;//获取最大的输入特征图堆内存
@@ -432,7 +432,7 @@ void OpenNNA_Print_Network(struct layer * Network)
 */
 void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Network_Output)
 {
-#if (Dynamic_Fmap_heap==1)
+#if (DYNAMIC_FMAP_HEAP==1)
     //跳转到第一层
     Network = Network->layer_next;
     //将用户传入的神经网络输入copy到第一层的堆内存上
@@ -495,7 +495,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
     );
-#elif(Dynamic_Fmap_heap==0)
+#elif(DYNAMIC_FMAP_HEAP==0)
     //跳转到第一层
     Network = Network->layer_next;
     //将用户传入的神经网络输入copy到第一层的堆内存上

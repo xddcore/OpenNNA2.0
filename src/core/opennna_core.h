@@ -8,16 +8,16 @@
 /************************OpenNNA配置项****************************/
 //1. 特征图静态分配 / 特征图动态分配(默认)
 /* 单位时刻的特征图堆内存占用: 传统的静态堆内存管理方式 > OpenNNA提供的交叉式静态堆内存管理方式 > 动态堆内存管理 */
-/* 静态特征图堆内存的分配策略(Dynamic_Fmap_heap=1):在OpenNNA_Init函数中统计最大的特征图输入堆内存和最大的特征图输出堆内存
+/* 静态特征图堆内存的分配策略(DYNAMIC_FMAP_HEAP=1):在OpenNNA_Init函数中统计最大的特征图输入堆内存和最大的特征图输出堆内存
  * 然后取其中的最大值为指标创建两块对称的堆内存。将它们依次交叉连接。
  * (网络第二层的输入特征图地址=第一层的输出特征图地址，网络第二层的输出地址=第一层的输入地址(第一层输入地址在第二层计算时已失去存在的意义)
  * 这样的静态堆内存管理方式通常情况下比传统的静态堆内存管理方式(即为每一层单独创建堆内存)将会节省很多的推内存空间。
  */
-/* 动态堆内存的分配策略(Dynamic_Fmap_heap=0):在OpenNNA_Init函数中为第一层的输入特征图和输出特征图分配堆内存(为什么需要先分配第一层的堆内存，因为懒得重新写一套free Network逻辑了，
+/* 动态堆内存的分配策略(DYNAMIC_FMAP_HEAP=0):在OpenNNA_Init函数中为第一层的输入特征图和输出特征图分配堆内存(为什么需要先分配第一层的堆内存，因为懒得重新写一套free Network逻辑了，
  * 所以默认无论动态还是静态特征图管理，第一层的堆内存都被分配了。
  * 在OpenNNA_Predict推理函数中进行每一层算子的计算时进行动态的堆内存分配
  */
-#define Dynamic_Fmap_heap 1
+#define DYNAMIC_FMAP_HEAP 1
 
 //2.权重排布方式
 /*CHW(默认,CHW=1)
@@ -36,18 +36,18 @@
 #define DEBUG 1
 
 //4.堆内存管理方式
-/* Heap_Manager=0:使用C语言STDLIB中自带的Malloc()和Free()进行动态堆内存管理
- * Heap_Manager=1:使用FreeRTOS的pvPortMalloc()和vPortFree()进行动态堆内存管理
+/* HEAP_MANAGER=0:使用C语言STDLIB中自带的Malloc()和Free()进行动态堆内存管理
+ * HEAP_MANAGER=1:使用FreeRTOS的pvPortMalloc()和vPortFree()进行动态堆内存管理
  */
-#define Heap_Manager 0
+#define HEAP_MANAGER 0
 
 //5.算子硬件加速
-/* Hardware_Acceleration=0:不使用任何硬件加速手段，纯C推理，几乎可以运行在任何平台上
- * Hardware_Acceleration=1:ARM_CMSIS_DSP_FP32｜使用ARM的CMSIS-DSP库，并实现fp32精度权重的加速
- * Hardware_Acceleration=2:ARM_CMSIS_DSP_INT16｜使用ARM的CMSIS-DSP库，并实现int16精度权重的加速
- * Hardware_Acceleration=3:ARM_CMSIS_DSP_INT8｜使用ARM的CMSIS-DSP库，并实现int8精度权重的加速
+/* HARDWARE_ACCELERATION=0:不使用任何硬件加速手段，纯C推理，几乎可以运行在任何平台上
+ * HARDWARE_ACCELERATION=1:ARM_CMSIS_DSP_FP32｜使用ARM的CMSIS-DSP库，并实现fp32精度权重的加速
+ * HARDWARE_ACCELERATION=2:ARM_CMSIS_DSP_INT16｜使用ARM的CMSIS-DSP库，并实现int16精度权重的加速
+ * HARDWARE_ACCELERATION=3:ARM_CMSIS_DSP_INT8｜使用ARM的CMSIS-DSP库，并实现int8精度权重的加速
  */
-#define Hardware_Acceleration 0
+#define HARDWARE_ACCELERATION 0
 
 //6......
 
