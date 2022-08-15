@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-15 21:16:18
+ * @LastEditTime: 2022-08-15 21:55:30
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -59,7 +59,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 ### OpenNNA算子支持
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来
 
-|算子|FPGA加速|CMSIS-DSP加速|SIMD加速|HWC/CHW|Convert From Tensorflow|注释|
+|算子|FPGA加速|CMSIS-DSP加速(仅fp32)|SIMD加速(仅int16/int8)|HWC/CHW|Convert From Tensorflow|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |Conv2d|✅|✅||✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
 |Depthwise Conv2d|✅|||✅|✅||
