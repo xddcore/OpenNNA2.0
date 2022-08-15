@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-15 22:39:17
+ * @LastEditTime: 2022-08-15 22:41:33
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -61,8 +61,8 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来<br>
 
 >为了发挥最大性能，在STM32平台使用SIMD指令实现并行加速时:<br>
->Int16 请注意保证输入特征图的宽**2字节对齐**<br>
->Int8 请注意保证输入特征图的宽**4字节对齐**<br>
+>Int16 请注意保证特征图的宽**2字节对齐**<br>
+>Int8 请注意保证特征图的宽**4字节对齐**<br>
 
 |算子|FPGA加速|CMSIS-DSP加速(仅fp32)|SIMD加速(仅int16/int8)|HWC/CHW|Convert From Tensorflow|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
