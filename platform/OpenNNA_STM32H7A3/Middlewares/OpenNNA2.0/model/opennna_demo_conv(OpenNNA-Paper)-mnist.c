@@ -2970,7 +2970,7 @@
                 };
 
     /*****************第7步:设置神经网络输入数据和输出数据**********************/
-    data_t NN_Input_Fmap[1][28][28]={//5
+    data_t NN_Input_Fmap_5[1][28][28]={//5
             {
                     {0.003922, 0.000000, 0.000000, 0.000000, 0.000000, 0.003922, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, },
                     {0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, },
@@ -3101,9 +3101,10 @@
     };
 
     data_t NN_Output_Fmap[1][1][10]={0};
-int OpenNNA_Demo_Conv_OpenNNAPaper() {
-    /*****************第1步:创建神经网络对象**********************/
-    struct layer * Network = OpenNNA_CreateNetwork();
+
+
+
+int OpenNNA_Demo_Conv_OpenNNAPaper(struct layer * Network) {
     /*****************第2步:配置网络层参数**********************/
     //第一层Padding(对称填充=4，Mnist 1,28,28 填充至 1,32,32
     struct Layer_Para_base *Layer_Para_Base1 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
@@ -3269,17 +3270,55 @@ int OpenNNA_Demo_Conv_OpenNNAPaper() {
 #if(DEBUG==1)
     OpenNNA_Printf("Begin Predict!\n");
 #endif
-    OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
-    /*****************第9步:根据推理结果进行动作**********************/
-#if(DEBUG==1)
-    printf("\n推理结果:   \n");
-    for(int i = 0;i<10;++i)
-    {
-        printf("[%d]%f,   ",i,NN_Output_Fmap[0][0][i]*100);
-    }
-    printf("\n");
-#endif
+    //OpenNNA_Predict(Network, NN_Input_Fmap, NN_Output_Fmap);
+
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
-    OpenNNA_Free_Network(&Network);
+    //OpenNNA_Free_Network(&Network);
     return 0;
+}
+
+void OpenNNA_Demo_Conv_OpenNNAPaper_Predict(struct layer * Network){
+OpenNNA_Predict(Network, NN_Input_Fmap_5, NN_Output_Fmap);
+/*****************第9步:根据推理结果进行动作**********************/
+#if(DEBUG==1)
+printf("label: 5 | result:   \r\n");
+for(int i = 0;i<10;++i)
+{
+    printf("[%d]%f,   ",i,NN_Output_Fmap[0][0][i]*100);
+}
+printf("\r\n");
+#endif
+
+OpenNNA_Predict(Network, NN_Input_Fmap_0, NN_Output_Fmap);
+/*****************第9步:根据推理结果进行动作**********************/
+#if(DEBUG==1)
+printf("label: 0 | result:   \r\n");
+for(int i = 0;i<10;++i)
+{
+    printf("[%d]%f,   ",i,NN_Output_Fmap[0][0][i]*100);
+}
+printf("\r\n");
+#endif
+
+OpenNNA_Predict(Network, NN_Input_Fmap_1, NN_Output_Fmap);
+/*****************第9步:根据推理结果进行动作**********************/
+#if(DEBUG==1)
+printf("label: 1 | result:   \r\n");
+for(int i = 0;i<10;++i)
+{
+    printf("[%d]%f,   ",i,NN_Output_Fmap[0][0][i]*100);
+}
+printf("\r\n");
+#endif
+
+OpenNNA_Predict(Network, NN_Input_Fmap_8, NN_Output_Fmap);
+/*****************第9步:根据推理结果进行动作**********************/
+#if(DEBUG==1)
+printf("label: 8 | result:   \r\n");
+for(int i = 0;i<10;++i)
+{
+    printf("[%d]%f,   ",i,NN_Output_Fmap[0][0][i]*100);
+}
+printf("\r\n");
+#endif
 }
