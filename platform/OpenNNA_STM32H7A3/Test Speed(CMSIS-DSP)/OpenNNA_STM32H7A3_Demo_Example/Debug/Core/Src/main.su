@@ -1,0 +1,8 @@
+../Core/Src/main.c:460:6:StartDefaultTask	24	static
+../Core/Src/main.c:81:27:_write	8	static,ignoring_inline_asm
+../Core/Src/main.c:175:6:SystemClock_Config	128	static,ignoring_inline_asm
+../Core/Src/main.c:94:5:main	80	static,ignoring_inline_asm
+../Core/Src/main.c:433:6:configureTimerForRunTimeStats	8	static
+../Core/Src/main.c:439:15:getRunTimeCounterValue	0	static
+../Core/Src/main.c:443:6:HAL_TIM_PeriodElapsedCallback	4	static
+../Core/Src/main.c:490:6:Error_Handler	0	static,ignoring_inline_asm

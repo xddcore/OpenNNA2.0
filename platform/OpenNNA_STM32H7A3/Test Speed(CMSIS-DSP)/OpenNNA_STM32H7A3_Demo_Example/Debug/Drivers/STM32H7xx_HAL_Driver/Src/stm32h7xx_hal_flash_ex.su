@@ -1,0 +1,10 @@
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:176:19:HAL_FLASHEx_Erase	40	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:293:19:HAL_FLASHEx_Erase_IT	16	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:414:19:HAL_FLASHEx_OBProgram	24	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:557:6:HAL_FLASHEx_OBGetConfig	4	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:625:19:HAL_FLASHEx_Unlock_Bank1	0	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:647:19:HAL_FLASHEx_Lock_Bank1	0	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:659:19:HAL_FLASHEx_Unlock_Bank2	0	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:681:19:HAL_FLASHEx_Lock_Bank2	0	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:700:19:HAL_FLASHEx_ComputeCRC	16	static
+../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c:925:6:FLASH_Erase_Sector	0	static

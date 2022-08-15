@@ -1,0 +1,9 @@
+../Middlewares/OpenNNA2.0/core/opennna_core.c:79:8:OpenNNA_Malloc	0	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:93:6:OpenNNA_Free	0	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:105:16:OpenNNA_CreateNetwork	8	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:133:5:OpenNNA_Add_Layer	40	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:190:6:OpenNNA_GetFmapHeap	16	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:266:6:OpenNNA_Init	16	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:435:6:OpenNNA_Predict	24	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:536:6:OpenNNA_Free_FmapHeap	16	static
+../Middlewares/OpenNNA2.0/core/opennna_core.c:552:6:OpenNNA_Free_Network	24	static
