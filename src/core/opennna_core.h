@@ -70,9 +70,13 @@
 #define Author "xddcore 1034029664@qq.com"
 
 #if(HARDWARE_ACCELERATION==0)//不使用硬件加速，纯c推理，用户可自定义数据类型
-    typedef float data_t;//特征图，权重，偏置等数据的类型
-    typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+typedef float data_t;//特征图，权重，偏置等数据的类型
+typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
 #elif(HARDWARE_ACCELERATION==1)
+    //添加CMSIS-DSP支持(可以引入静态库 或者从CMSIS-DSP源码编译)
+    //Note: 为了避免#error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+    //请在预编译命令中将"__FPU_PRESENT" = 1
+    #include "arm_math.h"
     typedef  float32_t data_t;//特征图，权重，偏置等数据的类型
     typedef uint32_t reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
 #endif

@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-10 00:01:13
+ * @LastEditTime: 2022-08-15 16:36:33
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -61,7 +61,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 |算子|可被FPGA加速|可被CMSIS-DSP加速|HWC/CHW|Convert From Tensorflow|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|
-|Conv2d|✅||✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
+|Conv2d|✅|✅|✅|✅|面向图像数据/频谱数据分别提供最优实现策略|
 |Depthwise Conv2d|✅||✅|✅||
 |Padding|✅||✅|✅|仅对称填充|
 |Max Pool|||✅|✅||
@@ -107,12 +107,12 @@ FPS将会测试两个指标:<br>
 
 >PC为Apple M1 Pro(10核CPU+16GPU, 16GB内存, Clion 2022.1.3)<br>
 Note:后期可能会测试I9-12900K和I5-9400F<br><br>
-STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable, 1.4MB SRAM, 2MB Flash, Free RTOS|STM32CubeIDE(-ofast))<br>
+STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1.4MB SRAM, 2MB Flash, Free RTOS|STM32CubeIDE(-ofast))<br>
 
 >其他性能指标:<br>
 1.**以Mnist手写数字识别+OpenNNA-Paper为例**，在采用STM32进行构造OpenNNA Paper中的卷积网络时，构造+释放网络的时间约为0.015873s(63 fps)。
 
-#### Float32|STM32 FPU
+#### Float32|STM32 FPU DISABLE
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(float32)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |示例算子推理|NULL|✅(333333)|✅(6666)| | |616|160|若此demo可以运行，则证明框架核心功能正常|

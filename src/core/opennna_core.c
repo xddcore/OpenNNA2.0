@@ -1,5 +1,7 @@
 #include <stdio.h>
+#if(HEAP_MANAGER==0)
 #include <stdlib.h>
+#endif
 #include <string.h>
 #include "opennna_core.h"
 
