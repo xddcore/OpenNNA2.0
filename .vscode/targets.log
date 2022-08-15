@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Mon Aug 15 16:34:17 2022
+# Make data base, printed on Mon Aug 15 18:31:13 2022
 
 # Variables
 
@@ -26,7 +26,7 @@ CURDIR := /Users/xdd/git_warehouse/OpenNNA2.0
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"1d735750dbb1b9066c7513078396ba0f.zh-cn","_translationsConfigFile":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/tcf.json","_cacheRoot":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/3b889b090b5ad5793f524b5d1d39fda662b96a2a","_corruptedFile":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"1d735750dbb1b9066c7513078396ba0f.zh-cn","_translationsConfigFile":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/tcf.json","_cacheRoot":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/xdd/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
@@ -39,8 +39,6 @@ INFOPATH = /opt/homebrew/share/info:
 VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
-# environment
-LaunchInstanceID = E7BBF3B5-B5A8-4F58-89F9-B77C980CF546
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
@@ -66,7 +64,7 @@ HOME = /Users/xdd
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/xdd/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /Users/xdd/Library/Application Support/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
 LOGNAME = xdd
 # environment
@@ -106,7 +104,7 @@ TMPDIR = /var/folders/4f/36f6q1x90b3fw4kr66wghvxc0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/xdd/Library/Application Support/Code/1.69.2-main.sock
+VSCODE_IPC_HOOK = /Users/xdd/Library/Application Support/Code/1.70.1-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -116,7 +114,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.17191972.17191978
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.18909680.18909686
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -137,8 +135,6 @@ MAKEFILES :=
 LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/xdd/opt/anaconda3/bin/python
-# environment
-SECURITYSESSIONID = 186b2
 # automatic
 ^F = $(notdir $^)
 # default
@@ -152,13 +148,13 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 601
+VSCODE_PID = 9620
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=2/94=2%
+# Load=71/1024=7%, Rehash=0, Collisions=2/92=2%
 
 # Pattern-specific Variable Values
 
@@ -240,7 +236,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Aug 15 16:34:17 2022
+# Finished Make data base on Mon Aug 15 18:31:13 2022
 
  
 make: *** No rule to make target `all'.  Stop.
