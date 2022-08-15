@@ -11,6 +11,10 @@ void OpenNNA_Operator_Dense(struct layer *Layers)
     reg_t Input_Fmap_Col = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Input_Fmap_Col;
     //dense算子独有
     reg_t units = ((Layer_Para_Dense *)Layers->Layer_Para_Extra)->units;//神经元数量
+
+#if(HARDWARE_ACCELERATION==1)//
+    data_t multOutput = 0;  /* Intermediate output */
+#endif
 #if (CHW==1)
     //在此实现CHW的内存访问逻辑
     for (reg_t i = 0; i < units; ++i)//依次计算每个神经元
@@ -20,7 +24,20 @@ void OpenNNA_Operator_Dense(struct layer *Layers)
         for (reg_t j= 0; j < (Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col); ++j)
         {
             /*weights*/
+#if(HARDWARE_ACCELERATION==0)//不使用硬件加速，纯c推理，用户可自定义数据类型
             ((data_t *)Layers->Output_Feature_Map)[i] += ((data_t *)Layers->Input_Feature_Map)[j] * ((data_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j];
+#elif(HARDWARE_ACCELERATION==1)
+            //*
+            arm_mult_f32(&((data_t *)Layers->Input_Feature_Map)[j], \
+            &((data_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j], \
+            &multOutput,\
+            1);
+            //+
+            arm_add_f32(&((data_t *)Layers->Output_Feature_Map)[i],\
+            &multOutput,\
+            &((data_t *)Layers->Output_Feature_Map)[i], \
+            1);
+#endif
         }
     }
 #elif (CHW==0)//HWC模式
