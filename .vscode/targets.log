@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Mon Aug 15 21:12:54 2022
+# Make data base, printed on Tue Aug 16 10:18:34 2022
 
 # Variables
 
@@ -40,13 +40,13 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
-LaunchInstanceID = D1032021-0016-4D66-AB0A-1BD304AD9A6F
+LaunchInstanceID = FA493974-6029-4BB6-BD91-8F22172E00EF
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.eCsVzpWYYm/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.EfOdkPT3qG/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -152,7 +152,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 555
+VSCODE_PID = 554
 # environment
 _CE_CONDA = 
 # environment
@@ -240,7 +240,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Aug 15 21:12:54 2022
+# Finished Make data base on Tue Aug 16 10:18:34 2022
 
  
 make: *** No rule to make target `all'.  Stop.
