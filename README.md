@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-19 15:30:53
+ * @LastEditTime: 2022-08-19 15:36:01
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -61,11 +61,11 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 
 |步骤|操作|软件|硬件平台|
 |:----:|:----:|:----:|:----:|
-|1️⃣|收集数据集，并使用数据集预处理软件处理数据集|DataAssitant|PC|
-|2️⃣|将处理好的数据集使用神经网络框架进行自动训练(后期将会提供自动训练脚本，或云端自动训练服务)|Tensorflow|PC(GPU)|
-|3️⃣|将训练好的模型转换为OpenNNA支持的C Model File(若需要将模型量化，则量化操作也在这一步进行)|OpenNNA_Model_Converter.py|PC|
+|1️⃣|收集数据集，预处理数据集|DataAssitant|PC|
+|2️⃣|训练神经网络(自动训练脚本，或将提供云端自动训练服务)|Tensorflow|PC(GPU)|
+|3️⃣|Tensorflow Model 转 C Model File(若需量化，也在本步骤进行)|OpenNNA_Model_Converter.py|PC|
 |4️⃣|部署到硬件平台运行|OpenNNA源码+C Model File|任意具有C编译器支持的硬件平台|
-|5️⃣|利用神经网络做一些具体应用|||
+|5️⃣|利用神经网络做一些具体应用(目标分类，目标检测，语音关键词识别等)|||
 
 ### OpenNNA算子支持
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来<br>
