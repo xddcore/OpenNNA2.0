@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-17 15:34:55
+ * @LastEditTime: 2022-08-19 15:39:21
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -56,6 +56,17 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 |2|算子层(FPGA)|用户态|多NNA的资源调度|
 |3|驱动层(FPGA)|内核态|Linux驱动|
 |4|硬件层(CPU/NNA)|硬件||
+
+### OpenNNA工作流
+
+|步骤|操作|软件|硬件平台|
+|:----:|:----:|:----:|:----:|
+|1️⃣|收集数据集，预处理数据集|DataAssitant|PC|
+|2️⃣|训练神经网络(自动训练脚本，或将提供云端自动训练服务)|Tensorflow|PC(GPU)|
+|3️⃣|Tensorflow Model 转 C Model File(若需量化，也在本步骤进行)|OpenNNA_Model_Converter.py|PC|
+|4️⃣|部署到硬件平台运行|OpenNNA框架源码+C Model File|任意具有C编译器支持的硬件平台|
+|5️⃣|根据不同的硬件平台，配置OpenNNA启用算子硬件加速，以获得更高的性能|||
+|6️⃣|利用神经网络做一些具体应用(目标分类，目标检测，语音关键词识别等)|||
 
 ### OpenNNA算子支持
 >xdd说:面对浩如烟海的硬件平台,手写算子对于单打独斗的个人爱好者来说是个事业，慢慢来<br>
@@ -170,7 +181,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 
 ### 开发规划
 
-#### 7.4-7月底:
+#### 7.4-7月底 - ～(事务繁忙，持续维护中):
 - [x] 1. OpenNNA框架搭建(C)
 - [x] 2. 算子移植与优化(Conv2D)
 - [x] 3. 算子移植与优化(Depthwise Conv2D)
@@ -178,9 +189,13 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 - [x] 5. 算子移植与优化(Pool)
 - [x] 6. 算子移植与优化(Dense)
 - [x] 7. 算子移植与优化(Activation)
-- [ ] 8. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)(生成带有网络配置结构配置的.c文件)
-- [ ] 9. PC Demo(手写数字｜KWS｜Yolo v1 目标检测)
-- [ ] 10. Stm32 Demo(手写数字｜KWS｜Yolo v1 目标检测)
+- [x] 8. PC & Stm32 的手写数字 Demo(fp32)
+- [ ] 9. Int16/Int8量化权重的算子支持(无指令集层加速)
+- [ ] 10. Int16/Int8量化权重的算子支持(ARM SIMD加速)
+- [ ] 11. PC & Stm32 的手写数字 Demo(int16/int8)
+- [ ] 12. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)(生成带有网络配置结构配置的.c文件)
+- [ ] 13. PC Demo(KWS｜Yolo v1 目标检测)
+- [ ] 14. Stm32 Demo(KWS｜Yolo v1 目标检测)
 
 **Extra**
 
@@ -221,7 +236,7 @@ FreeRTOS 提供了多种复杂性和功能不同的堆管理方案。也可以�
 
 #### 2.[定点/Int8/Int16优化]针对于Arm Cortex架构使用SIMD(单指令多数据)
 >引用:https://www.keil.com/pack/doc/CMSIS/Core/html/group__intrinsic__SIMD__gr.html
-**__SMLAD()**
+**__SMLAD()** INT点积
 ---
 
 ### 框架功能开发CheckPoint
