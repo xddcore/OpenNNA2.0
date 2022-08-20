@@ -19,11 +19,11 @@ void OpenNNA_Operator_tanh(struct layer *Layers)
             for (int k = 0; k < Output_Fmap_Col; k++)
             {
                 //output = (np.exp(z)-np.exp(-z))/(np.exp(z)+np.exp(-z))
-                ((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
-                (exp(((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]) -\
-                exp(-((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k])) / \
-                (exp(((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]) +\
-                exp(-((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]));
+                ((Fmap_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
+                (exp(((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]) -\
+                exp(-((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k])) / \
+                (exp(((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]) +\
+                exp(-((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]));
             }
         }
     }

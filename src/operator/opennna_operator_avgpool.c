@@ -24,22 +24,22 @@ void OpenNNA_Operator_AvgPool(struct layer *Layers)
     reg_t strides_row = ((Layer_Para_MaxPool *)Layers->Layer_Para_Extra)->strides_row;
 #if (CHW==1)
     //在此实现CHW的内存访问逻辑
-    data_t max_value=0;//在MaxPool时存储最大值,在AveragePool存储均值
+    Fmap_t max_value=0;//在MaxPool时存储最大值,在AveragePool存储均值
     for (int i = 0; i < Output_Fmap_Channel; ++i)//output_fmap_channel
     {
         for (int j = 0; j < Output_Fmap_Row; ++j)//Output_Fmap_Row = (((input_fmap_size - pool_Kernel_size) / pool_Kernel_stride) + 1)
         {
             for (int k = 0; k < Output_Fmap_Col; ++k)//(((input_fmap_size - pool_Kernel_size) / pool_Kernel_stride) + 1)
             {
-                max_value = ((data_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((j * strides_row) * Input_Fmap_Col) + (k * strides_col)];
+                max_value = ((Fmap_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((j * strides_row) * Input_Fmap_Col) + (k * strides_col)];
                 for (int l = 0; l < kernel_row; ++l)//pool_Kernel_size_row
                 {
                     for (int m = 1; m < kernel_col; ++m)//pool_Kernel_size_col
                     {
-                                max_value += ((data_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((l + j * strides_row) * Input_Fmap_Col) + (m + k * strides_col)];
+                                max_value += ((Fmap_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Col * Input_Fmap_Row) + ((l + j * strides_row) * Input_Fmap_Col) + (m + k * strides_col)];
                     }
                 }
-                ((data_t *)Layers->Output_Feature_Map)[(i*Output_Fmap_Col*Output_Fmap_Row) + (j*Output_Fmap_Col) + k] = (max_value/(kernel_col*kernel_row));//取平均
+                ((Fmap_t *)Layers->Output_Feature_Map)[(i*Output_Fmap_Col*Output_Fmap_Row) + (j*Output_Fmap_Col) + k] = (max_value/(kernel_col*kernel_row));//取平均
             }
         }
     }

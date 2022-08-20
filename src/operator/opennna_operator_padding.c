@@ -26,24 +26,24 @@ void OpenNNA_Operator_Padding(struct layer *Layers)
                 /*j遍历行,顶部和底部填充*/
                 if ( j < Padding)//顶部padding
                 {
-                    ((data_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
+                    ((Fmap_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
                 }
                 else if (j >= (Padding + Input_Fmap_Row))//底部padding
                 {
-                    ((data_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
+                    ((Fmap_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
                 }
                 /*k遍历列,左边和右边填充*/
                 if (k < Padding)//左边padding
                 {
-                    ((data_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
+                    ((Fmap_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
                 }
                 else if (k >= (Padding + Input_Fmap_Col))//右边padding
                 {
-                    ((data_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
+                    ((Fmap_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)] = 0;
                 }
                 //输入fmap填充到中间
                 if(j >= Padding && j < (Padding + Input_Fmap_Row) && k >= Padding && k < (Padding + Input_Fmap_Col))
-                    ((data_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)]  = ((data_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Row * Input_Fmap_Col) + ((j-Padding) * Input_Fmap_Col) + (k-Padding)];
+                    ((Fmap_t *)Layers->Output_Feature_Map)[k+(Output_Fmap_Col*j)+(Output_Fmap_Col*Output_Fmap_Row*i)]  = ((Fmap_t *)Layers->Input_Feature_Map)[(i * Input_Fmap_Row * Input_Fmap_Col) + ((j-Padding) * Input_Fmap_Col) + (k-Padding)];
             }
         }
     }
