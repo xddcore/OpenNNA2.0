@@ -502,7 +502,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_next;
     //将用户传入的神经网络输入copy到第一层的堆内存上
     memcpy(Network->Input_Feature_Map,Network_Input,\
-    sizeof(data_t)*\
+    sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
@@ -519,7 +519,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_prev;
     //把最后一层的结果取出
     memcpy(Network_Output,Network->Output_Feature_Map,\
-    sizeof(data_t)*\
+    sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
