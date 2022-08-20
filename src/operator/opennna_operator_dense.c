@@ -13,7 +13,7 @@ void OpenNNA_Operator_Dense(struct layer *Layers)
     //dense算子独有
     reg_t units = ((Layer_Para_Dense *)Layers->Layer_Para_Extra)->units;//神经元数量
 
-#if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Float32)
+#if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
     float Sw = ((Layer_Para_Dense *)Layers->Layer_Para_Extra)->Sw;
     float Sb = ((Layer_Para_Dense *)Layers->Layer_Para_Extra)->Sb;
     float Si = ((Layer_Para_Dense *)Layers->Layer_Para_Extra)->Si;
@@ -25,7 +25,7 @@ void OpenNNA_Operator_Dense(struct layer *Layers)
     int Zo = ((Layer_Para_Dense *)Layers->Layer_Para_Extra)->Zo;
 
     int Accumulator_INT32=0;
-#elif(HARDWARE_ACCELERATION==2)//不使用硬件加速,纯c推理(Int8)
+#elif(HARDWARE_ACCELERATION==2)//ARM CMSIS-DSP
     data_t multOutput = 0;  /* Intermediate output */
 #endif
 #if (CHW==1)
