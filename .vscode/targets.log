@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri Aug 19 15:38:36 2022
+# Make data base, printed on Sat Aug 20 11:31:58 2022
 
 # Variables
 
@@ -29,7 +29,7 @@ CURDIR := /Users/xdd/git_warehouse/OpenNNA2.0
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_translationsConfigFile":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/tcf.json","_cacheRoot":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_translationsConfigFile":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/tcf.json","_cacheRoot":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/e4503b30fc78200f846c62cf8091b76ff5547662","_corruptedFile":"/Users/xdd/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
@@ -43,11 +43,13 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/xdd/opt/anaconda3/bin:/Users/xdd/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
+LaunchInstanceID = 53A39863-8773-4691-B6CC-EF2E363E62A8
+# environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.cEkmv25h3A/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.FO8kwBoqOP/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -67,11 +69,11 @@ HOME = /Users/xdd
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/xdd/Library/Application Support/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
+VSCODE_CODE_CACHE_PATH = /Users/xdd/Library/Application Support/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
 # environment
 LOGNAME = xdd
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 CONDA_PROMPT_MODIFIER = (base) 
 # environment
@@ -107,7 +109,7 @@ TMPDIR = /var/folders/4f/36f6q1x90b3fw4kr66wghvxc0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/xdd/Library/Application Support/Code/1.70.1-main.sock
+VSCODE_IPC_HOOK = /Users/xdd/Library/Application Support/Code/1.70.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -117,7 +119,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.18909680.18909686
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.19400557.19400563
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -138,6 +140,8 @@ MAKEFILES :=
 LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/xdd/opt/anaconda3/bin/python
+# environment
+SECURITYSESSIONID = 186b2
 # automatic
 ^F = $(notdir $^)
 # default
@@ -151,13 +155,13 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/xdd/opt/anaconda3
 # environment
-VSCODE_PID = 4860
+VSCODE_PID = 575
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=71/1024=7%, Rehash=0, Collisions=2/92=2%
+# Load=73/1024=7%, Rehash=0, Collisions=2/94=2%
 
 # Pattern-specific Variable Values
 
@@ -239,6 +243,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri Aug 19 15:38:36 2022
+# Finished Make data base on Sat Aug 20 11:31:58 2022
 
  
