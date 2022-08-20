@@ -47,7 +47,7 @@
  * HARDWARE_ACCELERATION=2:ARM_CMSIS_DSP_FP32｜使用ARM的CMSIS-DSP库，并实现fp32精度权重的加速
  * HARDWARE_ACCELERATION=3:ARM_SIMD_INT8｜使用ARM的SIMD指令，并实现int8精度权重的加速(2路并行)
  */
-#define HARDWARE_ACCELERATION 0
+#define HARDWARE_ACCELERATION 1
 
 //6......
 
@@ -79,6 +79,15 @@
     typedef char Weights_t;//权重数据的类型
     typedef int Bias_t;//偏置数据的类型
     typedef unsigned int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+    /*
+     * 如果你使用Stm32进行Int8推理，请将以上类型定义换为以下类型定义
+     * 原因:在STM32CUBEIDE+GCC下，char并不能表示负数，将会溢出为负数的补码。需要用int8_t,int32_t来表示负数
+	#include "stm32h7xx_hal.h"
+    typedef int8_t Fmap_t;//特征图数据的类型
+    typedef int8_t Weights_t;//权重数据的类型
+    typedef int32_t Bias_t;//偏置数据的类型
+    typedef uint32_t reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+     */
 #elif(HARDWARE_ACCELERATION==2)//ARM CMSIS-DSP加速
     //添加CMSIS-DSP支持(可以引入静态库 或者从CMSIS-DSP源码编译)
     //Note: 为了避免#error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
