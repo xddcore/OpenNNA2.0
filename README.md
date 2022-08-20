@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-20 15:05:40
+ * @LastEditTime: 2022-08-20 19:46:04
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -166,7 +166,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 #### Int8 |STM32 SIMD
 |DEMO|网络类型|PC|STM32|STC|FPGA|Heap|Flash(int8)|注释|
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-|Mnist手写数字识别|全连接神经网络||| |||||
+|Mnist手写数字识别|全连接神经网络|✅(4292;4587)|| |||||
 |Mnist手写数字识别|卷积神经网络(LeNet5)||| | ||||
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)||| | |||[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |热成像传感器的手势分类|卷积神经网络(LeNet5优化版)| | | | | | |
