@@ -11,7 +11,7 @@ void OpenNNA_Operator_Softmax(struct layer *Layers)
     reg_t Output_Fmap_Row = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Row;
     reg_t Output_Fmap_Col = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Col;
     //Softmax独有
-    data_t exp_sum = 0;//exp求sum
+    Fmap_t exp_sum = 0;//exp求sum
 #if (CHW==1)
     //在此实现CHW的内存访问逻辑
     //得到exp 和exp sum
@@ -21,9 +21,9 @@ void OpenNNA_Operator_Softmax(struct layer *Layers)
         {
             for (int k = 0; k < Output_Fmap_Col; k++)
             {
-                ((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
-                exp(((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]);
-                exp_sum += exp(((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]);
+                ((Fmap_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
+                exp(((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]);
+                exp_sum += exp(((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]);
             }
         }
     }
@@ -34,8 +34,8 @@ void OpenNNA_Operator_Softmax(struct layer *Layers)
         {
             for (int k = 0; k < Output_Fmap_Col; k++)
             {
-                ((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
-                ((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] / exp_sum;
+                ((Fmap_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
+                ((Fmap_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] / exp_sum;
             }
         }
     }

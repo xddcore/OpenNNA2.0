@@ -19,11 +19,11 @@ void OpenNNA_Operator_Example(struct layer *Layers)
     for (int i = 0; i < Output_Fmap_Channel; ++i) {
         for (int j = 0; j < Output_Fmap_Row; ++j) {
             for (int k = 0; k < Output_Fmap_Col; ++k) {
-                ((data_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
+                ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
                 =\
-                ((data_t *)Layers->Input_Feature_Map)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i]*\
-                ((data_t *)Layers->Weights)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i]+\
-                ((data_t *)Layers->Bias)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i];
+                ((Fmap_t *)Layers->Input_Feature_Map)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i]*\
+                ((Weights_t *)Layers->Weights)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i]+\
+                ((Bias_t *)Layers->Bias)[k+Input_Fmap_Col*j+Input_Fmap_Col*Input_Fmap_Row*i];
             }
         }
     }

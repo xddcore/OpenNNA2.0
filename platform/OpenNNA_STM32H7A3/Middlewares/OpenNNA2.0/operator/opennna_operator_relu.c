@@ -2,6 +2,7 @@
 // Created by 董程森 on 2022/7/13.
 //
 #include "opennna_operator_relu.h"
+#include "stdio.h"
 //这里提供一个算子,命名规则:OpenNNA_Operator_算子名
 void OpenNNA_Operator_ReLU(struct layer *Layers)
 {
@@ -17,11 +18,12 @@ void OpenNNA_Operator_ReLU(struct layer *Layers)
         {
             for (int k = 0; k < Output_Fmap_Col; k++)
             {
-                ((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
-                ((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] > 0 ? \
-                ((data_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] \
+                ((Fmap_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] = \
+                ((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] > 0 ? \
+                ((Fmap_t *)Layers->Input_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k] \
                 : \
-                (data_t)0;
+                (Fmap_t)0;
+                        //printf("%d\n",((data_t *)Layers->Output_Feature_Map)[(i * Output_Fmap_Row * Output_Fmap_Col) + (j * Output_Fmap_Col) + k]);
             }
         }
     }

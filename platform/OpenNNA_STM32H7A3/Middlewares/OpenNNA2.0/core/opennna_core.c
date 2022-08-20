@@ -11,8 +11,8 @@ unsigned int OpenNNA_Heap_Sum = 0;
 // OpenNNA_Flash_Sum = 参数数量*sizeof(data_t)
 unsigned int OpenNNA_Flash_Sum = 0;//这个变量中存储的还是参数数量，仅在OpenNNA_Print_Network打印时会*sizeof(data_t)
 /************************OpenNNA输入/输出特征图堆内存****************************/
-data_t *Input_Fmap_Heap = NULL;
-data_t *Output_Fmap_Heap = NULL;
+Fmap_t *Input_Fmap_Heap = NULL;
+Fmap_t *Output_Fmap_Heap = NULL;
 int Max_Fmap_Heap = 0;//输入/输出堆内存占用，最终占用需要*2。为了实现相邻层之间堆内存翻转，所以以最大的堆内存消耗来申请堆内存。
 //这个设计的优点是 逻辑简单
 //缺点是对堆内存的管理粒度比较粗，面向网络管理。 没有精确到每一个层的堆内存生命周期。对系统的堆内存占用将会是恒定的。
@@ -195,13 +195,13 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
         {
             //计算输入特征图的最大堆内存
             *Input_Fmap_HeapSize = *Input_Fmap_HeapSize<\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
             ?\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel\
             *\
@@ -210,13 +210,13 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
             *Input_Fmap_HeapSize;
             //计算输出特征图的最大堆内存
             *Output_Fmap_HeapSize = *Output_Fmap_HeapSize<\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
             ?\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
             *\
@@ -228,13 +228,13 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
     }
     //计算输入特征图的最大堆内存
     *Input_Fmap_HeapSize = *Input_Fmap_HeapSize<\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
             ?\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel\
             *\
@@ -243,13 +243,13 @@ void OpenNNA_GetFmapHeap(struct layer * Network,int *Input_Fmap_HeapSize,int *Ou
             *Input_Fmap_HeapSize;
     //计算输出特征图的最大堆内存
     *Output_Fmap_HeapSize = *Output_Fmap_HeapSize<\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
             ?\
-            sizeof(data_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
+            sizeof(Fmap_t)*((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
             *\
             ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel\
             *\
@@ -273,13 +273,13 @@ void OpenNNA_Init(struct layer * Network)
 #if(DEBUG==1)
     OpenNNA_Printf("Dynamic Fmap Heap Enable!\n");
 #endif
-    Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
     );
     //分配输出特征图的堆内存
-    Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
@@ -370,7 +370,7 @@ static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int l
         ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Channel +\
         ((Layer_Para_Dense *)Network->Layer_Para_Extra)->units;
     }
-    //计算Conv2d的para
+        //计算Conv2d的para
     else if(!strcmp("Conv2d",Network->Layer_Name)) {
         param = ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col * \
         ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row *\
@@ -402,10 +402,10 @@ void OpenNNA_Print_Network(struct layer * Network)
     {
         Network = Network->layer_next;
         if(0 !=Network->Layer_Index && NULL != Network->Layer_Para_Base)
-        printf(
-                "----------------------------------------------------------------------\n"
-                "%s(%s)    (%d,%d,%d)    (%d,%d,%d)    (%d,%d,%d)      %d     %d          \n",
-                Network->Layer_Name_Alias, Network->Layer_Name,\
+            printf(
+                    "----------------------------------------------------------------------\n"
+                    "%s(%s)    (%d,%d,%d)    (%d,%d,%d)    (%d,%d,%d)      %d     %d          \n",
+                    Network->Layer_Name_Alias, Network->Layer_Name,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col,\
@@ -413,11 +413,11 @@ void OpenNNA_Print_Network(struct layer * Network)
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col,\
                 ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_channel):((Network->Layer_Name=="AvgPool")?0:((Network->Layer_Name=="MaxPool")?0:0))),
-                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
-                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
-                OpenNNA_Get_LayerParam(Network,Network->Layer_Index),
-                Network->Layer_Index
-        );
+                    ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
+                    ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
+                    OpenNNA_Get_LayerParam(Network,Network->Layer_Index),
+                    Network->Layer_Index
+            );
         if(0 == Network->Layer_Index)break;
     }
     printf(
@@ -425,7 +425,7 @@ void OpenNNA_Print_Network(struct layer * Network)
             "Total Params:%d\n"
             "Flash:%d bytes\n"
             "Heap:%d bytes\n"
-            "\n\n",OpenNNA_Flash_Sum,OpenNNA_Flash_Sum*sizeof(data_t),OpenNNA_Heap_Sum
+            "\n\n",OpenNNA_Flash_Sum,OpenNNA_Flash_Sum*sizeof(Fmap_t),OpenNNA_Heap_Sum
     );
 }
 #endif
@@ -439,7 +439,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_next;
     //将用户传入的神经网络输入copy到第一层的堆内存上
     memcpy(Network->Input_Feature_Map,Network_Input,\
-    sizeof(data_t)*\
+    sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
@@ -459,7 +459,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
         //将上一层的输出绑定到本层的输入
         Network->Input_Feature_Map=Network->layer_prev->Output_Feature_Map;
         //为本层输出特征图Malloc堆内存
-        Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+        Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(Fmap_t)*\
         ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel*\
         ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
         ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
@@ -471,7 +471,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_prev;
     //把最后一层的结果取出
     memcpy(Network_Output,Network->Output_Feature_Map,\
-    sizeof(data_t)*\
+    sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
@@ -486,13 +486,13 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_next;
     //为第一层输入输出特征图申请堆内存
     //分配输入特征图的堆内存
-    Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    Network->Input_Feature_Map= OpenNNA_Malloc(sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
     );
     //分配输出特征图的堆内存
-    Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(data_t)*\
+    Network->Output_Feature_Map= OpenNNA_Malloc(sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
@@ -502,7 +502,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_next;
     //将用户传入的神经网络输入copy到第一层的堆内存上
     memcpy(Network->Input_Feature_Map,Network_Input,\
-    sizeof(data_t)*\
+    sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Col\
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row\
@@ -519,7 +519,7 @@ void OpenNNA_Predict(struct layer * Network, const void *Network_Input, void *Ne
     Network = Network->layer_prev;
     //把最后一层的结果取出
     memcpy(Network_Output,Network->Output_Feature_Map,\
-    sizeof(data_t)*\
+    sizeof(Fmap_t)*\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col\
     *\
     ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row\
