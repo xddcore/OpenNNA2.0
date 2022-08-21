@@ -38,7 +38,7 @@ int main() {
     Layer_Para_Base3->Output_Fmap_Row=2;
     Layer_Para_Base3->Output_Fmap_Col=5;
     /*****************第3步:设置神经网络输入数据和输出数据**********************/
-    data_t Example_Weights[2][2][5]={
+    Weights_t Example_Weights[2][2][5]={
     {
         {2, 2, 2, 2, 2},
         {2, 2, 2, 2, 2},
@@ -48,7 +48,7 @@ int main() {
         {2, 2, 2, 2, 2},
         },
     };
-    data_t Example_Bias[2][2][5]={
+    Bias_t Example_Bias[2][2][5]={
        {
             {1, 1, 1, 1, 1},
             {1, 1, 1, 1, 1},
@@ -72,7 +72,7 @@ int main() {
     OpenNNA_Print_Network(Network);
 #endif
     /*****************第7步:设置神经网络输入数据和输出数据**********************/
-    data_t NN_Input_Fmap[2][2][5]={
+    Fmap_t NN_Input_Fmap[2][2][5]={
     {
             {0, 1, 2, 3, 4},
             {10, 11, 12, 13, 14},
@@ -82,7 +82,7 @@ int main() {
         {110, 111, 112, 113, 114},
         },
     };
-    data_t NN_Output_Fmap[2][2][5]={0};
+    Fmap_t NN_Output_Fmap[2][2][5]={0};
     /*****************第8步:神经网络推理**********************/
 #if(DEBUG==1)
     OpenNNA_Printf("Begin Predict!\n");

@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-20 19:46:04
+ * @LastEditTime: 2022-08-21 12:26:22
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -120,6 +120,7 @@ FPS将会测试两个指标:<br>
 1.FPS指标为网络一个生命周期(构造，推理，释放)的耗时；<br>
 2.FPS指标为网络推理的耗时。<br>
 ❌代表因为权重精度等问题，导致的Sram/Flash溢出。故不提供Demo。<br>
+3.Stm32采用FreeRTOS任务统计API进行运行时间统计，时基为5*(10^-5)s=50us
 
 >PC为Apple M1 Pro(10核CPU+16GPU, 16GB内存, Clion 2022.1.3)<br>
 Note:后期可能会测试I9-12900K和I5-9400F<br><br>
