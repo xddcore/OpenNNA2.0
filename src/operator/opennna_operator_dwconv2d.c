@@ -26,7 +26,8 @@ void OpenNNA_Operator_DWConv2d(struct layer *Layers)
 #if (CHW==1)
     //在此实现CHW的内存访问逻辑
     //以下这个卷积实现思路以输出特征图为导向，当输入特征图为图像数据时，乘加次数最优
-    for (int i = 0; i < filters; ++i) {//filters must = Output_Fmap_Channel
+    //Depthwise Conv2d 仅有一个卷积核，卷积核的每个通道独立输出到输出特征图，不融合(+)
+    for (int i = 0; i < kernel_channel; ++i) {
         for (int j = 0; j < Output_Fmap_Row; ++j) {
             for (int k = 0; k < Output_Fmap_Col; ++k) {
                 //顺道填入偏置
@@ -34,17 +35,15 @@ void OpenNNA_Operator_DWConv2d(struct layer *Layers)
                 =\
                 ((Bias_t *)Layers->Bias)[i];
                 //一个卷积核去卷一下输入特征图
-                for (int l = 0; l < kernel_channel; ++l) {
+                for (int l = 0; l < filters; ++l) {//Depthwise Conv2d中Filter=1，四舍五入这个for被跳过
                     for (int m = 0; m < kernel_row; ++m) {
                         for (int n = 0; n < kernel_col; ++n) {
                             //输出特征图=输入特征图*卷积核权重
                             ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
-                            +=\
-                            //dw的实现主要修改下面这一行代码中输入特征图的load逻辑(以kernel channel参数进行内存偏移访问 改为 以filter参数进行内存偏移访问)
-                            // (l*Input_Fmap_Col*Input_Fmap_Row->i*Input_Fmap_Col*Input_Fmap_Row)
+                            =\
                             ((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+i*Input_Fmap_Col*Input_Fmap_Row]\
                             *\
-                            ((Weights_t *)Layers->Weights)[n+m*kernel_col+l*kernel_col*kernel_row+i*kernel_col*kernel_row*kernel_channel];
+                            ((Weights_t *)Layers->Weights)[n+m*kernel_col+i*kernel_col*kernel_row+l*kernel_col*kernel_row*kernel_channel];
                         }
                     }
                 }
