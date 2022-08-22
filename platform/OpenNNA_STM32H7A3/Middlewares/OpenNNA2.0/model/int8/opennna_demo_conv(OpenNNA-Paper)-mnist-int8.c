@@ -3121,6 +3121,7 @@ int OpenNNA_Demo_Conv_Paper_Mnist_Int8() {
 
     //填充两圈
     Layer_Para_Padding1->padding = 2;
+    Layer_Para_Padding1->padding_value = -128;
 
     //第二层Conv2d
     struct Layer_Para_base *Layer_Para_Base2 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
