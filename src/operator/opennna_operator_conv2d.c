@@ -81,7 +81,6 @@ void OpenNNA_Operator_Conv2d(struct layer *Layers)
                 }
 #if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
                 Accumulator_INT32=(int)((Accumulator_INT32*(Si*Sw/So))+Zo);//得到Qo(输出特征图量化值)
-                //while(1);
                 //Clip操作，防止溢出
                 if(Accumulator_INT32>127)
                     Accumulator_INT32=127;

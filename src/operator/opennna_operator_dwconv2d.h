@@ -22,6 +22,17 @@ struct Layer_Para_DWConv2d{
 
     unsigned int strides_col;//步长列
     unsigned int strides_row;//步长行
+
+#if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
+    float Sw;//权重的Scale
+    float Sb;//偏置的Scale
+    float Si;//输入特征图的Scale
+    float So;//输出特征图的Scale
+    int Zw;//权重的Zero Point
+    int Zb;//偏置的Zero Point
+    int Zi;//输入特征图的Zero Point
+    int Zo;//输出特征图的Zero Point
+#endif
 };
 typedef struct Layer_Para_DWConv2d Layer_Para_DWConv2d;
 
