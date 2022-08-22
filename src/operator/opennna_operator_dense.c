@@ -2,7 +2,6 @@
 // Created by 董程森 on 2022/7/13.
 //
 #include "opennna_operator_dense.h"
-#include "stdio.h"
 //这里提供一个算子,命名规则:OpenNNA_Operator_算子名
 void OpenNNA_Operator_Dense(struct layer *Layers)
 {
@@ -44,7 +43,7 @@ void OpenNNA_Operator_Dense(struct layer *Layers)
 #if(HARDWARE_ACCELERATION==0)//不使用硬件加速,纯c推理(Float32)
             ((Fmap_t *)Layers->Output_Feature_Map)[i] += ((Fmap_t *)Layers->Input_Feature_Map)[j] * ((Weights_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j];
 #elif(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
-            Accumulator_INT32 += (((short int)((Fmap_t *)Layers->Input_Feature_Map)[j])-Zi) * ((short int)((Weights_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j]);
+            Accumulator_INT32 += (((short int)((Fmap_t *)Layers->Input_Feature_Map)[j])-Zi) * ((short int)((Weights_t *)Layers->Weights)[i*(Input_Fmap_Channel*Input_Fmap_Row*Input_Fmap_Col)+j]-Zw);
 #elif(HARDWARE_ACCELERATION==2)
             //*
             arm_mult_f32(&((Fmap_t *)Layers->Input_Feature_Map)[j], \

@@ -15,39 +15,73 @@ void OpenNNA_Operator_DWConv2d(struct layer *Layers)
     reg_t Output_Fmap_Row = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Row;
     reg_t Output_Fmap_Col = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Col;
     //卷积运算相关的参数
-    reg_t kernel_col = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->kernel_col;
-    reg_t kernel_row = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->kernel_row;
-    reg_t kernel_channel = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->kernel_channel;
+    reg_t kernel_col = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->kernel_col;
+    reg_t kernel_row = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->kernel_row;
+    reg_t kernel_channel = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->kernel_channel;
 
-    reg_t filters = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->filters;
+    reg_t filters = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->filters;
 
-    reg_t strides_col = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->strides_col;
-    reg_t strides_row = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->strides_row;
+    reg_t strides_col = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->strides_col;
+    reg_t strides_row = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->strides_row;
+
+#if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
+    float Sw = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Sw;
+    float Sb = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Sb;
+    float Si = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Si;
+    float So = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->So;
+
+    int Zw = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zw;
+    int Zb = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zb;
+    int Zi = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zi;
+    int Zo = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zo;
+
+    int Accumulator_INT32=0;
+#elif(HARDWARE_ACCELERATION==2)//ARM CMSIS-DSP
+    Fmap_t multOutput = 0;  /* Intermediate output */
+#endif
 #if (CHW==1)
     //在此实现CHW的内存访问逻辑
     //以下这个卷积实现思路以输出特征图为导向，当输入特征图为图像数据时，乘加次数最优
-    for (int i = 0; i < filters; ++i) {//filters must = Output_Fmap_Channel
+    //Depthwise Conv2d 仅有一个卷积核，卷积核的每个通道独立输出到输出特征图，不融合(+)
+    for (int i = 0; i < kernel_channel; ++i) {
         for (int j = 0; j < Output_Fmap_Row; ++j) {
             for (int k = 0; k < Output_Fmap_Col; ++k) {
                 //顺道填入偏置
+#if(HARDWARE_ACCELERATION==0)//不使用硬件加速,纯c推理(Float32)
                 ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
                 =\
                 ((Bias_t *)Layers->Bias)[i];
+#elif(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
+                Accumulator_INT32 = ((Bias_t *)Layers->Bias)[i];
+#endif
                 //一个卷积核去卷一下输入特征图
-                for (int l = 0; l < kernel_channel; ++l) {
+                for (int l = 0; l < filters; ++l) {//Depthwise Conv2d中Filter=1，四舍五入这个for被跳过
                     for (int m = 0; m < kernel_row; ++m) {
                         for (int n = 0; n < kernel_col; ++n) {
+#if(HARDWARE_ACCELERATION==0)//不使用硬件加速,纯c推理(Float32)
                             //输出特征图=输入特征图*卷积核权重
                             ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
                             +=\
-                            //dw的实现主要修改下面这一行代码中输入特征图的load逻辑(以kernel channel参数进行内存偏移访问 改为 以filter参数进行内存偏移访问)
-                            // (l*Input_Fmap_Col*Input_Fmap_Row->i*Input_Fmap_Col*Input_Fmap_Row)
                             ((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+i*Input_Fmap_Col*Input_Fmap_Row]\
                             *\
-                            ((Weights_t *)Layers->Weights)[n+m*kernel_col+l*kernel_col*kernel_row+i*kernel_col*kernel_row*kernel_channel];
+                            ((Weights_t *)Layers->Weights)[n+m*kernel_col+i*kernel_col*kernel_row+l*kernel_col*kernel_row*kernel_channel];
+#elif(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
+                            Accumulator_INT32 += (((short int)((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+i*Input_Fmap_Col*Input_Fmap_Row])-Zi) * ((short int)((Weights_t *)Layers->Weights)[n+m*kernel_col+i*kernel_col*kernel_row+l*kernel_col*kernel_row*kernel_channel]-Zw);
+#elif(HARDWARE_ACCELERATION==2)
+                            /*！！！！！！ Depthwise Conv2d的CMSIS-DSP未经开发*/
+#endif
                         }
                     }
                 }
+#if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
+                Accumulator_INT32=(int)((Accumulator_INT32*(Si*Sw/So))+Zo);//得到Qo(输出特征图量化值)
+                //Clip操作，防止溢出
+                if(Accumulator_INT32>127)
+                    Accumulator_INT32=127;
+                else if (Accumulator_INT32<-128)
+                    Accumulator_INT32=-128;
+                ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]=Accumulator_INT32;
+#endif
             }
         }
     }
