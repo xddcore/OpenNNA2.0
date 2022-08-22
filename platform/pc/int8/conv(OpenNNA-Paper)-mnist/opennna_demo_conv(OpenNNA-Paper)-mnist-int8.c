@@ -41,6 +41,16 @@ int main() {
     Layer_Para_Conv2d2->strides_row=1;
     Layer_Para_Conv2d2->strides_col=1;
 
+    Layer_Para_Conv2d2->Si = 0.003921568859368563;
+    Layer_Para_Conv2d2->Sw = 0.0036646225489676;
+    Layer_Para_Conv2d2->Sb = 0.00001437106948287692;
+    Layer_Para_Conv2d2->So = 0.005541084799915552;
+
+    Layer_Para_Conv2d2->Zi = -128;
+    Layer_Para_Conv2d2->Zw = 0;
+    Layer_Para_Conv2d2->Zb = 0;
+    Layer_Para_Conv2d2->Zo = -128;
+
     //第三层ReLu激活函数
     struct Layer_Para_base *Layer_Para_Base3 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
     struct Layer_Para_ReLU *Layer_Para_ReLU3 = OpenNNA_Malloc(sizeof(Layer_Para_ReLU));
@@ -82,6 +92,16 @@ int main() {
     Layer_Para_Conv2d5->filters=32;
     Layer_Para_Conv2d5->strides_row=1;
     Layer_Para_Conv2d5->strides_col=1;
+
+    Layer_Para_Conv2d5->Si = 0.005541084799915552;
+    Layer_Para_Conv2d5->Sw = 0.004297835752367973;
+    Layer_Para_Conv2d5->Sb = 0.000023814673113520257;
+    Layer_Para_Conv2d5->So = 0.018646985292434692;
+
+    Layer_Para_Conv2d5->Zi = -128;
+    Layer_Para_Conv2d5->Zw = 0;
+    Layer_Para_Conv2d5->Zb = 0;
+    Layer_Para_Conv2d5->Zo = -128;
 
     //第六层ReLU激活函数
     struct Layer_Para_base *Layer_Para_Base6 = OpenNNA_Malloc(sizeof(Layer_Para_Base));
@@ -3133,15 +3153,15 @@ int main() {
     /*****************第4步:添加网络层**********************/
     OpenNNA_Add_Layer(Network, "Padding", "OpenNNA-Paper", Layer_Para_Base1,Layer_Para_Padding1, NULL, NULL);
     OpenNNA_Add_Layer(Network, "Conv2d", "Chengsen", Layer_Para_Base2,Layer_Para_Conv2d2, Conv2d_2_Weights, Conv2d_2_Bias);
-    OpenNNA_Add_Layer(Network, "ReLU", "xddcore", Layer_Para_Base3,Layer_Para_ReLU3, NULL, NULL);
+    //OpenNNA_Add_Layer(Network, "ReLU", "xddcore", Layer_Para_Base3,Layer_Para_ReLU3, NULL, NULL);
     OpenNNA_Add_Layer(Network, "MaxPool", "lululu~", Layer_Para_Base4,Layer_Para_MaxPool4, NULL, NULL);
     OpenNNA_Add_Layer(Network, "Conv2d", "lalala~", Layer_Para_Base5,Layer_Para_Conv2d5, Conv2d_5_Weights, Conv2d_5_Bias);
-    OpenNNA_Add_Layer(Network, "ReLU", "The", Layer_Para_Base6,Layer_Para_ReLU6, NULL, NULL);
+    //OpenNNA_Add_Layer(Network, "ReLU", "The", Layer_Para_Base6,Layer_Para_ReLU6, NULL, NULL);
     OpenNNA_Add_Layer(Network, "MaxPool", "Future", Layer_Para_Base7,Layer_Para_MaxPool7, NULL, NULL);
     OpenNNA_Add_Layer(Network, "Dense", "Of", Layer_Para_Base8,Layer_Para_Dense8, Dense_8_Weights, Dense_8_Bias);
-    OpenNNA_Add_Layer(Network, "ReLU", "Possible", Layer_Para_Base9,Layer_Para_ReLU9, NULL, NULL);
+    //OpenNNA_Add_Layer(Network, "ReLU", "Possible", Layer_Para_Base9,Layer_Para_ReLU9, NULL, NULL);
     OpenNNA_Add_Layer(Network, "Dense", "Think", Layer_Para_Base10,Layer_Para_Dense10, Dense_10_Weights, Dense_10_Bias);
-    OpenNNA_Add_Layer(Network, "Softmax", "Different", Layer_Para_Base11,Layer_Para_Softmax11, NULL, NULL);
+    //OpenNNA_Add_Layer(Network, "Softmax", "Different", Layer_Para_Base11,Layer_Para_Softmax11, NULL, NULL);
     /*****************第5步:初始化神经网络**********************/
     OpenNNA_Init(Network);
     /*****************第6步:打印神经网络信息**********************/
@@ -3149,7 +3169,7 @@ int main() {
         OpenNNA_Print_Network(Network);
     #endif
     /*****************第7步:设置神经网络输入数据和输出数据**********************/
-    Fmap_t NN_Input_Fmap[1][28][28]={//5
+    Fmap_t NN_Input_Fmap_5[1][28][28]={//5
             {
                     {-127, -128, -128, -128, -128, -127, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, },
                     {-128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, },
@@ -3217,7 +3237,7 @@ int main() {
 
 
     };
-    Fmap_t NN_Input_Fmap_0[1][28][28]={//0
+    Fmap_t NN_Input_Fmap[1][28][28]={//0
             {
                     {-128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, },
                     {-128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, -128, },
@@ -3286,7 +3306,7 @@ int main() {
     };
 
     Fmap_t NN_Output_Fmap[1][1][10]={0};
-    
+
     /*****************第8步:神经网络推理**********************/
 #if(DEBUG==1)
     OpenNNA_Printf("Begin Predict!\n");
@@ -3296,7 +3316,7 @@ int main() {
     printf("\n推理结果:   \n");
     for(int i = 0;i<10;++i)
     {
-        printf("[%d]%f,   ",i,NN_Output_Fmap[0][0][i]*100);
+        printf("[%d]%d,   ",i,NN_Output_Fmap[0][0][i]);
     }
     printf("\n");
     /*****************第10步:推理结束释放网络结构+申请的特征图堆内存**********************/
