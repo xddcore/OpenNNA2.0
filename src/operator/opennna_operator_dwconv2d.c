@@ -15,25 +15,25 @@ void OpenNNA_Operator_DWConv2d(struct layer *Layers)
     reg_t Output_Fmap_Row = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Row;
     reg_t Output_Fmap_Col = ((Layer_Para_Base *)Layers->Layer_Para_Base)->Output_Fmap_Col;
     //卷积运算相关的参数
-    reg_t kernel_col = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->kernel_col;
-    reg_t kernel_row = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->kernel_row;
-    reg_t kernel_channel = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->kernel_channel;
+    reg_t kernel_col = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->kernel_col;
+    reg_t kernel_row = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->kernel_row;
+    reg_t kernel_channel = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->kernel_channel;
 
-    reg_t filters = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->filters;
+    reg_t filters = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->filters;
 
-    reg_t strides_col = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->strides_col;
-    reg_t strides_row = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->strides_row;
+    reg_t strides_col = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->strides_col;
+    reg_t strides_row = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->strides_row;
 
 #if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
-    float Sw = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Sw;
-    float Sb = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Sb;
-    float Si = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Si;
-    float So = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->So;
+    float Sw = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Sw;
+    float Sb = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Sb;
+    float Si = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Si;
+    float So = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->So;
 
-    int Zw = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Zw;
-    int Zb = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Zb;
-    int Zi = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Zi;
-    int Zo = ((Layer_Para_Conv2d *)Layers->Layer_Para_Extra)->Zo;
+    int Zw = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zw;
+    int Zb = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zb;
+    int Zi = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zi;
+    int Zo = ((Layer_Para_DWConv2d *)Layers->Layer_Para_Extra)->Zo;
 
     int Accumulator_INT32=0;
 #elif(HARDWARE_ACCELERATION==2)//ARM CMSIS-DSP
