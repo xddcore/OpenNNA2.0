@@ -63,7 +63,7 @@ void OpenNNA_Operator_Conv2d(struct layer *Layers)
                             *\
                             ((Weights_t *)Layers->Weights)[n+m*kernel_col+l*kernel_col*kernel_row+i*kernel_col*kernel_row*kernel_channel];
 #elif(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
-                            Accumulator_INT32 += (((short int)((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+l*Input_Fmap_Col*Input_Fmap_Row])-Zi) * ((short int)((Weights_t *)Layers->Weights)[n+m*kernel_col+l*kernel_col*kernel_row+i*kernel_col*kernel_row*kernel_channel]);
+                            Accumulator_INT32 += (((short int)((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+l*Input_Fmap_Col*Input_Fmap_Row])-Zi) * ((short int)((Weights_t *)Layers->Weights)[n+m*kernel_col+l*kernel_col*kernel_row+i*kernel_col*kernel_row*kernel_channel]-Zw);
 #elif(HARDWARE_ACCELERATION==2)
                             //*
                             arm_mult_f32(&((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+l*Input_Fmap_Col*Input_Fmap_Row], \
