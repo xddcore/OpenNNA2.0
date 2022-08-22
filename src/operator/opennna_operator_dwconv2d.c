@@ -40,7 +40,7 @@ void OpenNNA_Operator_DWConv2d(struct layer *Layers)
                         for (int n = 0; n < kernel_col; ++n) {
                             //输出特征图=输入特征图*卷积核权重
                             ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
-                            =\
+                            +=\
                             ((Fmap_t *)Layers->Input_Feature_Map)[(n+k*strides_col)+(m+j*strides_row)*Input_Fmap_Col+i*Input_Fmap_Col*Input_Fmap_Row]\
                             *\
                             ((Weights_t *)Layers->Weights)[n+m*kernel_col+i*kernel_col*kernel_row+l*kernel_col*kernel_row*kernel_channel];
