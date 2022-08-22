@@ -78,7 +78,7 @@
     typedef char Fmap_t;//特征图数据的类型
     typedef char Weights_t;//权重数据的类型
     typedef int Bias_t;//偏置数据的类型
-    typedef unsigned int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+    typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
     /*
      * 如果你使用Stm32进行Int8推理，请将以上类型定义换为以下类型定义
      * 原因:在STM32CUBEIDE+GCC下，char并不能表示负数，将会溢出为负数的补码。需要用int8_t,int32_t来表示负数
@@ -86,7 +86,7 @@
     typedef int8_t Fmap_t;//特征图数据的类型
     typedef int8_t Weights_t;//权重数据的类型
     typedef int32_t Bias_t;//偏置数据的类型
-    typedef uint32_t reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+    typedef int32_t reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
      */
 #elif(HARDWARE_ACCELERATION==2)//ARM CMSIS-DSP加速
     //添加CMSIS-DSP支持(可以引入静态库 或者从CMSIS-DSP源码编译)
