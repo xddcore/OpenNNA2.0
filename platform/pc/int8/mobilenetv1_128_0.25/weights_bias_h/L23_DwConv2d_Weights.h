@@ -1,5 +1,6 @@
 #ifndef __L23_DWCONV2D_WEIGHTS_H__
 #define __L23_DWCONV2D_WEIGHTS_H__
+#include "opennna_core.h"
 const Weights_t L23_DwConv2d_Weights[1][128][3][3]={
 	{
 		{

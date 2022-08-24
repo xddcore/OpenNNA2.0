@@ -1,5 +1,6 @@
 #ifndef __L6_CONV2D_WEIGHTS_H__
 #define __L6_CONV2D_WEIGHTS_H__
+#include "opennna_core.h"
 const Weights_t L6_Conv2d_Weights[32][32][1][1]={
 	{
 		{
