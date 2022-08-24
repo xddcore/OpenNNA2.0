@@ -420,3 +420,4 @@ const Weights_t L2_Conv2d_Weights[16][8][1][1]={
 	},
 
 };
+#endif
