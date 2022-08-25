@@ -55,7 +55,7 @@ void OpenNNA_Operator_Conv2d(struct layer *Layers)
                 for (int l = 0; l < kernel_channel; ++l) {
                     for (int m = 0; m < kernel_row; ++m) {
                         for (int n = 0; n < kernel_col; ++n) {
-                          //输出特征图=输入特征图*卷积核权重
+                            //输出特征图=输入特征图*卷积核权重
 #if(HARDWARE_ACCELERATION==0)//不使用硬件加速,纯c推理(Float32)
                             ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]\
                             +=\
@@ -75,17 +75,17 @@ void OpenNNA_Operator_Conv2d(struct layer *Layers)
                             &multOutput,\
                             &((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i], \
                             1);
-                            #endif
+#endif
                         }
                     }
                 }
 #if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
                 Accumulator_INT32=(int)((Accumulator_INT32*(Si*Sw/So))+Zo);//得到Qo(输出特征图量化值)
                 //Clip操作，防止溢出
-                if(Accumulator_INT32>127)
-                    Accumulator_INT32=127;
-                else if (Accumulator_INT32<-128)
-                    Accumulator_INT32=-128;
+                if(Accumulator_INT32>CLIP_MAX)
+                    Accumulator_INT32=CLIP_MAX;
+                else if (Accumulator_INT32<CLIP_MIN)
+                    Accumulator_INT32=CLIP_MIN;
                 ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]=Accumulator_INT32;
 #endif
             }

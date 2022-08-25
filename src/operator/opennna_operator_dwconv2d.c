@@ -76,10 +76,10 @@ void OpenNNA_Operator_DWConv2d(struct layer *Layers)
 #if(HARDWARE_ACCELERATION==1)//不使用硬件加速,纯c推理(Int8)
                 Accumulator_INT32=(int)((Accumulator_INT32*(Si*Sw/So))+Zo);//得到Qo(输出特征图量化值)
                 //Clip操作，防止溢出
-                if(Accumulator_INT32>127)
-                    Accumulator_INT32=127;
-                else if (Accumulator_INT32<-128)
-                    Accumulator_INT32=-128;
+                if(Accumulator_INT32>CLIP_MAX)
+                    Accumulator_INT32=CLIP_MAX;
+                else if (Accumulator_INT32<CLIP_MIN)
+                    Accumulator_INT32=CLIP_MIN;
                 ((Fmap_t *)Layers->Output_Feature_Map)[k+Output_Fmap_Col*j+Output_Fmap_Col*Output_Fmap_Row*i]=Accumulator_INT32;
 #endif
             }
