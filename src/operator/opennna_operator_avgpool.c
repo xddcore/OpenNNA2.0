@@ -24,7 +24,7 @@ void OpenNNA_Operator_AvgPool(struct layer *Layers)
     reg_t strides_row = ((Layer_Para_MaxPool *)Layers->Layer_Para_Extra)->strides_row;
 #if (CHW==1)
     //在此实现CHW的内存访问逻辑
-    Fmap_t max_value=0;//在MaxPool时存储最大值,在AveragePool存储均值
+    reg_t max_value=0;//在MaxPool时存储最大值,在AveragePool存储均值
     for (int i = 0; i < Output_Fmap_Channel; ++i)//output_fmap_channel
     {
         for (int j = 0; j < Output_Fmap_Row; ++j)//Output_Fmap_Row = (((input_fmap_size - pool_Kernel_size) / pool_Kernel_stride) + 1)
