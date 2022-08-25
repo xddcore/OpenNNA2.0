@@ -33,13 +33,13 @@
  * 反之，则不进行输出，同时屏蔽printf相关的所有代码(正式部署为了提高初始化速度，建议将DEBUG设置为0)
  * 如果不想移植printf函数，则直接DEBUG=0
  */
-#define DEBUG 1
+#define DEBUG 0
 
 //4.堆内存管理方式
 /* HEAP_MANAGER=0:使用C语言STDLIB中自带的Malloc()和Free()进行动态堆内存管理
  * HEAP_MANAGER=1:使用FreeRTOS的pvPortMalloc()和vPortFree()进行动态堆内存管理
  */
-#define HEAP_MANAGER 0
+#define HEAP_MANAGER 1
 
 //5.算子硬件加速
 /* HARDWARE_ACCELERATION=0:不使用任何硬件加速手段，纯C推理，几乎可以运行在任何平台上(Float32推理)
@@ -75,19 +75,24 @@
     typedef float Bias_t;//偏置数据的类型
     typedef unsigned int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
 #elif(HARDWARE_ACCELERATION==1)//不使用硬件加速，纯c推理(Int8)
-    typedef char Fmap_t;//特征图数据的类型
-    typedef char Weights_t;//权重数据的类型
+#define CLIP_MAX 255
+#define CLIP_MIN 0
+    /*
+    typedef unsigned char Fmap_t;//特征图数据的类型
+    typedef unsigned char Weights_t;//权重数据的类型
     typedef int Bias_t;//偏置数据的类型
     typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
+    */
     /*
      * 如果你使用Stm32进行Int8推理，请将以上类型定义换为以下类型定义
      * 原因:在STM32CUBEIDE+GCC下，char并不能表示负数，将会溢出为负数的补码。需要用int8_t,int32_t来表示负数
+     */
 	#include "stm32h7xx_hal.h"
-    typedef int8_t Fmap_t;//特征图数据的类型
-    typedef int8_t Weights_t;//权重数据的类型
+    typedef uint8_t Fmap_t;//特征图数据的类型
+    typedef uint8_t Weights_t;//权重数据的类型
     typedef int32_t Bias_t;//偏置数据的类型
     typedef int32_t reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
-     */
+
 #elif(HARDWARE_ACCELERATION==2)//ARM CMSIS-DSP加速
     //添加CMSIS-DSP支持(可以引入静态库 或者从CMSIS-DSP源码编译)
     //Note: 为了避免#error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"

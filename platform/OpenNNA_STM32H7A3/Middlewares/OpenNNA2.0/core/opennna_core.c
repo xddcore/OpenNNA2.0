@@ -370,13 +370,21 @@ static unsigned int OpenNNA_Get_LayerParam(struct layer * Network,unsigned int l
         ((Layer_Para_Base *)(Network->Layer_Para_Base))->Input_Fmap_Channel +\
         ((Layer_Para_Dense *)Network->Layer_Para_Extra)->units;
     }
-        //计算Conv2d的para
+    //计算Conv2d的para
     else if(!strcmp("Conv2d",Network->Layer_Name)) {
         param = ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col * \
         ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row *\
         ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_channel *\
         ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->filters +\
         ((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->filters;
+    }
+    //计算Depthwise Conv2d的para
+    else if(!strcmp("Depthwise Conv2d",Network->Layer_Name)) {
+        param = ((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->kernel_col * \
+        ((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->kernel_row *\
+        ((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->kernel_channel *\
+        ((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->filters +\
+        ((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->filters;
     }
     OpenNNA_Flash_Sum+=param;
     return param;
@@ -395,7 +403,7 @@ void OpenNNA_Print_Network(struct layer * Network)
     );
     printf(
             "----------------------------------------------------------------------\n"
-            "Layer(type)    Input Shape    Output Shape    Kernel    Param    Index\n"
+            "Layer(type)    Input Shape    Output Shape    Kernel(NCHW)    Param    Index\n"
             "======================================================================\n"
     );
     while(NULL != Network->layer_next)
@@ -404,7 +412,7 @@ void OpenNNA_Print_Network(struct layer * Network)
         if(0 !=Network->Layer_Index && NULL != Network->Layer_Para_Base)
             printf(
                     "----------------------------------------------------------------------\n"
-                    "%s(%s)    (%d,%d,%d)    (%d,%d,%d)    (%d,%d,%d)      %d     %d          \n",
+                    "%s(%s)    (%d,%d,%d)    (%d,%d,%d)    (%d,%d,%d,%d)      %d     %d          \n",
                     Network->Layer_Name_Alias, Network->Layer_Name,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Input_Fmap_Row,\
@@ -412,11 +420,12 @@ void OpenNNA_Print_Network(struct layer * Network)
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Channel,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Row,\
                 ((Layer_Para_Base *)Network->Layer_Para_Base)->Output_Fmap_Col,\
-                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_channel):((Network->Layer_Name=="AvgPool")?0:((Network->Layer_Name=="MaxPool")?0:0))),
-                    ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
-                    ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
-                    OpenNNA_Get_LayerParam(Network,Network->Layer_Index),
-                    Network->Layer_Index
+                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->filters):(Network->Layer_Name=="Depthwise Conv2d")?(((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->filters):((Network->Layer_Name=="AvgPool")?0:((Network->Layer_Name=="MaxPool")?0:0))),
+                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_channel):(Network->Layer_Name=="Depthwise Conv2d")?(((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->kernel_channel):((Network->Layer_Name=="AvgPool")?0:((Network->Layer_Name=="MaxPool")?0:0))),
+                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_row):(Network->Layer_Name=="Depthwise Conv2d")?(((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
+                ((Network->Layer_Name=="Conv2d")?(((Layer_Para_Conv2d *)Network->Layer_Para_Extra)->kernel_col):(Network->Layer_Name=="Depthwise Conv2d")?(((Layer_Para_DWConv2d *)Network->Layer_Para_Extra)->kernel_col):((Network->Layer_Name=="AvgPool")?(((Layer_Para_AvgPool *)Network->Layer_Para_Extra)->kernel_row):((Network->Layer_Name=="MaxPool")?(((Layer_Para_MaxPool *)Network->Layer_Para_Extra)->kernel_row):0))),
+                OpenNNA_Get_LayerParam(Network,Network->Layer_Index),
+                Network->Layer_Index
             );
         if(0 == Network->Layer_Index)break;
     }
