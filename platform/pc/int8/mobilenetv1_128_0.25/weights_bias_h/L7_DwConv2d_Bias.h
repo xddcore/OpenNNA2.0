@@ -1,7 +1,7 @@
 #ifndef __L7_DWCONV2D_BIAS_H__
 #define __L7_DWCONV2D_BIAS_H__
 #include "opennna_core.h"
-const Bias_t L7_DwConv2d_Bias[1]={
+const Bias_t L7_DwConv2d_Bias[32]={
 	1183, 410, 22000, 5383, 219, -79, 15487, 1061, 3579, 6, 7493, 7640, 7101, 14635, 545, 1675, 794, -240, 1000, 4136, 19214, 24156, -1791, 1019, 17901, 2512, 3023, -605, 291, 11436, -1590, 458, 
 };
 #endif
