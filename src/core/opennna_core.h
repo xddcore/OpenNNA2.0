@@ -75,8 +75,10 @@
     typedef float Bias_t;//偏置数据的类型
     typedef unsigned int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
 #elif(HARDWARE_ACCELERATION==1)//不使用硬件加速，纯c推理(Int8)
-    typedef char Fmap_t;//特征图数据的类型
-    typedef char Weights_t;//权重数据的类型
+#define CLIP_MAX 255
+#define CLIP_MIN 0
+    typedef unsigned char Fmap_t;//特征图数据的类型
+    typedef unsigned char Weights_t;//权重数据的类型
     typedef int Bias_t;//偏置数据的类型
     typedef int reg_t;//对每一个层的控制可以理解为对算子寄存器(参数)的控制
     /*
