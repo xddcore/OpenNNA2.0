@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-25 16:09:02
+ * @LastEditTime: 2022-08-27 19:44:52
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -29,7 +29,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 3. 推理精度支持:Float32, Int8, 其他精度类型未经测试，用户可自行拓展
 4. 对于fpga:多加速器(NNA)调度，负载均衡｜目前计划支持的平台有正点院子ZYNQ-7020;PYNQ-Z2;Xlinx ZCU102
 5. 提供算子开发框架，可自己开发自己的算子。为了独立性，一个算子一个.c文件
-6. 提供demo: 1.手写数字 2.KWS(关键词识别) 3.yolo v1目标检测
+6. 提供demo: 1.手写数字 2.KWS(关键词识别) 3.yolo v2目标检测
 7. 内存排列模式:CHW和HWC（经过试验，得益于优秀的流水线机制，在cortex m核上顺序读取内存空间和以一定规律间隔读取内存空间效率几乎相同)
 8. 堆内存管理粒度:1.网络(四舍五入等于静态管理)2.网络层(算子)动态管理
 9. 除了避免野指针等引发段错误，其他地方一律不设错误检测，按照demo的方式来调用/直接使用工具将H5/tflite模型文件转为C Model，理论上不会出错。
@@ -138,7 +138,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)|✅(5.8;6.4)| | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |热成像传感器的手势分类|卷积神经网络(LeNet5优化版)| | | | | | |
 |目标分类|MobileNet V1(α=0.25)| |❌| | | | |
-|目标检测|YOLO V1| |❌| | | | |
+|目标检测|YOLO V2| |❌| | | | |
 |语音关键词分类|卷积神经网络| | | | | | |
 
 #### Float32|STM32 FPU&CMSIS-DSP(❌❌:负优化不做测试)
@@ -150,7 +150,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(219;222)|✅(1.07)| | |8740~116708|316968|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |热成像传感器的手势分类|卷积神经网络(LeNet5优化版)| | | | | | |
 |目标分类|MobileNet V1(α=0.25)| |❌| | | | |
-|目标检测|YOLO V1| |❌| | | | |
+|目标检测|YOLO V2| |❌| | | | |
 |语音关键词分类|卷积神经网络| | | | | | |
 
 #### Int8
@@ -161,7 +161,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)|✅(277;280)|✅(27;)| | |3380-30372|79242|[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |热成像传感器的手势分类|卷积神经网络(LeNet5优化版)| | | | | | |
 |目标分类|MobileNet V1(α=0.25)|✅(11;12)|✅(0.7;)| | |106804~146344|466366||
-|目标检测|YOLO V1| || | | | |
+|目标检测|YOLO V2| || | | | |
 |语音关键词分类|卷积神经网络| | | | | | |
 
 #### Int8 |STM32 SIMD
@@ -172,7 +172,7 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 |Mnist手写数字识别|卷积神经网络(OpenNNA-Paper)||| | |||[OpenNNA Paper](https://github.com/xddcore/OpenNNA/blob/main/paper/An%20FPGA%20Resource%20Adaptable%20General%20Neural%20Network%20Accelerator_UKSim2022_08April2022_Fin.pdf)中提到的Network模型，可以对比验证|
 |热成像传感器的手势分类|卷积神经网络(LeNet5优化版)| | | | | | |
 |目标分类|MobileNet V1(α=0.25)| || | | | |
-|目标检测|YOLO V1| || | | | |
+|目标检测|YOLO V2| || | | | |
 |语音关键词分类|卷积神经网络| | | | | | |
 
 ---
@@ -192,12 +192,13 @@ STM32H7A3ZIT6Q(280Mhz, Cortex M7, FPU Enable(CMSIS-DSP&arm_cortexM7lfdp_math), 1
 - [x] 6. 算子移植与优化(Dense)
 - [x] 7. 算子移植与优化(Activation)
 - [x] 8. PC & Stm32 的手写数字 Demo(fp32)
-- [ ] 9. Int16/Int8量化权重的算子支持(无指令集层加速)
+- [x] 9. Int16/Int8量化权重的算子支持(无指令集层加速)
 - [ ] 10. Int16/Int8量化权重的算子支持(ARM SIMD加速)
-- [ ] 11. PC & Stm32 的手写数字 Demo(int16/int8)
-- [ ] 12. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)(生成带有网络配置结构配置的.c文件)
-- [ ] 13. PC Demo(KWS｜Yolo v1 目标检测)
-- [ ] 14. Stm32 Demo(KWS｜Yolo v1 目标检测)
+- [x] 11. PC & Stm32 的手写数字 Demo(int16/int8)
+- [ ] 12. PC的Yolo V2 Demo(int16/int8)
+- [ ] 13. Tensorflow h5 file & tflite 权重偏置读取脚本(Python)(生成带有网络配置结构配置的.c文件)
+- [ ] 14. PC Demo(KWS｜Yolo v2 目标检测)
+- [ ] 15. Stm32 Demo(KWS｜Yolo v2 目标检测)
 
 **Extra**
 
