@@ -2,7 +2,7 @@
  * @Author: Chengsen Dong 1034029664@qq.com
  * @Date: 2022-07-01 19:07:43
  * @LastEditors: Chengsen Dong 1034029664@qq.com
- * @LastEditTime: 2022-08-27 19:44:52
+ * @LastEditTime: 2022-08-27 19:48:50
  * @FilePath: /OpenNNA2.0/README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -29,7 +29,7 @@ OpenNNA2.0在我心底的定位是一个实践项目，把一些学到的思想�
 3. 推理精度支持:Float32, Int8, 其他精度类型未经测试，用户可自行拓展
 4. 对于fpga:多加速器(NNA)调度，负载均衡｜目前计划支持的平台有正点院子ZYNQ-7020;PYNQ-Z2;Xlinx ZCU102
 5. 提供算子开发框架，可自己开发自己的算子。为了独立性，一个算子一个.c文件
-6. 提供demo: 1.手写数字 2.KWS(关键词识别) 3.yolo v2目标检测
+6. 提供demo: 1.Mnist手写数字，2.目标分类(mobilenet)，3.yolo v2目标检测，4.KWS(关键词识别)
 7. 内存排列模式:CHW和HWC（经过试验，得益于优秀的流水线机制，在cortex m核上顺序读取内存空间和以一定规律间隔读取内存空间效率几乎相同)
 8. 堆内存管理粒度:1.网络(四舍五入等于静态管理)2.网络层(算子)动态管理
 9. 除了避免野指针等引发段错误，其他地方一律不设错误检测，按照demo的方式来调用/直接使用工具将H5/tflite模型文件转为C Model，理论上不会出错。
