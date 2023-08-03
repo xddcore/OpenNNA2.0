@@ -1,0 +1,3 @@
+/xddcore_toolbox/OpenNNA2.0/platform/zero_linux_board/build/CMakeFiles/rebuild_cache.dir
+/xddcore_toolbox/OpenNNA2.0/platform/zero_linux_board/build/CMakeFiles/core.dir
+/xddcore_toolbox/OpenNNA2.0/platform/zero_linux_board/build/CMakeFiles/edit_cache.dir
